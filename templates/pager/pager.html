@@ -1,0 +1,7 @@
+<ul class="pagination">
+	<li ng-class="{disabled: isFirst()}"><a href ng-click="first()">{{getText('first')}}</a></li>
+	<li ng-class="{disabled: isFirst()}"><a href ng-click="previous()">{{getText('previous')}}</a></li>
+	<li ng-repeat="page in pages track by $index" ng-class="{active: page.active}"><a href ng-click="selectPage(page.pageIndex)">{{page.pageIndex + 1}}</a></li>
+	<li ng-class="{disabled: isLast()}"><a href ng-click="next()">{{getText('next')}}</a></li>
+	<li ng-class="{disabled: isLast()}"><a href ng-click="last()">{{getText('last')}}</a></li>
+</ul>

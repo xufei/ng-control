@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="libs/angular/angular.js"></script>
+	<script type="text/javascript" src="scripts/controls/package.js"></script>
+	<script type="text/javascript" src="scripts/controls/pager.js"></script>
+	<script type="text/javascript" src="scripts/test.js"></script>
+	<script type="text/javascript" src="scripts/main.js"></script>
+</head>
+<body ng-app="sn">
+	<div ng-controller="TestPagerCtrl1">
+		<pager itemsPerPage="15" totalItems="{{totalItems}}"></pager>
+	</div>
+</body>
+</html>
