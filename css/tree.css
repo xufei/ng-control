@@ -1,0 +1,19 @@
+ul.tree li {
+	list-style: none;
+}
+
+ul.tree li.success > span {
+	background-color: #dff0d8;
+}
+
+ul.tree li.error > span {
+	background-color: #f2dede;
+}
+
+ul.tree li.warning > span {
+	background-color: #fcf8e3;
+}
+
+ul.tree li.info > span {
+	background-color: #d9edf7;
+}
