@@ -9,6 +9,7 @@ angular.module("sn.controls").directive('pager', function() {
 			$scope.currentPage = 0;
 			$scope.totalPages = 1;
 			$scope.totalItems = 0;
+			$scope.pageOffset = 0;
 
 			$scope.reset = function() {
 				if ($scope.totalItems % $scope.itemsPerPage == 0) {
@@ -24,16 +25,29 @@ angular.module("sn.controls").directive('pager', function() {
 				if ($scope.currentPage > $scope.totalPages) {
 					$scope.currentPage = 0;
 				}
-
-				$scope.pages.length = 0;
-				for (var i = 0; i < $scope.totalPages; i++) {
+				
+				$scope.resetPageList();
+			};
+			
+			$scope.resetPageList = function() {
+				$scope.pages = [];
+				
+				var offset = Math.min($scope.currentPage, $scope.totalPages - $scope.listSize);
+				if (offset < 0) {
+					offset = 0;
+				}
+				$scope.pageOffset = offset;
+				
+				var last = Math.min($scope.pageOffset+$scope.listSize, $scope.totalPages);
+				for (var i=$scope.pageOffset; i<last; i++) {
 					$scope.pages.push({
 						text : i,
 						pageIndex : i,
 						active : false
 					});
 				}
-				$scope.pages[$scope.currentPage].active = true;
+				
+				$scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
 			};
 
 			$scope.getText = function(key) {
@@ -49,11 +63,20 @@ angular.module("sn.controls").directive('pager', function() {
 			};
 
 			$scope.selectPage = function(value) {
-				$scope.pages[$scope.currentPage].active = false;
-				if ((value < $scope.totalPages) && (value >= 0)) {
+				if ((value >= $scope.totalPages) || (value < 0)) {
+					return;
+				}
+				
+				if ((value < $scope.pageOffset) || (value >= $scope.pageOffset + $scope.listSize)) {
+					$scope.currentPage = value;
+					this.resetPageList();
+				}
+				else {
+					$scope.pages[$scope.currentPage - $scope.pageOffset].active = false;
 					$scope.currentPage = value;
 				}
-				$scope.pages[$scope.currentPage].active = true;
+				
+				$scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
 				$scope.$emit("sn.controls.pager:pageIndexChange", $scope.pages[$scope.currentPage]);
 			};
 
@@ -86,7 +109,8 @@ angular.module("sn.controls").directive('pager', function() {
 			};
 		},
 		link : function(scope, element, attrs, ctrls) {
-			scope.itemsPerPage = attrs.itemsperpage || 10;
+			scope.itemsPerPage = (attrs.itemsperpage-0) || 10;
+			scope.listSize = (attrs.listsize-0) || 10;
 			scope.totalItems = attrs.totalitems;
 			scope.reset();
 		},
