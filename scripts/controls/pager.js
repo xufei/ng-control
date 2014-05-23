@@ -25,28 +25,28 @@ angular.module("sn.controls").directive('pager', function() {
 				if ($scope.currentPage > $scope.totalPages) {
 					$scope.currentPage = 0;
 				}
-				
+
 				$scope.resetPageList();
 			};
-			
+
 			$scope.resetPageList = function() {
 				$scope.pages = [];
-				
+
 				var offset = Math.min($scope.currentPage, $scope.totalPages - $scope.listSize);
 				if (offset < 0) {
 					offset = 0;
 				}
 				$scope.pageOffset = offset;
-				
-				var last = Math.min($scope.pageOffset+$scope.listSize, $scope.totalPages);
-				for (var i=$scope.pageOffset; i<last; i++) {
+
+				var last = Math.min($scope.pageOffset + $scope.listSize, $scope.totalPages);
+				for (var i = $scope.pageOffset; i < last; i++) {
 					$scope.pages.push({
 						text : i,
 						pageIndex : i,
 						active : false
 					});
 				}
-				
+
 				$scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
 			};
 
@@ -66,16 +66,15 @@ angular.module("sn.controls").directive('pager', function() {
 				if ((value >= $scope.totalPages) || (value < 0)) {
 					return;
 				}
-				
+
 				if ((value < $scope.pageOffset) || (value >= $scope.pageOffset + $scope.listSize)) {
 					$scope.currentPage = value;
 					this.resetPageList();
-				}
-				else {
+				} else {
 					$scope.pages[$scope.currentPage - $scope.pageOffset].active = false;
 					$scope.currentPage = value;
 				}
-				
+
 				$scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
 				$scope.$emit("sn.controls.pager:pageIndexChange", $scope.pages[$scope.currentPage]);
 			};
@@ -109,10 +108,13 @@ angular.module("sn.controls").directive('pager', function() {
 			};
 		},
 		link : function(scope, element, attrs, ctrls) {
-			scope.itemsPerPage = (attrs.itemsperpage-0) || 10;
-			scope.listSize = (attrs.listsize-0) || 10;
-			scope.totalItems = attrs.totalitems;
-			scope.reset();
+			scope.itemsPerPage = (attrs.itemsperpage - 0) || 10;
+			scope.listSize = (attrs.listsize - 0) || 10;
+			
+			attrs.$observe("totalitems", function(value) {
+				scope.totalItems = value;
+				scope.reset();
+			});
 		},
 		templateUrl : 'templates/pager/pager.html'
 	};
