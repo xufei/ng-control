@@ -1,19 +1,55 @@
-ul.tree li {
+tree {
+	/* prevent user selection */
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* default */
+	font-family: Tahoma;
+	font-size: 13px;
+	color: #555;
+	text-decoration: none;
+}
+
+tree ul {
+	margin: 0;
+	padding: 0;
 	list-style: none;
+	border: none;
+	overflow: hidden;
 }
 
-ul.tree li.success > span {
-	background-color: #dff0d8;
+tree li {
+	position: relative;
+	padding: 0 0 0 20px;
+	line-height: 20px;
 }
 
-ul.tree li.error > span {
-	background-color: #f2dede;
+tree li .expanded {
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/205B973A50C13F4B19D9BD");
+	background-repeat: no-repeat;
 }
 
-ul.tree li.warning > span {
-	background-color: #fcf8e3;
+tree li .collapsed {
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/1459193A50C13F4B1B05FB");
+	background-repeat: no-repeat;
 }
 
-ul.tree li.info > span {
-	background-color: #d9edf7;
+tree li .normal {
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/165B663A50C13F4B196CCA");
+	background-repeat: no-repeat;
+}
+
+tree li i, tree li span {
+	cursor: pointer;
+}
+
+tree li .selected {
+	background-color: #aaddff;
+	font-weight: bold;
+	padding: 1px 5px;
 }

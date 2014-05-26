@@ -1,7 +1,6 @@
 angular.module("sn.controls").directive('pager', function() {
 	return {
 		restrict : 'E',
-		transclude : true,
 		scope : {},
 		controller : function($scope, pagerConfig) {
 			$scope.pages = [];

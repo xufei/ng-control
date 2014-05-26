@@ -15,7 +15,9 @@
 	</head>
 	<body ng-app="sn">
 		<div ng-controller="TestTreeCtrl">
-			<tree treedata="areaData" labelField="name" keyField="id"></tree>
+			<tree data="areaData"></tree>
+			<button ng-click="addNode()">add node</button>
+			<tree data="armyData"></tree>
 		</div>
 		<div ng-controller="TestPagerCtrl1">
 			<pager itemsPerPage="15" totalItems="{{totalItems1}}" listSize="10"></pager>

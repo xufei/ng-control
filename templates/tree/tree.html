@@ -1,0 +1,9 @@
+<ul>
+	<li ng-repeat="node in data">
+		<i ng-class="type(node)" ng-click="iconClick(node)"></i>
+		<span ng-click="itemClick(node)" ng-class="{true:'selected', false:''}[node.$selected]">
+			{{ node.name }}
+		</span>
+		<tree data="node.children" ng-hide="node.$collapsed"></tree>
+	</li>
+</ul>
