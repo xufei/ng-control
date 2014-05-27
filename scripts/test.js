@@ -85,9 +85,14 @@ angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {
 		});
 	};
 
-	$scope.$on("sn.controls.tree:selectedNodeChange", function(event, args) {
+	$scope.$on("sn.controls.tree:selectedNodeChanged", function(event, args) {
 		event.stopPropagation();
 		console.log(args.newNode.name);
+	});
+	
+	$scope.$on("sn.controls.tree:nodeIconClicked", function(event, args) {
+		event.stopPropagation();
+		console.log(args.currentNode.$collapsed);
 	});
 });
 
@@ -99,7 +104,7 @@ angular.module("sn.tests").controller("TestPagerCtrl1", function($scope) {
 		$scope.totalItems1 = 77;
 	};
 
-	$scope.$on("sn.controls.pager:pageIndexChange", function(event, args) {
+	$scope.$on("sn.controls.pager:pageIndexChanged", function(event, args) {
 		event.stopPropagation();
 		console.log(args.pageIndex);
 	})

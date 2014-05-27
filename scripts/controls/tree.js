@@ -43,7 +43,7 @@ angular.module("sn.controls").directive('tree', function($compile) {
 					
 					root.selectedNode = node;
 					
-					root.$emit("sn.controls.tree:selectedNodeChange", evt);
+					root.$emit("sn.controls.tree:selectedNodeChanged", evt);
 				}
 			};
 			
@@ -53,6 +53,10 @@ angular.module("sn.controls").directive('tree', function($compile) {
 			
 			$scope.iconClick = function(node) {
 				node.$collapsed = !node.$collapsed;
+				
+				var evt = {currentNode: node};
+				var root = $scope.getRoot();
+				root.$emit("sn.controls.tree:nodeIconClicked", evt);
 			};
 		},
 		templateUrl : 'templates/tree/tree.html',

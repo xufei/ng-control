@@ -75,7 +75,7 @@ angular.module("sn.controls").directive('pager', function() {
 				}
 
 				$scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
-				$scope.$emit("sn.controls.pager:pageIndexChange", $scope.pages[$scope.currentPage]);
+				$scope.$emit("sn.controls.pager:pageIndexChanged", $scope.pages[$scope.currentPage]);
 			};
 
 			$scope.first = function() {
