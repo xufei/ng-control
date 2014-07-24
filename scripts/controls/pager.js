@@ -1,4 +1,4 @@
-angular.module("sn.controls").directive('pager', function() {
+angular.module("sn.controls").directive('snPager', function() {
 	return {
 		restrict : 'E',
 		scope : {},
@@ -125,4 +125,4 @@ angular.module("sn.controls").directive('pager', function() {
 		next : 'Next',
 		last : 'Last'
 	}
-})
+});
