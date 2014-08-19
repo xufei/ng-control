@@ -1,0 +1,58 @@
+<div class="sn-calendar">
+    <div class="datepicker-days" ng-show="viewMode==0">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="prev" ng-click="previousMonth()">‹</th>
+                <th colspan="5" class="switch" ng-click="switchView(1)">{{currentMonthStr()}}</th>
+                <th class="next" ng-click="nextMonth()">›</th>
+            </tr>
+            <tr>
+                <th class="dow" ng-repeat="day in weekdays">{{day}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in calendar">
+                <td ng-repeat="date in row track by $index" ng-class="dateClass(date)" ng-click="selectDate(date)">{{date}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datepicker-months" ng-show="viewMode==1">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="prev" ng-click="previousYear()">‹</th>
+                <th colspan="5" class="switch" ng-click="switchView(2)">{{currentYear}}</th>
+                <th class="next" ng-click="nextYear()">›</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                    <span ng-repeat="month in months" ng-class="monthClass($index)" ng-click="selectMonth($index)">{{month}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="datepicker-years" ng-show="viewMode==2">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="prev" ng-click="previousAge()">‹</th>
+                <th colspan="5" class="switch">{{currentAgeStr()}}</th>
+                <th class="next" ng-click="nextAge()">›</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="7">
+                    <span ng-repeat="year in years" ng-class="yearClass(year)" ng-click="selectYear(year)">{{year}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

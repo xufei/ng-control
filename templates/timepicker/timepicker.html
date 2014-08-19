@@ -1,0 +1,82 @@
+<div class="sn-timepicker">
+    <div class="timepicker-picker">
+        <table class="table-condensed">
+            <tbody>
+            <tr>
+                <td><a href="javascript:void(0)" class="btn" ng-click="increaseHour()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
+                <td class="separator"></td>
+                <td><a href="javascript:void(0)" class="btn" ng-click="increaseMinute()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
+                <td class="separator"></td>
+                <td><a href="javascript:void(0)" class="btn" ng-click="increaseSecond()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
+            </tr>
+            <tr>
+                <td><span data-action="showHours" class="timepicker-hour" ng-click="switchView(4)">{{currentHour}}</span></td>
+                <td class="separator">:</td>
+                <td><span data-action="showMinutes"
+                          class="timepicker-minute" ng-click="switchView(5)">{{currentMinute}}</span></td>
+                <td class="separator">:</td>
+                <td><span data-action="showSeconds"
+                          class="timepicker-second" ng-click="switchView(6)">{{currentSecond}}</span></td>
+            </tr>
+            <tr>
+                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseHour()"><i class="glyphicon glyphicon-chevron-down"></i></a></td>
+                <td class="separator"></td>
+                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseMinute()"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                </td>
+                <td class="separator"></td>
+                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseSecond()"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datepicker-months" ng-show="viewMode==4">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="switch">当前小时：{{currentHour}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span ng-repeat="hour in hours" ng-class="hourClass($index)"
+                          ng-click="selectHour($index)">{{hour}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datepicker-minutes" ng-show="viewMode==5">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="switch">当前分钟：{{currentMinute}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span ng-repeat="minute in minutes" ng-class="minuteClass($index)" ng-click="selectMinute($index)">{{minute}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datepicker-seconds" ng-show="viewMode==6">
+        <table class="table-condensed">
+            <thead>
+            <tr>
+                <th class="switch">当前秒钟：{{currentSecond}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span ng-repeat="second in seconds" ng-class="secondClass($index)" ng-click="selectSecond($index)">{{second}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
