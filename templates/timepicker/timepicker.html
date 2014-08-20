@@ -1,31 +1,48 @@
 <div class="sn-timepicker">
     <div class="timepicker-picker">
-        <table class="table-condensed">
+        <table>
             <tbody>
             <tr>
-                <td><a href="javascript:void(0)" class="btn" ng-click="increaseHour()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
-                <td class="separator"></td>
-                <td><a href="javascript:void(0)" class="btn" ng-click="increaseMinute()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
-                <td class="separator"></td>
-                <td><a href="javascript:void(0)" class="btn" ng-click="increaseSecond()"><i class="glyphicon glyphicon-chevron-up"></i></a></td>
-            </tr>
-            <tr>
-                <td><span data-action="showHours" class="timepicker-hour" ng-click="switchView(4)">{{currentHour}}</span></td>
-                <td class="separator">:</td>
-                <td><span data-action="showMinutes"
-                          class="timepicker-minute" ng-click="switchView(5)">{{currentMinute}}</span></td>
-                <td class="separator">:</td>
-                <td><span data-action="showSeconds"
-                          class="timepicker-second" ng-click="switchView(6)">{{currentSecond}}</span></td>
-            </tr>
-            <tr>
-                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseHour()"><i class="glyphicon glyphicon-chevron-down"></i></a></td>
-                <td class="separator"></td>
-                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseMinute()"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                <td>
+                    <button class="btn btn-default timepicker-increase" ng-click="increaseHour()">+</button>
                 </td>
                 <td class="separator"></td>
-                <td><a href="javascript:void(0)" class="btn" ng-click="decreaseSecond()"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                <td>
+                    <button class="btn btn-default timepicker-increase" ng-click="increaseMinute()">+</button>
                 </td>
+                <td class="separator"></td>
+                <td>
+                    <button class="btn btn-default timepicker-increase" ng-click="increaseSecond()">+</button>
+                </td>
+                <td class="separator"></td>
+            </tr>
+            <tr>
+                <td ng-click="switchView(4)">
+                    <input class="form-control time-input" type="text" readonly ng-model="currentHour"/>
+                </td>
+                <td class="separator">点</td>
+                <td ng-click="switchView(5)">
+                    <input class="form-control time-input" type="text" readonly ng-model="currentMinute"/>
+                </td>
+                <td class="separator">分</td>
+                <td ng-click="switchView(6)">
+                    <input class="form-control time-input" type="text" readonly ng-model="currentSecond"/>
+                </td>
+                <td class="separator">秒</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-default timepicker-decrease" ng-click="decreaseHour()">-</button>
+                </td>
+                <td class="separator"></td>
+                <td>
+                    <button class="btn btn-default timepicker-decrease" ng-click="decreaseMinute()">-</button>
+                </td>
+                <td class="separator"></td>
+                <td>
+                    <button class="btn btn-default timepicker-decrease" ng-click="decreaseSecond()">-</button>
+                </td>
+                <td class="separator"></td>
             </tr>
             </tbody>
         </table>

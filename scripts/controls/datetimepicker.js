@@ -10,6 +10,11 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
             $document.on("click", function (evt) {
                 if (!element[0].contains(evt.srcElement)) {
                     scope.pop = false;
+
+                    if (scope.$modelKey) {
+                        scope.$parent[scope.$modelKey] = scope.currentDate;
+                    }
+
                     scope.$digest();
                 }
             });
@@ -24,14 +29,51 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
                 }
             };
 
-            $scope.$on("sn.controls.calendar:dateSelected", function (evt, data) {
-                $scope.selectedDate = new Date(data.year, data.month, data.date).toLocaleString();
-                $scope.pop = false;
+            function buildDate() {
+                var now = new Date();
+                $scope.currentDate = new Date(
+                        $scope.year || now.getFullYear(),
+                        $scope.month || now.getMonth(),
+                        $scope.date || now.getDate(),
+                        $scope.hour || now.getHours(),
+                        $scope.minute || now.getMinutes(),
+                        $scope.second || now.getSeconds()
+                ).toLocaleString();
+            }
 
-                if ($scope.$modelKey) {
-                    $scope.$parent[$scope.$modelKey] = $scope.selectedDate;
-                }
-                evt.preventDefault();
+            $scope.$on("sn.controls.calendar:yearChanged", function (evt, data) {
+                $scope.year = data.year;
+                buildDate();
+                evt.stopPropagation();
+            });
+
+            $scope.$on("sn.controls.calendar:monthChanged", function (evt, data) {
+                $scope.month = data.month;
+                buildDate();
+                evt.stopPropagation();
+            });
+
+            $scope.$on("sn.controls.calendar:dateChanged", function (evt, data) {
+                $scope.date = data.date;
+                buildDate();
+                evt.stopPropagation();
+            });
+
+            $scope.$on("sn.controls.timepicker:hourChanged", function (evt, data) {
+                $scope.hour = data.hour;
+                buildDate();
+                evt.stopPropagation();
+            });
+
+            $scope.$on("sn.controls.timepicker:minuteChanged", function (evt, data) {
+                $scope.minute = data.minute;
+                buildDate();
+                evt.stopPropagation();
+            });
+
+            $scope.$on("sn.controls.timepicker:secondChanged", function (evt, data) {
+                $scope.second = data.second;
+                buildDate();
                 evt.stopPropagation();
             });
         },

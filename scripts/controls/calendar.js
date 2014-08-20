@@ -17,12 +17,26 @@ angular.module("sn.controls").directive("snCalendar", [function () {
             $scope.currentDate = now.getDate();
 
             $scope.$watch("currentYear", function (newYear) {
+                $scope.$emit("sn.controls.calendar:yearChanged", {
+                    year: newYear
+                });
+
                 generateYears(newYear);
                 generateCalendar(newYear, $scope.currentMonth);
             });
 
             $scope.$watch("currentMonth", function (newMonth) {
+                $scope.$emit("sn.controls.calendar:monthChanged", {
+                    month: newMonth
+                });
+
                 generateCalendar($scope.currentYear, newMonth);
+            });
+
+            $scope.$watch("currentDate", function(newDate) {
+                $scope.$emit("sn.controls.calendar:dateChanged", {
+                    date: newDate
+                });
             });
 
             function generateCalendar(year, month) {
@@ -80,11 +94,6 @@ angular.module("sn.controls").directive("snCalendar", [function () {
             $scope.selectDate = function (date) {
                 if (date) {
                     $scope.currentDate = date;
-                    $scope.$emit("sn.controls.calendar:dateSelected", {
-                        year: $scope.currentYear,
-                        month: $scope.currentMonth,
-                        date: $scope.currentDate
-                    });
                 }
             };
 

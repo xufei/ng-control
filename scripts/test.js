@@ -1,5 +1,9 @@
 angular.module("sn.tests", []);
 
+angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
+    $scope.date = new Date();
+});
+
 angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {
 	$scope.areaData = [{
 		name : "Jiangsu",
