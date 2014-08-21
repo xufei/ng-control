@@ -1,7 +1,9 @@
 angular.module("sn.tests", []);
 
 angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
-    $scope.date = new Date();
+    $scope.getDate = function() {
+        alert($scope.date);
+    };
 });
 
 angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {

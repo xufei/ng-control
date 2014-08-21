@@ -7,14 +7,15 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
                 scope.$modelKey = attrs["ngModel"];
             }
 
+            scope.$watch("currentDate", function(newDate) {
+                if (scope.$modelKey) {
+                    scope.$parent[scope.$modelKey] = scope.currentDate;
+                }
+            });
+
             $document.on("click", function (evt) {
                 if (!element[0].contains(evt.srcElement)) {
                     scope.pop = false;
-
-                    if (scope.$modelKey) {
-                        scope.$parent[scope.$modelKey] = scope.currentDate;
-                    }
-
                     scope.$digest();
                 }
             });

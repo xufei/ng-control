@@ -1,4 +1,4 @@
-angular.module("sn.controls").directive('tree', function($compile) {
+angular.module("sn.controls").directive('snTree', function($compile) {
 	return {
 		restrict : "E",
 		scope : {

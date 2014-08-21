@@ -4,6 +4,6 @@
 		<span ng-click="itemClick(node)" ng-class="{true:'selected', false:''}[node.$selected]">
 			{{ node.name }}
 		</span>
-		<tree data="node.children" ng-hide="node.$collapsed"></tree>
+		<sn-tree data="node.children" ng-hide="node.$collapsed"></sn-tree>
 	</li>
 </ul>
