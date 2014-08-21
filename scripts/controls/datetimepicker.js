@@ -41,38 +41,38 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
                 ).toLocaleString();
             }
 
-            $scope.$on("sn.controls.calendar:yearChanged", function (evt, data) {
-                $scope.year = data.year;
+            $scope.$on("sn.controls.calendar:yearChanged", function (evt, year) {
+                $scope.year = year;
                 buildDate();
                 evt.stopPropagation();
             });
 
-            $scope.$on("sn.controls.calendar:monthChanged", function (evt, data) {
-                $scope.month = data.month;
+            $scope.$on("sn.controls.calendar:monthChanged", function (evt, month) {
+                $scope.month = month;
                 buildDate();
                 evt.stopPropagation();
             });
 
-            $scope.$on("sn.controls.calendar:dateChanged", function (evt, data) {
-                $scope.date = data.date;
+            $scope.$on("sn.controls.calendar:dateChanged", function (evt, date) {
+                $scope.date = date;
                 buildDate();
                 evt.stopPropagation();
             });
 
-            $scope.$on("sn.controls.timepicker:hourChanged", function (evt, data) {
-                $scope.hour = data.hour;
+            $scope.$on("sn.controls.timePicker:hourChanged", function (evt, hour) {
+                $scope.hour = hour;
                 buildDate();
                 evt.stopPropagation();
             });
 
-            $scope.$on("sn.controls.timepicker:minuteChanged", function (evt, data) {
-                $scope.minute = data.minute;
+            $scope.$on("sn.controls.timePicker:minuteChanged", function (evt, minute) {
+                $scope.minute = minute;
                 buildDate();
                 evt.stopPropagation();
             });
 
-            $scope.$on("sn.controls.timepicker:secondChanged", function (evt, data) {
-                $scope.second = data.second;
+            $scope.$on("sn.controls.timePicker:secondChanged", function (evt, second) {
+                $scope.second = second;
                 buildDate();
                 evt.stopPropagation();
             });

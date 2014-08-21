@@ -17,26 +17,20 @@ angular.module("sn.controls").directive("snCalendar", [function () {
             $scope.currentDate = now.getDate();
 
             $scope.$watch("currentYear", function (newYear) {
-                $scope.$emit("sn.controls.calendar:yearChanged", {
-                    year: newYear
-                });
+                $scope.$emit("sn.controls.calendar:yearChanged", newYear);
 
                 generateYears(newYear);
                 generateCalendar(newYear, $scope.currentMonth);
             });
 
             $scope.$watch("currentMonth", function (newMonth) {
-                $scope.$emit("sn.controls.calendar:monthChanged", {
-                    month: newMonth
-                });
+                $scope.$emit("sn.controls.calendar:monthChanged", newMonth);
 
                 generateCalendar($scope.currentYear, newMonth);
             });
 
             $scope.$watch("currentDate", function(newDate) {
-                $scope.$emit("sn.controls.calendar:dateChanged", {
-                    date: newDate
-                });
+                $scope.$emit("sn.controls.calendar:dateChanged", newDate);
             });
 
             function generateCalendar(year, month) {

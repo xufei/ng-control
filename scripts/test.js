@@ -100,7 +100,7 @@ angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {
 	});
 });
 
-angular.module("sn.tests").controller("TestPagerCtrl1", function($scope) {
+angular.module("sn.tests").controller("TestPagerCtrl", function($scope) {
 	$scope.totalItems1 = 577;
 	$scope.totalItems2 = 33;
 
