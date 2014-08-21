@@ -71,7 +71,7 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
                     var allWidth = element.children()[0].offsetWidth;
                     var currentWidth = evt.clientX - UIHelper.getOffset(element.find("div")[1]).x;
 
-                    var temp = Math.ceil(scope.maxStep * currentWidth / allWidth)
+                    var temp = Math.ceil(scope.maxStep * currentWidth / allWidth);
                     if ((temp >=0) && (temp <= scope.maxStep)) {
                         value = temp;
 

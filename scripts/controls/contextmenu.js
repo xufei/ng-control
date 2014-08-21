@@ -4,7 +4,7 @@ angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http",
         link: function (scope, element, attrs) {
             var menu = angular.element('<ul class="dropdown-menu"></ul>');
 
-            var menuArr = scope.$eval(attrs.snContextmmenu);
+            var menuArr = scope.$eval(attrs["snContextmmenu"]);
 
             for (var i = 0; i < menuArr.length; i++) {
                 if (menuArr[i].action) {

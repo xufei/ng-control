@@ -13,12 +13,12 @@ angular.module("sn.controls").directive("snTimepicker", [function () {
                 $scope.hours.push(i);
             }
 
-            for (var i = 0; i < 60; i++) {
-                $scope.minutes.push(i);
+            for (var j = 0; j < 60; j++) {
+                $scope.minutes.push(j);
             }
 
-            for (var i = 0; i < 60; i++) {
-                $scope.seconds.push(i);
+            for (var k = 0; k < 60; k++) {
+                $scope.seconds.push(k);
             }
 
             var now = new Date();

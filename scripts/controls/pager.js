@@ -60,7 +60,7 @@ angular.module("sn.controls").directive('snPager', function () {
                         active: false
                     });
                 }
-            };
+            }
 
             $scope.getText = function (key) {
                 return pagerConfig.text[key];
@@ -120,8 +120,8 @@ angular.module("sn.controls").directive('snPager', function () {
             };
         },
         link: function (scope, element, attrs) {
-            scope.itemsPerPage = (attrs.itemsperpage - 0) || 10;
-            scope.listSize = (attrs.listsize - 0) || 10;
+            scope.itemsPerPage = (attrs["itemsperpage"] - 0) || 10;
+            scope.listSize = (attrs["listsize"] - 0) || 10;
 
             attrs.$observe("totalitems", function (value) {
                 scope.totalItems = value;

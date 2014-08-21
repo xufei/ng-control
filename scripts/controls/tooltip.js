@@ -2,7 +2,7 @@ angular.module("sn.controls").directive("snTooltip", ["$document", "$http", "UIH
     return {
         restrict: "A",
         link: function (scope, element, attrs) {
-            var url = attrs.snTooltip;
+            var url = attrs["snTooltip"];
             var popover;
 
             $http.get(url).then(function (result) {
