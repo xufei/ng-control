@@ -4,14 +4,14 @@ angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http",
         link: function (scope, element, attrs) {
             var menu = angular.element('<ul class="dropdown-menu"></ul>');
 
-            var menuArr = scope.$eval(attrs["snContextmmenu"]);
+            var menuArr = scope.$eval(attrs.snContextmmenu);
 
             for (var i = 0; i < menuArr.length; i++) {
                 if (menuArr[i].action) {
                     var menuItem = angular.element('<li><a>' + menuArr[i].title + '</a></li>');
                     menuItem.on("click", (function (index) {
                         return function () {
-                            menu.remove();
+                            menu.css("display", "none");
                             menuArr[index].action();
                         };
                     })(i));
@@ -26,7 +26,13 @@ angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http",
                 var mouseX = evt.clientX;
                 var mouseY = evt.clientY;
 
-                $document.find("body").append(menu);
+                if ($document.find("body")[0].contains(menu[0])) {
+                    menu.css("display", "block");
+                }
+                else {
+                    $document.find("body").append(menu);
+                }
+
                 menu.css("display", "block");
                 menu.css("left", mouseX + "px");
                 menu.css("top", mouseY + "px");
@@ -35,14 +41,14 @@ angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http",
                 evt.preventDefault();
 
                 if ($document.currentMenu && $document.currentMenu != menu) {
-                    $document.currentMenu.remove();
+                    $document.currentMenu.css("display", "none");
                 }
 
                 $document.currentMenu = menu;
             });
 
-            $document.on("click", function () {
-                menu.remove();
+            $document.on("click", function (evt) {
+                menu.css("display", "none");
             });
         }
     };

@@ -1,5 +1,5 @@
 <div ng-class="datetimepickerClass()">
-    <input type="text" class="form-control" ng-model="currentDate | date:'yyyy-MM-dd HH:mm:ss'" readonly/>
+    <input type="text" class="form-control" ng-value="currentDateStr" readonly/>
     <span class="input-group-addon" ng-click="pop=true">
         <span class="glyphicon glyphicon-calendar"></span>
     </span>

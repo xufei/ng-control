@@ -1,4 +1,4 @@
-angular.module("sn.controls").directive("snDatetimepicker", ["$document", function ($document) {
+angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filter", function ($document, $filter) {
     return {
         restrict: "E",
         scope: {},
@@ -8,6 +8,8 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
             }
 
             scope.$watch("currentDate", function(newDate) {
+                scope.currentDateStr = $filter('date')(newDate, "yyyy-MM-dd HH:mm:ss");
+
                 if (scope.$modelKey) {
                     scope.$parent[scope.$modelKey] = scope.currentDate;
                 }
