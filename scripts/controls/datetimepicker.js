@@ -39,7 +39,7 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", functi
                         $scope.hour || now.getHours(),
                         $scope.minute || now.getMinutes(),
                         $scope.second || now.getSeconds()
-                ).toLocaleString();
+                );
             }
 
             $scope.$on("sn.controls.calendar:yearChanged", function (evt, year) {
