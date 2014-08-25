@@ -1,10 +1,10 @@
 <div ng-class="datetimepickerClass()">
-    <input type="text" class="form-control" ng-value="currentDateStr" readonly/>
+	<input type="text" class="form-control" placeholder="请选择日期" ng-value="currentDateStr" readonly/>
     <span class="input-group-addon" ng-click="pop=true">
         <span class="glyphicon glyphicon-calendar"></span>
     </span>
-    <div class="dropdown-menu">
-        <sn-calendar></sn-calendar>
-        <sn-timepicker></sn-timepicker>
-    </div>
+	<div class="dropdown-menu">
+		<sn-calendar></sn-calendar>
+		<sn-timepicker></sn-timepicker>
+	</div>
 </div>
