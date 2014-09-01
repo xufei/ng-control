@@ -38,7 +38,9 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
             });
 
             element.on("click", function (evt) {
-                if (evt.srcElement.tagName != "DIV") {
+	            var src = evt.srcElement ? evt.srcElement : evt.target;
+
+                if (src.tagName != "DIV") {
                     return;
                 }
 
