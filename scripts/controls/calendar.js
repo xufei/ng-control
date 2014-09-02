@@ -33,10 +33,8 @@ angular.module("sn.controls").directive("snCalendar", [function () {
 				generateCalendar($scope.currentYear, newMonth);
 			});
 
-			$scope.$watch("currentDate", function(newDate, oldDate) {
-				if (newDate != oldDate) {
-					$scope.$emit("sn.controls.calendar:dateChanged", newDate);
-				}
+			$scope.$watch("currentDate", function (newDate, oldDate) {
+				$scope.$emit("sn.controls.calendar:dateChanged", newDate);
 			});
 
 			function generateCalendar(year, month) {
@@ -93,7 +91,12 @@ angular.module("sn.controls").directive("snCalendar", [function () {
 
 			$scope.selectDate = function (date) {
 				if (date) {
-					$scope.currentDate = date;
+					if (date == $scope.currentDate) {
+						$scope.$emit("sn.controls.calendar:dateChanged", date);
+					}
+					else {
+						$scope.currentDate = date;
+					}
 				}
 			};
 

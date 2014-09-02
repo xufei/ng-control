@@ -26,23 +26,16 @@ angular.module("sn.controls").directive("snTimepicker", [function () {
 			$scope.currentMinute = now.getMinutes();
 			$scope.currentSecond = now.getSeconds();
 
-			$scope.$watch("currentHour", function(newHour, oldHour) {
-				if (newHour != oldHour) {
-					$scope.$emit("sn.controls.timePicker:hourChanged", newHour);
-				}
+			$scope.$watch("currentHour", function (newHour, oldHour) {
+				$scope.$emit("sn.controls.timePicker:hourChanged", newHour);
 			});
 
-			$scope.$watch("currentMinute", function(newMinute, oldMinute) {
-				if (newMinute != oldMinute) {
-					$scope.$emit("sn.controls.timePicker:minuteChanged", newMinute);
-				}
+			$scope.$watch("currentMinute", function (newMinute, oldMinute) {
+				$scope.$emit("sn.controls.timePicker:minuteChanged", newMinute);
 			});
 
-
-			$scope.$watch("currentSecond", function(newSecond, oldSecond) {
-				if (newSecond != oldSecond) {
-					$scope.$emit("sn.controls.timePicker:secondChanged", newSecond);
-				}
+			$scope.$watch("currentSecond", function (newSecond, oldSecond) {
+				$scope.$emit("sn.controls.timePicker:secondChanged", newSecond);
 			});
 
 			$scope.hourClass = function (hour) {
