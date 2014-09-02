@@ -83,7 +83,9 @@ angular.module("sn.controls").directive('snPager', function () {
                     $scope.pages[$scope.currentPage - $scope.pageOffset].active = false;
                 }
 
-                tryResetPageList(value);
+	            if ((value < $scope.pageOffset) || (value >= $scope.pageOffset + $scope.pages.length)) {
+		            tryResetPageList(value);
+	            }
                 $scope.currentPage = value;
 
                 $scope.pages[$scope.currentPage - $scope.pageOffset].active = true;
