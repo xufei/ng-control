@@ -2,7 +2,7 @@ angular.module("sn.tests", []);
 
 angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
     $scope.getDate = function() {
-        alert($scope.date);
+        alert($scope.date1);
     };
 });
 

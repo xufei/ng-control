@@ -3,6 +3,8 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 		restrict: "E",
 		scope: {},
 		link: function (scope, element, attrs) {
+			scope.placeholder = attrs["placeholder"] || "请选择日期";
+
 			if (attrs["ngModel"]) {
 				scope.$modelKey = attrs["ngModel"];
 			}
