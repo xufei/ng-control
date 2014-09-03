@@ -21,21 +21,31 @@ angular.module("sn.controls").directive("snTimepicker", [function () {
 				$scope.seconds.push(k);
 			}
 
-			var now = new Date();
-			$scope.currentHour = now.getHours();
-			$scope.currentMinute = now.getMinutes();
-			$scope.currentSecond = now.getSeconds();
+			function init() {
+				var now = new Date();
+				$scope.currentHour = $scope.currentHour || now.getHours();
+				$scope.currentMinute = $scope.currentMinute || now.getMinutes();
+				$scope.currentSecond = $scope.currentSecond || now.getSeconds();
+			}
+
+			init();
 
 			$scope.$watch("currentHour", function (newHour, oldHour) {
-				$scope.$emit("sn.controls.timePicker:hourChanged", newHour);
+				if (newHour != oldHour) {
+					$scope.$emit("sn.controls.timePicker:hourChanged", newHour);
+				}
 			});
 
 			$scope.$watch("currentMinute", function (newMinute, oldMinute) {
-				$scope.$emit("sn.controls.timePicker:minuteChanged", newMinute);
+				if (newMinute != oldMinute) {
+					$scope.$emit("sn.controls.timePicker:minuteChanged", newMinute);
+				}
 			});
 
 			$scope.$watch("currentSecond", function (newSecond, oldSecond) {
-				$scope.$emit("sn.controls.timePicker:secondChanged", newSecond);
+				if (newSecond != oldSecond) {
+					$scope.$emit("sn.controls.timePicker:secondChanged", newSecond);
+				}
 			});
 
 			$scope.hourClass = function (hour) {
@@ -110,6 +120,17 @@ angular.module("sn.controls").directive("snTimepicker", [function () {
 			};
 		},
 		link: function (scope, element, attrs) {
+			if (attrs["initHour"]) {
+				scope.currentHour = scope.$parent.$eval(attrs["initHour"]);
+			}
+
+			if (attrs["initMinute"]) {
+				scope.currentMinute = scope.$parent.$eval(attrs["initMinute"]);
+			}
+
+			if (attrs["initSecond"]) {
+				scope.currentSecond = scope.$parent.$eval(attrs["initSecond"]);
+			}
 		},
 		templateUrl: "templates/timepicker/timepicker.html"
 	}

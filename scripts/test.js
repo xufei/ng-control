@@ -1,8 +1,10 @@
 angular.module("sn.tests", []);
 
 angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
-    $scope.getDate = function() {
-        alert($scope.date1);
+    $scope.date1 = new Date(2014, 3, 2, 6, 6, 6);
+
+	$scope.getDate = function() {
+        alert($scope.date2);
     };
 });
 

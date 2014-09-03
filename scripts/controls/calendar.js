@@ -11,10 +11,14 @@ angular.module("sn.controls").directive("snCalendar", [function () {
 			$scope.calendar = [];
 			$scope.weekdays = ["日", "一", "二", "三", "四", "五", "六"];
 
-			var now = new Date();
-			$scope.currentYear = now.getFullYear();
-			$scope.currentMonth = now.getMonth();
-			$scope.currentDate = now.getDate();
+			function init() {
+				var now = new Date();
+				$scope.currentYear = $scope.currentYear || now.getFullYear();
+				$scope.currentMonth = $scope.currentMonth || now.getMonth();
+				$scope.currentDate = $scope.currentDate || now.getDate();
+			}
+
+			init();
 
 			$scope.$watch("currentYear", function (newYear, oldYear) {
 				if (newYear != oldYear) {
@@ -34,7 +38,9 @@ angular.module("sn.controls").directive("snCalendar", [function () {
 			});
 
 			$scope.$watch("currentDate", function (newDate, oldDate) {
-				$scope.$emit("sn.controls.calendar:dateChanged", newDate);
+				if (newDate != oldDate) {
+					$scope.$emit("sn.controls.calendar:dateChanged", newDate);
+				}
 			});
 
 			function generateCalendar(year, month) {
@@ -161,6 +167,17 @@ angular.module("sn.controls").directive("snCalendar", [function () {
 			};
 		},
 		link: function (scope, element, attrs) {
+			if (attrs["initYear"]) {
+				scope.currentYear = scope.$parent.$eval(attrs["initYear"]);
+			}
+
+			if (attrs["initMonth"]) {
+				scope.currentMonth = scope.$parent.$eval(attrs["initMonth"]);
+			}
+
+			if (attrs["initDate"]) {
+				scope.currentDate = scope.$parent.$eval(attrs["initDate"]);
+			}
 		},
 		templateUrl: "templates/calendar/calendar.html"
 	}

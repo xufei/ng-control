@@ -7,15 +7,33 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 
 			if (attrs["ngModel"]) {
 				scope.$modelKey = attrs["ngModel"];
+				resetDate(scope.$parent.$eval(attrs["ngModel"]))
+
+				scope.$parent.$watch(attrs["ngModel"], function(newValue, oldValue) {
+					scope.$modelKey = newValue;
+					resetDate(scope.$parent.$eval(newValue));
+				});
 			}
+
+			function resetDate(date) {
+				if (date) {
+					scope.currentDate = date;
+					scope.currentDateStr = $filter('date')(date, "yyyy-MM-dd HH:mm:ss");
+				}
+			}
+
+			var date = scope.currentDate || (new Date());
+			scope.initYear = date.getFullYear();
+			scope.initMonth = date.getMonth();
+			scope.initDate = date.getDate();
+			scope.initHour = date.getHours();
+			scope.initMinute = date.getMinutes();
+			scope.initSecond = date.getSeconds();
 
 			$document.on("click", function (evt) {
 				var src = evt.srcElement ? evt.srcElement : evt.target;
 				if ((scope.pop) && (!element[0].contains(src))) {
 					scope.pop = false;
-
-
-					scope.currentDateStr = $filter('date')(scope.currentDate, "yyyy-MM-dd HH:mm:ss");
 
 					if (scope.$modelKey) {
 						scope.$parent[scope.$modelKey] = scope.currentDate;
@@ -34,11 +52,15 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 				}
 			};
 
-			var intialized = false;
+			var initialized = false;
 			$scope.showPop = function() {
-				intialized = true;
+				if (!initialized) {
+					if (!$scope.currentDate) {
+						buildDate();
+					}
+				}
 				$scope.pop = true;
-				buildDate();
+				initialized = true;
 			};
 
 			function buildDate() {
@@ -58,17 +80,12 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 					$scope.minute,
 					$scope.second
 				);
-			}
+				$scope.currentDateStr = $filter('date')($scope.currentDate, "yyyy-MM-dd HH:mm:ss");
 
-			$scope.$watch("currentDate", function (newDate) {
-				if (intialized) {
-					$scope.currentDateStr = $filter('date')(newDate, "yyyy-MM-dd HH:mm:ss");
-
-					if ($scope.$modelKey) {
-						$scope.$parent[$scope.$modelKey] = $scope.currentDate;
-					}
+				if ($scope.$modelKey) {
+					$scope.$parent[$scope.$modelKey] = $scope.currentDate;
 				}
-			});
+			}
 
 			$scope.$on("sn.controls.calendar:yearChanged", function (evt, year) {
 				$scope.year = year;
