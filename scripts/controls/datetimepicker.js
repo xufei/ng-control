@@ -10,7 +10,6 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 				resetDate(scope.$parent.$eval(attrs["ngModel"]))
 
 				scope.$parent.$watch(attrs["ngModel"], function(newValue, oldValue) {
-					scope.$modelKey = newValue;
 					resetDate(scope.$parent.$eval(newValue));
 				});
 			}
