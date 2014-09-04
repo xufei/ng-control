@@ -1,5 +1,3 @@
-angular.module("sn.controls", []);
-
 angular.module("sn.controls").service("DialogService", ["$http", "$document", "$rootScope", "$compile", function ($http, $document, $rootScope, $compile) {
     var zIndex = 1050;
     var dialogCounter = 0;

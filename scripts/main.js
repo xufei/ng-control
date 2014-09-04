@@ -1,1 +1,1 @@
-angular.module("sn", ["sn.controls", "sn.tests"]);
+angular.module("sn", ["sn.controls", "sn.demo"]);

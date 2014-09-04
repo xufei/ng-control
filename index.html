@@ -69,5 +69,19 @@
         </div>
     </div>
 </div>
+
+<div class="col-md-8">
+	<div ng-controller="TestStepperCtrl" class="panel panel-default">
+		<div class="panel-heading">步进控件</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<sn-stepper class="col-md-6" maxStep="{{maxStep}}" currentStep="{{initStep}}"></sn-stepper>
+				currentStep: {{currentStep}}
+			</div>
+
+			<button ng-click="maxStep = 15">改变maxStep</button>
+		</div>
+	</div>
+</div>
 </body>
 </html>

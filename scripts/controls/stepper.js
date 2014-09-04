@@ -22,11 +22,27 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
                 if ((value >= 0) && (value <= $scope.maxStep) && (value != $scope.currentStep)) {
                     $scope.currentStep = value;
                     $scope.$emit("sn.controls.stepper:stepperValueChanged", $scope.currentStep);
+	                $scope.$digest();
                 }
             };
         },
         link: function (scope, element, attrs) {
             scope.maxStep = (attrs.maxstep - 0) || 10;
+
+	        attrs.$observe("maxstep", function (value) {
+		        var maxStep = (value - 0) || 0;
+		        if (maxStep != scope.maxStep) {
+			        scope.maxStep = maxStep;
+
+			        if (scope.currentStep > scope.maxStep) {
+				        scope.changeValue(0);
+			        }
+
+			        setTimeout(function() {
+				        scope.$digest();
+			        }, 0);
+		        }
+	        });
 
             attrs.$observe("currentstep", function (value) {
                 var step = (value - 0) || 0;
@@ -83,9 +99,11 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
             });
 
             $document.on("mouseup", function () {
-                scope.changeValue(value);
-                scope.$digest();
-                dragging = false;
+	            if (dragging) {
+		            scope.changeValue(value);
+		            scope.$digest();
+		            dragging = false;
+	            }
             });
         },
         templateUrl: "templates/stepper/stepper.html"

@@ -1,6 +1,6 @@
-angular.module("sn.tests", []);
+angular.module("sn.demo", []);
 
-angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
+angular.module("sn.demo").controller("TestDateCtrl", function($scope) {
     $scope.date1 = new Date(2014, 3, 2, 6, 6, 6);
 
 	$scope.getDate = function() {
@@ -8,7 +8,17 @@ angular.module("sn.tests").controller("TestDateCtrl", function($scope) {
     };
 });
 
-angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {
+angular.module("sn.demo").controller("TestStepperCtrl", function($scope) {
+	$scope.maxStep = 100;
+	$scope.initStep = 20;
+
+	$scope.$on("sn.controls.stepper:stepperValueChanged", function(evt, newValue) {
+		$scope.currentStep = newValue;
+		$scope.$digest();
+	});
+});
+
+angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 	$scope.areaData = [{
 		name : "Jiangsu",
 		code : "js",
@@ -104,7 +114,7 @@ angular.module("sn.tests").controller("TestTreeCtrl", function($scope) {
 	});
 });
 
-angular.module("sn.tests").controller("TestPagerCtrl", function($scope) {
+angular.module("sn.demo").controller("TestPagerCtrl", function($scope) {
 	$scope.totalItems1 = 577;
 	$scope.totalItems2 = 33;
 
