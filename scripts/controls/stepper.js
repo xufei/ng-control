@@ -22,7 +22,6 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
                 if ((value >= 0) && (value <= $scope.maxStep) && (value != $scope.currentStep)) {
                     $scope.currentStep = value;
                     $scope.$emit("sn.controls.stepper:stepperValueChanged", $scope.currentStep);
-	                $scope.$digest();
                 }
             };
         },
@@ -35,12 +34,10 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
 			        scope.maxStep = maxStep;
 
 			        if (scope.currentStep > scope.maxStep) {
-				        scope.changeValue(0);
+				        setTimeout(function(){
+					        scope.changeValue(0);
+				        }, 0);
 			        }
-
-			        setTimeout(function() {
-				        scope.$digest();
-			        }, 0);
 		        }
 	        });
 
@@ -93,13 +90,15 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
                     if ((temp >=0) && (temp <= scope.maxStep)) {
                         value = temp;
 
-                        stepperEle.css("width", (Math.ceil(currentWidth * 100 / allWidth)) + "%");
+                        stepperEle.css("width", (currentWidth - 1) + "px");
                     }
                 }
             });
 
             $document.on("mouseup", function () {
 	            if (dragging) {
+		            stepperEle.css("width", (value * 100 / scope.maxStep) + "%");
+
 		            scope.changeValue(value);
 		            scope.$digest();
 		            dragging = false;
