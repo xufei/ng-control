@@ -26,7 +26,7 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
             };
         },
         link: function (scope, element, attrs) {
-            scope.maxStep = (attrs.maxstep - 0) || 10;
+            scope.maxStep = (attrs["maxstep"] - 0) || 10;
 
 	        attrs.$observe("maxstep", function (value) {
 		        var maxStep = (value - 0) || 0;
