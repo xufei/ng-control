@@ -1,23 +1,3 @@
-angular.module("sn.demo", []);
-
-angular.module("sn.demo").controller("TestDateCtrl", function($scope) {
-    $scope.date1 = new Date(2014, 3, 2, 6, 6, 6);
-
-	$scope.getDate = function() {
-        alert($scope.date2);
-    };
-});
-
-angular.module("sn.demo").controller("TestStepperCtrl", function($scope) {
-	$scope.maxStep = 100;
-	$scope.initStep = 20;
-
-	$scope.$on("sn.controls.stepper:stepperValueChanged", function(evt, newValue) {
-		$scope.currentStep = newValue;
-		$scope.$digest();
-	});
-});
-
 angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 	$scope.areaData = [{
 		name : "Jiangsu",
@@ -43,7 +23,7 @@ angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 		name : "Fujian",
 		code : "fj"
 	}];
-	
+
 	$scope.armyData = [{
 		name : "第5军杜聿明（军长）",
 		children : [{
@@ -107,23 +87,9 @@ angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 		event.stopPropagation();
 		console.log(args.newNode.name);
 	});
-	
+
 	$scope.$on("sn.controls.tree:nodeIconClicked", function(event, args) {
 		event.stopPropagation();
 		console.log(args.currentNode.$collapsed);
 	});
-});
-
-angular.module("sn.demo").controller("TestPagerCtrl", function($scope) {
-	$scope.totalItems1 = 577;
-	$scope.totalItems2 = 33;
-
-	$scope.changeTotal = function() {
-		$scope.totalItems1 = 77;
-	};
-
-	$scope.$on("sn.controls.pager:pageIndexChanged", function(event, args) {
-		event.stopPropagation();
-		console.log(args.pageIndex);
-	})
 });

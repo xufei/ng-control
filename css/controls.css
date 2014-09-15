@@ -1,4 +1,4 @@
-.sn-calendar {
+.calendar {
     top: 0;
     left: 0;
     width: 250px;
@@ -7,7 +7,7 @@
     z-index: 99999 !important;
     border-radius: 4px;
 }
-.sn-calendar.bottom:before {
+.calendar.bottom:before {
     content: '';
     display: inline-block;
     border-left: 7px solid transparent;
@@ -18,7 +18,7 @@
     top: -7px;
     left: 7px;
 }
-.sn-calendar.bottom:after {
+.calendar.bottom:after {
     content: '';
     display: inline-block;
     border-left: 6px solid transparent;
@@ -28,7 +28,7 @@
     top: -6px;
     left: 8px;
 }
-.sn-calendar.top:before {
+.calendar.top:before {
     content: '';
     display: inline-block;
     border-left: 7px solid transparent;
@@ -39,7 +39,7 @@
     bottom: -7px;
     left: 6px;
 }
-.sn-calendar.top:after {
+.calendar.top:after {
     content: '';
     display: inline-block;
     border-left: 6px solid transparent;
@@ -49,65 +49,65 @@
     bottom: -6px;
     left: 7px;
 }
-.sn-calendar .dow {
+.calendar .dow {
     width: 14.2857%;
 }
-.sn-calendar.pull-right:before {
+.calendar.pull-right:before {
     left: auto;
     right: 6px;
 }
-.sn-calendar.pull-right:after {
+.calendar.pull-right:after {
     left: auto;
     right: 7px;
 }
-.sn-calendar > ul {
+.calendar > ul {
     list-style-type: none;
     margin: 0;
 }
-.sn-calendar .timepicker-hour,
-.sn-calendar .timepicker-minute,
-.sn-calendar .timepicker-second {
+.calendar .timepicker-hour,
+.calendar .timepicker-minute,
+.calendar .timepicker-second {
     width: 100%;
     font-weight: bold;
     font-size: 1.2em;
 }
-.sn-calendar table[data-hour-format="12"] .separator {
+.calendar table[data-hour-format="12"] .separator {
     width: 4px;
     padding: 0;
     margin: 0;
 }
-.sn-calendar .datepicker > div {
+.calendar .datepicker > div {
     display: none;
 }
-.sn-calendar .picker-switch {
+.calendar .picker-switch {
     text-align: center;
 }
-.sn-calendar table {
+.calendar table {
     width: 100%;
     margin: 0;
 }
-.sn-calendar td,
-.sn-calendar th {
+.calendar td,
+.calendar th {
     text-align: center;
     width: 20px;
     height: 20px;
     border-radius: 4px;
 }
-.sn-calendar td.day:hover,
-.sn-calendar td.hour:hover,
-.sn-calendar td.minute:hover,
-.sn-calendar td.second:hover {
+.calendar td.day:hover,
+.calendar td.hour:hover,
+.calendar td.minute:hover,
+.calendar td.second:hover {
     background: #eeeeee;
     cursor: pointer;
 }
-.sn-calendar td.old,
-.sn-calendar td.new {
+.calendar td.old,
+.calendar td.new {
     color: #999999;
 }
-.sn-calendar td.today {
+.calendar td.today {
     position: relative;
 }
-.sn-calendar td.today:before {
+.calendar td.today:before {
     content: '';
     display: inline-block;
     border-left: 7px solid transparent;
@@ -117,77 +117,77 @@
     bottom: 4px;
     right: 4px;
 }
-.sn-calendar td.active,
-.sn-calendar td.active:hover {
+.calendar td.active,
+.calendar td.active:hover {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.sn-calendar td.active.today:before {
+.calendar td.active.today:before {
     border-bottom-color: #fff;
 }
-.sn-calendar td.disabled,
-.sn-calendar td.disabled:hover {
+.calendar td.disabled,
+.calendar td.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-.sn-calendar td span {
+.calendar td span {
     display: block;
     float: left;
     margin: 2px;
     cursor: pointer;
     border-radius: 4px;
 }
-.sn-calendar td span.year {
+.calendar td span.year {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-.sn-calendar td span.month {
+.calendar td span.month {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-.sn-calendar td span.day {
+.calendar td span.day {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-.sn-calendar td span:hover {
+.calendar td span:hover {
     background: #eeeeee;
 }
-.sn-calendar td span.active {
+.calendar td span.active {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.sn-calendar td span.old {
+.calendar td span.old {
     color: #999999;
 }
-.sn-calendar td span.disabled,
-.sn-calendar td span.disabled:hover {
+.calendar td span.disabled,
+.calendar td span.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-.sn-calendar th.switch {
+.calendar th.switch {
     width: 145px;
 }
-.sn-calendar th.next,
-.sn-calendar th.prev {
+.calendar th.next,
+.calendar th.prev {
     font-size: 21px;
 }
-.sn-calendar th.disabled,
-.sn-calendar th.disabled:hover {
+.calendar th.disabled,
+.calendar th.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-.sn-calendar thead tr:first-child th {
+.calendar thead tr:first-child th {
     cursor: pointer;
 }
-.sn-calendar thead tr:first-child th:hover {
+.calendar thead tr:first-child th:hover {
     background: #eeeeee;
 }
 .input-group.date .input-group-addon span {
@@ -196,15 +196,15 @@
     width: 16px;
     height: 16px;
 }
-.sn-calendar.left-oriented:before {
+.calendar.left-oriented:before {
     left: auto;
     right: 6px;
 }
-.sn-calendar.left-oriented:after {
+.calendar.left-oriented:after {
     left: auto;
     right: 7px;
 }
-.sn-calendar ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td {
+.calendar ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td {
     padding: 0px !important;
 }
 
@@ -438,6 +438,83 @@
     padding: 0px !important;
 }
 
+
+
+.datetime-picker {
+}
+
+.datetime-picker .input-group {
+	position: relative;
+	display: table;
+	vertical-align: middle;
+	border-collapse: separate;
+}
+
+.datetime-picker .datetime-input {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.datetime-picker .datetime-addon {
+	display: table-cell;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	color: #555;
+	text-align: center;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.datetime-picker>.datetime-addon span {
+	display: block;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+.datetime-picker-popup {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.datetime-picker-popup.open {
+	display: block;
+}
 
 
 .sn-hint-container {
