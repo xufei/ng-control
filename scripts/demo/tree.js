@@ -77,15 +77,32 @@ angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 	}];
 
 	$scope.addNode = function() {
-		$scope.areaData.push({
-			name : "Test",
-			code : "test"
-		});
+		if ($scope.selectedArea) {
+			if (!$scope.selectedArea.children) {
+				$scope.selectedArea.children = [];
+			}
+			$scope.selectedArea.children.push({
+				name : "Test",
+				code : "test"
+			});
+		}
+		else {
+			$scope.areaData.push({
+				name : "Test",
+				code : "test"
+			});
+		}
 	};
 
 	$scope.$on("sn.controls.tree:selectedNodeChanged", function(event, args) {
 		event.stopPropagation();
-		console.log(args.newNode.name);
+
+		if (args.treeId == "areaTree") {
+			$scope.selectedArea = args.newNode;
+		}
+		else {
+			$scope.selectedArmy = args.newNode;
+		}
 	});
 
 	$scope.$on("sn.controls.tree:nodeIconClicked", function(event, args) {

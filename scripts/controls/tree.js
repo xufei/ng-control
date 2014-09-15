@@ -2,7 +2,7 @@ angular.module("sn.controls").directive('snTree', function($compile) {
 	return {
 		restrict : "E",
 		scope : {
-			data : '='
+			treeData : "="
 		},
 		controller: function($scope) {
 			$scope.$isTreeNode = true;
@@ -34,7 +34,6 @@ angular.module("sn.controls").directive('snTree', function($compile) {
 			
 			$scope.select = function(node) {
 				if (node != $scope.selectedNode) {
-					var evt = {newNode:node, oldNode:$scope.selectedNode};
 					var root = $scope.getRoot();
 					if (root.selectedNode) {
 						root.selectedNode.$selected = false;
@@ -42,6 +41,8 @@ angular.module("sn.controls").directive('snTree', function($compile) {
 					node.$selected = true;
 					
 					root.selectedNode = node;
+
+					var evt = {newNode:node, oldNode:$scope.selectedNode, treeId: root.treeId};
 					
 					root.$emit("sn.controls.tree:selectedNodeChanged", evt);
 				}
@@ -67,6 +68,9 @@ angular.module("sn.controls").directive('snTree', function($compile) {
 				if (!compiledContents) {
 					compiledContents = $compile(contents);
 				}
+
+				scope.treeId = iAttr["treeId"];
+
 				compiledContents(scope, function(clone, scope) {
 					iElement.append(clone);
 				});
