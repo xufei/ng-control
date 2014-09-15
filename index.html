@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/controls.css"/>
 	<script type="text/javascript" src="libs/angular/angular.min.js"></script>
@@ -36,6 +37,7 @@
 	<script type="text/javascript" src="scripts/demo/pager.js"></script>
 	<script type="text/javascript" src="scripts/demo/stepper.js"></script>
 	<script type="text/javascript" src="scripts/demo/tree.js"></script>
+	<script type="text/javascript" src="scripts/demo/widget.js"></script>
 
 	<script type="text/javascript" src="scripts/main.js"></script>
 </head>
@@ -154,6 +156,15 @@
 			<sn-pager itemsPerPage="15" totalItems="{{totalItems1}}" listSize="10"></sn-pager>
 			<button class="btn btn-default" ng-click="changeTotal()">change total</button>
 			<sn-pager itemsPerPage="8" totalItems="{{totalItems2}}"></sn-pager>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12" ng-controller="TestWidgetCtrl">
+	<div class="panel panel-detail">
+		<div class="panel-heading">这个后面再搞吧</div>
+		<div class="panel-body">
+			哎
 		</div>
 	</div>
 </div>

@@ -646,3 +646,25 @@ ul.sn-tree {
 	font-weight: bold;
 	padding: 1px 5px;
 }
+
+
+.sn-widget {
+
+}
+
+.panel-detail {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border-radius: 0px;
+	border: 1px solid #bbb;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel-detail > .panel-heading {
+	color: #333;
+	border-radius: 0;
+	border-bottom: 1px solid #bbb;
+	font-weight: bold;
+	font-size: 16px;
+}
