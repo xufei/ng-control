@@ -255,7 +255,7 @@ gulp.task('templates:pages', function () {
 		// Build docs partials
 		gulp.src(['views/sidebar.html', 'views/partials/*.html'], {cwd: docs.cwd, base: docs.cwd})
 			.pipe(htmlmin({removeComments: true, collapseWhitespace: true}))
-			.pipe(ngtemplate({module: 'mgcrea.ngStrapDocs'}))
+			.pipe(ngtemplate({module: 'sn.controls.docs'}))
 			.pipe(ngmin())
 			.pipe(concat('docs.tpl.js', {process: function (src) {
 				return '// Source: ' + path.basename(this.path) + '\n' + (src.trim() + '\n').replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
@@ -273,7 +273,7 @@ gulp.task('templates:pages', function () {
 		// Build demo partials
 		gulp.src('*/docs/*.tpl.demo.html', {cwd: src.cwd})
 			.pipe(htmlmin({removeComments: true, collapseWhitespace: true}))
-			.pipe(ngtemplate({module: 'mgcrea.ngStrapDocs'}))
+			.pipe(ngtemplate({module: 'sn.controls.docs'}))
 			.pipe(ngmin())
 			.pipe(concat('demo.tpl.js', {process: function (src) {
 				return '// Source: ' + path.basename(this.path) + '\n' + (src.trim() + '\n').replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
