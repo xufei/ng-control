@@ -32,6 +32,7 @@
 	<script type="text/javascript" src="scripts/demo/hint.js"></script>
 	<script type="text/javascript" src="scripts/demo/calendar.js"></script>
 	<script type="text/javascript" src="scripts/demo/date.js"></script>
+	<script type="text/javascript" src="scripts/demo/contentmenu.js"></script>
 	<script type="text/javascript" src="scripts/demo/pager.js"></script>
 	<script type="text/javascript" src="scripts/demo/stepper.js"></script>
 	<script type="text/javascript" src="scripts/demo/tree.js"></script>
@@ -106,6 +107,28 @@
 </div>
 
 <div class="col-md-8">
+	<div class="panel panel-default" ng-controller="TestContextMenuCtrl">
+		<div class="panel-heading">右键菜单</div>
+		<div class="panel-body">
+			<table class="table table-bordered table-hover">
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Gender</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="student in students" sn-contextmmenu="itemMenu(student)">
+					<td>{{student.name}}</td>
+					<td>{{student.age}}</td>
+					<td>{{student.gender}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 	<div ng-controller="TestTreeCtrl" class="panel panel-default">
 		<div class="panel-heading">树控件</div>
 		<div class="panel-body">
