@@ -134,16 +134,22 @@
 		<div class="panel-heading">树控件</div>
 		<div class="panel-body">
 			<div class="panel panel-info">
-				<div class="panel-heading">树控件</div>
+				<div class="panel-heading">区域树</div>
 				<div class="panel-body">
 					<sn-tree tree-id="areaTree" tree-data="areaData"></sn-tree>
 					<button class="btn btn-default" ng-click="addNode()">add node</button>
 				</div>
 			</div>
 			<div class="panel panel-info">
-				<div class="panel-heading">树控件</div>
+				<div class="panel-heading">组织</div>
 				<div class="panel-body">
 					<sn-tree tree-id="armyTree" tree-data="armyData"></sn-tree>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">大树</div>
+				<div class="panel-body" style="height:300px; overflow-y: scroll">
+					<sn-tree tree-id="bigTree" tree-data="bigTreeData"></sn-tree>
 				</div>
 			</div>
 		</div>

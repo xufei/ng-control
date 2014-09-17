@@ -76,6 +76,23 @@ angular.module("sn.demo").controller("TestTreeCtrl", function($scope) {
 		name : "第36师李志鹏（师长）"
 	}];
 
+	$scope.bigTreeData = [];
+
+	var numOfNodes = 10;
+
+	for (var i=0; i<numOfNodes; i++) {
+		$scope.bigTreeData[i] = {
+			name: "Node" + i,
+			children: []
+		}
+
+		for (var j=0; j<numOfNodes; j++) {
+			$scope.bigTreeData[i].children[j] = {
+				name: "Node" + i + "," + j
+			}
+		}
+	}
+
 	$scope.addNode = function() {
 		if ($scope.selectedArea) {
 			if (!$scope.selectedArea.children) {

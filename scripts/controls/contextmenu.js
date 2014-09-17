@@ -1,55 +1,45 @@
-angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http", "UIHelper", function ($document, $http, UIHelper) {
+angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http", "$compile", "$rootScope", function ($document, $http, $compile, $rootScope) {
+	var currentMenu;
+
     return {
         restrict: "A",
         link: function (scope, element, attrs) {
-            var menu = angular.element('<ul class="dropdown-menu"></ul>');
+	        $http.get("templates/menu/menu.html").then(function(result) {
+		        var menu = angular.element(result.data);
 
-            var menuArr = scope.$eval(attrs.snContextmmenu);
+		        $compile(menu)(angular.extend($rootScope.$new(), {
+			        menuArr: scope.$eval(attrs["snContextmmenu"])
+		        }));
 
-            for (var i = 0; i < menuArr.length; i++) {
-                if (menuArr[i].action) {
-                    var menuItem = angular.element('<li><a>' + menuArr[i].title + '</a></li>');
-                    menuItem.on("click", (function (index) {
-                        return function () {
-                            menu.css("display", "none");
-                            menuArr[index].action();
-                        };
-                    })(i));
-                    menu.append(menuItem);
-                }
-                else {
-                    menu.append('<li class="divider"></li>');
-                }
-            }
+		        element.on("contextmenu", function (evt) {
+			        var mouseX = evt.clientX;
+			        var mouseY = evt.clientY;
 
-            element.on("contextmenu", function (evt) {
-                var mouseX = evt.clientX;
-                var mouseY = evt.clientY;
+			        if ($document.find("body")[0].contains(menu[0])) {
+				        menu.css("display", "block");
+			        }
+			        else {
+				        $document.find("body").append(menu);
+			        }
 
-                if ($document.find("body")[0].contains(menu[0])) {
-                    menu.css("display", "block");
-                }
-                else {
-                    $document.find("body").append(menu);
-                }
+			        menu.css("display", "block");
+			        menu.css("left", mouseX + "px");
+			        menu.css("top", mouseY + "px");
 
-                menu.css("display", "block");
-                menu.css("left", mouseX + "px");
-                menu.css("top", mouseY + "px");
+			        evt.stopPropagation();
+			        evt.preventDefault();
 
-                evt.stopPropagation();
-                evt.preventDefault();
+			        if (currentMenu && currentMenu != menu) {
+				        currentMenu.css("display", "none");
+			        }
 
-                if ($document.currentMenu && $document.currentMenu != menu) {
-                    $document.currentMenu.css("display", "none");
-                }
+			        currentMenu = menu;
+		        });
 
-                $document.currentMenu = menu;
-            });
-
-            $document.on("click", function (evt) {
-                menu.css("display", "none");
-            });
+		        $document.on("click", function (evt) {
+			        menu.css("display", "none");
+		        });
+	        });
         }
     };
 }]);
