@@ -267,7 +267,7 @@ for (var i = 0; i < 5; i++) {
 
 比如这个例子，使用了同一个数据模型：
 
-[http://xufei.github.io/ng-charts/index.html](xufei.github.io/ng-charts/index.html)
+[http://xufei.github.io/ng-charts/index.html](http://xufei.github.io/ng-charts/index.html)
 
 这个例子还可以进一步封装成directive，以SVG片段作模板，从元素属性和上级作用域中获取参数，这样使用起来更便利。
 
@@ -297,4 +297,4 @@ for (var i = 0; i < 5; i++) {
 
 本文提到的一些控件的基础demo可以参见这里，因为比较仓促，所以问题还有很多，只是大致说明了构建不同控件的思路，以后会逐步完善。
 
-[http://xufei.github.io/ng-control/index.html](http://xufei.github.io/ng-control/)
+[http://xufei.github.io/ng-control/index.html](http://xufei.github.io/ng-control/index.html)
