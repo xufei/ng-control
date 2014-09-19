@@ -42,6 +42,25 @@
 </head>
 <body ng-app="sn">
 <div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">下拉菜单</div>
+        <div class="panel-body">
+            <div class="dropdown" sn-dropdown>
+                <button class="btn btn-default dropdown-toggle" type="button">
+                    Dropdown
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">aaa</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">bbb action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ccc else here</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ddd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 	<div ng-controller="TestHintCtrl" class="panel panel-default">
 		<div class="panel-heading">操作提示</div>
 		<div class="panel-body">
