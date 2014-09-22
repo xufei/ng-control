@@ -1,4 +1,4 @@
-angular.module("sn.controls").directive("snContextmmenu", ["$document", "$http", "$compile", "$rootScope", function ($document, $http, $compile, $rootScope) {
+angular.module("sn.controls").directive("snContextmenu", ["$document", "$http", "$compile", "$rootScope", function ($document, $http, $compile, $rootScope) {
 	var currentMenu;
 
     return {
