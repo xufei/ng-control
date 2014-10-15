@@ -11,11 +11,6 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 				var src = evt.srcElement ? evt.srcElement : evt.target;
 				if ((scope.pop) && (!element[0].contains(src))) {
 					scope.pop = false;
-
-					if (scope.$modelKey) {
-						scope.$parent[scope.$modelKey] = scope.currentDate;
-					}
-					scope.$digest();
 				}
 			});
 		},
