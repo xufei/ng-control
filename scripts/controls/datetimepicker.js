@@ -1,35 +1,11 @@
 angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filter", function ($document, $filter) {
 	return {
 		restrict: "E",
-		scope: {},
+		scope: {
+			currentDate: "=ngModel"
+		},
 		link: function (scope, element, attrs) {
 			scope.placeholder = attrs["placeholder"] || "请选择日期";
-
-			if (attrs["ngModel"]) {
-				scope.$modelKey = attrs["ngModel"];
-				resetDate(scope.$parent.$eval(attrs["ngModel"]));
-
-				scope.$parent.$watch(attrs["ngModel"], function(newValue, oldValue) {
-					if (newValue) {
-						resetDate(scope.$parent.$eval(newValue));
-					}
-				});
-			}
-
-			function resetDate(date) {
-				if (date) {
-					scope.currentDate = date;
-					scope.currentDateStr = $filter('date')(date, "yyyy-MM-dd HH:mm:ss");
-				}
-			}
-
-			var date = scope.currentDate || (new Date());
-			scope.initYear = date.getFullYear();
-			scope.initMonth = date.getMonth();
-			scope.initDate = date.getDate();
-			scope.initHour = date.getHours();
-			scope.initMinute = date.getMinutes();
-			scope.initSecond = date.getSeconds();
 
 			$document.on("click", function (evt) {
 				var src = evt.srcElement ? evt.srcElement : evt.target;
@@ -44,6 +20,18 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 			});
 		},
 		controller: function ($scope) {
+			$scope.$watch("currentDate", function(newDate) {
+				$scope.currentDateStr = $filter('date')(newDate, "yyyy-MM-dd HH:mm:ss");
+			});
+
+			var date = $scope.currentDate || (new Date());
+			$scope.initYear = date.getFullYear();
+			$scope.initMonth = date.getMonth();
+			$scope.initDate = date.getDate();
+			$scope.initHour = date.getHours();
+			$scope.initMinute = date.getMinutes();
+			$scope.initSecond = date.getSeconds();
+
 			$scope.datetimepickerClass = function () {
 				if ($scope.pop) {
 					return "input-group date open";
