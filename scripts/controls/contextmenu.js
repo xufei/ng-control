@@ -3,12 +3,15 @@ angular.module("sn.controls").directive("snContextmenu", ["$document", "$http", 
 
     return {
         restrict: "A",
+		scope: {
+			menuArr: "=snContextmenu"
+		},
         link: function (scope, element, attrs) {
 	        $http.get("templates/menu/menu.html").then(function(result) {
 		        var menu = angular.element(result.data);
 
 		        $compile(menu)(angular.extend($rootScope.$new(), {
-			        menuArr: scope.$eval(attrs["snContextmmenu"])
+			        menuArr: scope.menuArr
 		        }));
 
 		        element.on("contextmenu", function (evt) {
