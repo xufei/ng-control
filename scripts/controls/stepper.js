@@ -28,47 +28,47 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
         link: function (scope, element, attrs) {
             scope.maxStep = (attrs["maxstep"] - 0) || 10;
 
-	        attrs.$observe("maxstep", function (value) {
-		        var maxStep = (value - 0) || 0;
-		        if (maxStep != scope.maxStep) {
-			        scope.maxStep = maxStep;
+            attrs.$observe("maxstep", function (value) {
+                var maxStep = (value - 0) || 0;
+                if (maxStep != scope.maxStep) {
+                    scope.maxStep = maxStep;
 
-			        if (scope.currentStep > scope.maxStep) {
-				        setTimeout(function(){
-					        scope.changeValue(0);
-				        }, 0);
-			        }
-		        }
-	        });
+                    if (scope.currentStep > scope.maxStep) {
+                        setTimeout(function () {
+                            scope.changeValue(0);
+                        }, 0);
+                    }
+                }
+            });
 
             attrs.$observe("currentstep", function (value) {
                 var step = (value - 0) || 0;
                 if (step != scope.currentStep) {
-                    setTimeout(function(){
+                    setTimeout(function () {
                         scope.changeValue(step);
-                    },0);
+                    }, 0);
                 }
             });
 
             element.on("click", function (evt) {
-	            var src = evt.srcElement ? evt.srcElement : evt.target;
+                var src = evt.srcElement ? evt.srcElement : evt.target;
 
                 if (src.tagName != "DIV") {
                     return;
                 }
 
                 var allWidth = element.children()[0].offsetWidth;
-                var currentWidth = evt.offsetX;
+                var currentWidth = (evt.offsetX || evt.layerX);
 
                 scope.changeValue(Math.round(scope.maxStep * currentWidth / allWidth));
             });
 
             $document.on("keypress", function (evt) {
-                if (evt.keyCode == "45") {
+                if ((evt.keyCode || evt.which) == "45") {
                     scope.decrease();
                     scope.$digest();
                 }
-                else if (evt.keyCode == "61") {
+                else if ((evt.keyCode || evt.which) == "61") {
                     scope.increase();
                     scope.$digest();
                 }
@@ -87,7 +87,7 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
                     var currentWidth = evt.clientX - UIHelper.getOffset(element.find("div")[1]).x;
 
                     var temp = Math.round(scope.maxStep * currentWidth / allWidth);
-                    if ((temp >=0) && (temp <= scope.maxStep)) {
+                    if ((temp >= 0) && (temp <= scope.maxStep)) {
                         value = temp;
 
                         stepperEle.css("width", (currentWidth - 1) + "px");
@@ -96,13 +96,13 @@ angular.module("sn.controls").directive("snStepper", ["$document", "UIHelper", f
             });
 
             $document.on("mouseup", function () {
-	            if (dragging) {
-		            stepperEle.css("width", (value * 100 / scope.maxStep) + "%");
+                if (dragging) {
+                    stepperEle.css("width", (value * 100 / scope.maxStep) + "%");
 
-		            scope.changeValue(value);
-		            scope.$digest();
-		            dragging = false;
-	            }
+                    scope.changeValue(value);
+                    scope.$digest();
+                    dragging = false;
+                }
             });
         },
         templateUrl: "templates/stepper/stepper.html"
