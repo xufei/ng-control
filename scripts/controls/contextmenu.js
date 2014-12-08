@@ -1,4 +1,5 @@
-angular.module("sn.controls").directive("snContextmenu", ["$document", "$http", "$compile", "$rootScope", function ($document, $http, $compile, $rootScope) {
+angular.module("sn.controls").directive("snContextmenu", ["$document", "$http", "$compile", "$rootScope", "UIHelper",
+	function ($document, $http, $compile, $rootScope, UIHelper) {
 	var currentMenu;
 
 	return {
@@ -12,8 +13,11 @@ angular.module("sn.controls").directive("snContextmenu", ["$document", "$http", 
 				}));
 
 				element.on("contextmenu", function (evt) {
-					var mouseX = evt.clientX;
-					var mouseY = evt.clientY;
+					var target = evt.target;
+					var offset = UIHelper.getOffset(target);
+
+					var mouseX = (evt.offsetX || evt.layerX) + offset.x;
+					var mouseY = (evt.offsetY || evt.layerY) + offset.y;
 
 					if ($document.find("body")[0].contains(menu[0])) {
 						menu.css("display", "block");
