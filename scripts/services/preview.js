@@ -45,15 +45,15 @@ angular.module("sn.controls").service("PreviewService", ["$document", "$http", "
     }
 
     return {
-        preview: function(url) {
-            var arr = url.split(".");
-            var extension = "";
-
-            if (arr.length > 0) {
-                extension = arr[arr.length-1];
+        preview: function(url, type) {
+            if (!type) {
+                var arr = url.split(".");
+                if (arr.length > 0) {
+                    type = arr[arr.length-1];
+                }
             }
 
-            switch(extension.trim().toLowerCase()) {
+            switch(type.trim().toLowerCase()) {
                 case "jpg":
                 case "jpeg":
                 case "bmp":
