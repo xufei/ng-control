@@ -566,6 +566,16 @@
 }
 
 
+
+.sn-preview-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1300;
+    opacity: 1;
+}
+
+
 .sn-stepper {
     height: 20px;
     margin-bottom: 20px;
