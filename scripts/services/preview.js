@@ -51,7 +51,7 @@ angular.module("sn.controls").service("PreviewService", ["$document", "$http", "
                 extension = arr[arr.length-1];
             }
 
-            switch(extension.trim()) {
+            switch(extension.trim().toLowerCase()) {
                 case "jpg":
                 case "jpeg":
                 case "bmp":
