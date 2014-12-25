@@ -12,9 +12,11 @@ angular.module("sn.controls").service("PreviewService", ["$document", "$http", "
 
     $document.on("click", function(evt) {
         var src = evt.srcElement ? evt.srcElement : evt.target;
+        /*
         if (!container[0].contains(src)) {
             hide();
         }
+        */
     });
 
     function hide() {
