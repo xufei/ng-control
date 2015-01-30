@@ -45,7 +45,7 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
                     }, 0);
                 }
             });
-
+/*
             element.on("click", function (evt) {
                 var src = evt.srcElement ? evt.srcElement : evt.target;
 
@@ -58,7 +58,7 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
 
                 stepperEle.css("height", (currentHeight - 1) + "px");
                 scope.changeValue(Math.round(scope.maxStep * currentHeight / allHeight));
-            });
+            });*/
 
             $document.on("keypress", function (evt) {
                 if ((evt.keyCode || evt.which) == "45") {
@@ -73,22 +73,32 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
 
             var dragging = false;
             var value = scope.currentValue;
-            var stepperEle = angular.element(element.find("div")[1]);
 
-            element.find("button").on("mousedown", function () {
+            var handler = angular.element(element.find("div")[0]);
+
+            var scrollHeight = 30;
+            var allHeight = element.children()[0].offsetHeight - scrollHeight;
+
+            handler.on("mousedown", function () {
                 dragging = true;
+                console.log("start");
             });
 
             element.on("mousemove", function (evt) {
                 if (dragging) {
-                    var allHeight = element.children()[0].offsetHeight;
-                    var currentHeight = evt.offsetY;
+                    var currentHeight = evt.offsetY - scrollHeight / 2;
+
+                    if (evt.target == handler[0]) {
+                        currentHeight += element.find("div")[1].offsetHeight - 1;
+                    }
+
+                    console.log(currentHeight + ":" +  allHeight);
 
                     var temp = Math.round(scope.maxStep * currentHeight / allHeight);
                     if ((temp >= 0) && (temp <= scope.maxStep)) {
                         value = temp;
 
-                        stepperEle.css("height", currentHeight + 4 + "px");
+                        handler.css("top", currentHeight + 1 + "px");
 
                         scope.changeValue(value);
                     }
