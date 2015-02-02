@@ -7,7 +7,6 @@
     z-index: 99999 !important;
     border-radius: 4px;
 }
-
 .calendar.bottom:before {
     content: '';
     display: inline-block;
@@ -19,7 +18,6 @@
     top: -7px;
     left: 7px;
 }
-
 .calendar.bottom:after {
     content: '';
     display: inline-block;
@@ -30,7 +28,6 @@
     top: -6px;
     left: 8px;
 }
-
 .calendar.top:before {
     content: '';
     display: inline-block;
@@ -42,7 +39,6 @@
     bottom: -7px;
     left: 6px;
 }
-
 .calendar.top:after {
     content: '';
     display: inline-block;
@@ -53,26 +49,21 @@
     bottom: -6px;
     left: 7px;
 }
-
 .calendar .dow {
     width: 14.2857%;
 }
-
 .calendar.pull-right:before {
     left: auto;
     right: 6px;
 }
-
 .calendar.pull-right:after {
     left: auto;
     right: 7px;
 }
-
 .calendar > ul {
     list-style-type: none;
     margin: 0;
 }
-
 .calendar .timepicker-hour,
 .calendar .timepicker-minute,
 .calendar .timepicker-second {
@@ -80,26 +71,21 @@
     font-weight: bold;
     font-size: 1.2em;
 }
-
 .calendar table[data-hour-format="12"] .separator {
     width: 4px;
     padding: 0;
     margin: 0;
 }
-
 .calendar .datepicker > div {
     display: none;
 }
-
 .calendar .picker-switch {
     text-align: center;
 }
-
 .calendar table {
     width: 100%;
     margin: 0;
 }
-
 .calendar td,
 .calendar th {
     text-align: center;
@@ -107,7 +93,6 @@
     height: 20px;
     border-radius: 4px;
 }
-
 .calendar td.day:hover,
 .calendar td.hour:hover,
 .calendar td.minute:hover,
@@ -115,16 +100,13 @@
     background: #eeeeee;
     cursor: pointer;
 }
-
 .calendar td.old,
 .calendar td.new {
     color: #999999;
 }
-
 .calendar td.today {
     position: relative;
 }
-
 .calendar td.today:before {
     content: '';
     display: inline-block;
@@ -135,25 +117,21 @@
     bottom: 4px;
     right: 4px;
 }
-
 .calendar td.active,
 .calendar td.active:hover {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
 .calendar td.active.today:before {
     border-bottom-color: #fff;
 }
-
 .calendar td.disabled,
 .calendar td.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .calendar td span {
     display: block;
     float: left;
@@ -161,90 +139,76 @@
     cursor: pointer;
     border-radius: 4px;
 }
-
 .calendar td span.year {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-
 .calendar td span.month {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-
 .calendar td span.day {
     width: 47px;
     height: 54px;
     line-height: 54px;
 }
-
 .calendar td span:hover {
     background: #eeeeee;
 }
-
 .calendar td span.active {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
 .calendar td span.old {
     color: #999999;
 }
-
 .calendar td span.disabled,
 .calendar td span.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .calendar th.switch {
     width: 145px;
 }
-
 .calendar th.next,
 .calendar th.prev {
     font-size: 21px;
 }
-
 .calendar th.disabled,
 .calendar th.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .calendar thead tr:first-child th {
     cursor: pointer;
 }
-
 .calendar thead tr:first-child th:hover {
     background: #eeeeee;
 }
-
 .input-group.date .input-group-addon span {
     display: block;
     cursor: pointer;
     width: 16px;
     height: 16px;
 }
-
 .calendar.left-oriented:before {
     left: auto;
     right: 6px;
 }
-
 .calendar.left-oriented:after {
     left: auto;
     right: 7px;
 }
-
 .calendar ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td {
     padding: 0px !important;
 }
+
+
 
 .sn-timepicker {
     top: 0;
@@ -255,7 +219,6 @@
     z-index: 99999 !important;
     border-radius: 4px;
 }
-
 .sn-timepicker.bottom:before {
     content: '';
     display: inline-block;
@@ -267,7 +230,6 @@
     top: -7px;
     left: 7px;
 }
-
 .sn-timepicker.bottom:after {
     content: '';
     display: inline-block;
@@ -278,7 +240,6 @@
     top: -6px;
     left: 8px;
 }
-
 .sn-timepicker.top:before {
     content: '';
     display: inline-block;
@@ -290,7 +251,6 @@
     bottom: -7px;
     left: 6px;
 }
-
 .sn-timepicker.top:after {
     content: '';
     display: inline-block;
@@ -301,26 +261,21 @@
     bottom: -6px;
     left: 7px;
 }
-
 .sn-timepicker .dow {
     width: 14.2857%;
 }
-
 .sn-timepicker.pull-right:before {
     left: auto;
     right: 6px;
 }
-
 .sn-timepicker.pull-right:after {
     left: auto;
     right: 7px;
 }
-
 .sn-timepicker > ul {
     list-style-type: none;
     margin: 0;
 }
-
 .sn-timepicker .timepicker-hour,
 .sn-timepicker .timepicker-minute,
 .sn-timepicker .timepicker-second {
@@ -328,26 +283,21 @@
     font-weight: bold;
     font-size: 1.2em;
 }
-
 .sn-timepicker table[data-hour-format="12"] .separator {
     width: 4px;
     padding: 0;
     margin: 0;
 }
-
 .sn-timepicker .datepicker > div {
     display: none;
 }
-
 .sn-timepicker .picker-switch {
     text-align: center;
 }
-
 .sn-timepicker table {
     width: 100%;
     margin: 0;
 }
-
 .sn-timepicker td,
 .sn-timepicker th {
     padding: 0;
@@ -381,16 +331,13 @@
     background: #eeeeee;
     cursor: pointer;
 }
-
 .sn-timepicker td.old,
 .sn-timepicker td.new {
     color: #999999;
 }
-
 .sn-timepicker td.today {
     position: relative;
 }
-
 .sn-timepicker td.today:before {
     content: '';
     display: inline-block;
@@ -401,191 +348,174 @@
     bottom: 4px;
     right: 4px;
 }
-
 .sn-timepicker td.active,
 .sn-timepicker td.active:hover {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
 .sn-timepicker td.active.today:before {
     border-bottom-color: #fff;
 }
-
 .sn-timepicker td.disabled,
 .sn-timepicker td.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .sn-timepicker td span {
     display: block;
     float: left;
     cursor: pointer;
     border-radius: 4px;
 }
-
 .sn-timepicker td span.hour {
     width: 34px;
     height: 30px;
     line-height: 30px;
 }
-
 .sn-timepicker td span.minute {
     width: 19px;
     height: 24px;
     line-height: 24px;
 }
-
 .sn-timepicker td span.second {
     width: 19px;
     height: 24px;
     line-height: 24px;
 }
-
 .sn-timepicker td span:hover {
     background: #eeeeee;
 }
-
 .sn-timepicker td span.active {
     background-color: #428bca;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-
 .sn-timepicker td span.old {
     color: #999999;
 }
-
 .sn-timepicker td span.disabled,
 .sn-timepicker td span.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .sn-timepicker th.switch {
     width: 145px;
 }
-
 .sn-timepicker th.next,
 .sn-timepicker th.prev {
     font-size: 21px;
 }
-
 .sn-timepicker th.disabled,
 .sn-timepicker th.disabled:hover {
     background: none;
     color: #999999;
     cursor: not-allowed;
 }
-
 .sn-timepicker thead tr:first-child th {
     cursor: pointer;
 }
-
 .sn-timepicker thead tr:first-child th:hover {
     background: #eeeeee;
 }
-
 .input-group.date .input-group-addon span {
     display: block;
     cursor: pointer;
     width: 16px;
     height: 16px;
 }
-
 .sn-timepicker.left-oriented:before {
     left: auto;
     right: 6px;
 }
-
 .sn-timepicker.left-oriented:after {
     left: auto;
     right: 7px;
 }
-
 .sn-timepicker ul.list-unstyled li div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td {
     padding: 0px !important;
 }
+
+
 
 .datetime-picker {
 }
 
 .datetime-picker .input-group {
-    position: relative;
-    display: table;
-    vertical-align: middle;
-    border-collapse: separate;
+	position: relative;
+	display: table;
+	vertical-align: middle;
+	border-collapse: separate;
 }
 
 .datetime-picker .datetime-input {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
 .datetime-picker .datetime-addon {
-    display: table-cell;
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    color: #555;
-    text-align: center;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	display: table-cell;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	color: #555;
+	text-align: center;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
-.datetime-picker > .datetime-addon span {
-    display: block;
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
+.datetime-picker>.datetime-addon span {
+	display: block;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
 }
 
 .datetime-picker-popup {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
 .datetime-picker-popup.open {
-    display: block;
+	display: block;
 }
+
 
 .sn-hint-container {
     position: absolute;
@@ -594,7 +524,6 @@
     z-index: 900;
     opacity: 1;
 }
-
 .sn-hint {
     top: 0;
     right: 0;
@@ -613,18 +542,15 @@
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
-
 .sn-hint.fade {
     opacity: 0;
     -webkit-transition: opacity 0.5s linear;
     -o-transition: opacity 0.5s linear;
     transition: opacity 0.5s linear;
 }
-
 .sn-hint.fade.in {
     opacity: 1;
 }
-
 .sn-hint-title {
     padding: 8px 14px;
     margin: 0;
@@ -635,10 +561,10 @@
     border-bottom: 1px solid #ebebeb;
     border-radius: 5px 5px 0 0;
 }
-
 .sn-hint-content {
     padding: 9px 14px;
 }
+
 
 .sn-stepper {
     height: 20px;
@@ -648,7 +574,6 @@
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
 }
-
 .sn-stepper-bar {
     float: left;
     width: 0;
@@ -662,96 +587,62 @@
     -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
 }
-
 .sn-stepper .handler {
     margin-left: -30px;
-    height: 30px;
+    height:30px;
     margin-top: -5px;
 }
 
-.sn-scroll-vertical {
-    width: 7px;
-    height: 250px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
-}
-
-.sn-scroll-vertical .sn-scroll-bar {
-    height: 0;
-    width: 100%;
-    font-size: 12px;
-    line-height: 20px;
-    color: #fff;
-    text-align: center;
-    background-color: #428bca;
-    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-}
-
-.sn-scroll-vertical .handler {
-    width: 7px;
-    top: 0px;
-    position: relative;
-    opacity: 0.4;
-    display: block;
-    border-radius: 7px;
-    height: 30px;
-    background: rgb(0, 0, 0);
-    cursor: default;
-}
 
 ul.sn-tree {
-    /* prevent user selection */
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    /* default */
-    font-family: Tahoma;
-    font-size: 13px;
-    color: #555;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border: none;
-    overflow: hidden;
+	/* prevent user selection */
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* default */
+	font-family: Tahoma;
+	font-size: 13px;
+	color: #555;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: none;
+	overflow: hidden;
 }
 
 .sn-tree li {
-    position: relative;
-    padding: 0 0 0 20px;
-    line-height: 20px;
+	position: relative;
+	padding: 0 0 0 20px;
+	line-height: 20px;
 }
 
 .sn-tree li .expanded {
-    padding: 1px 10px;
-    background-image: url("http://cfile23.uf.tistory.com/image/205B973A50C13F4B19D9BD");
-    background-repeat: no-repeat;
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/205B973A50C13F4B19D9BD");
+	background-repeat: no-repeat;
 }
 
 .sn-tree li .collapsed {
-    padding: 1px 10px;
-    background-image: url("http://cfile23.uf.tistory.com/image/1459193A50C13F4B1B05FB");
-    background-repeat: no-repeat;
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/1459193A50C13F4B1B05FB");
+	background-repeat: no-repeat;
 }
 
 .sn-tree li .normal {
-    padding: 1px 10px;
-    background-image: url("http://cfile23.uf.tistory.com/image/165B663A50C13F4B196CCA");
-    background-repeat: no-repeat;
+	padding: 1px 10px;
+	background-image: url("http://cfile23.uf.tistory.com/image/165B663A50C13F4B196CCA");
+	background-repeat: no-repeat;
 }
 
 .sn-tree li i, .sn-tree li span {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .sn-tree li .selected {
-    background-color: #aaddff;
-    font-weight: bold;
-    padding: 1px 5px;
+	background-color: #aaddff;
+	font-weight: bold;
+	padding: 1px 5px;
 }
