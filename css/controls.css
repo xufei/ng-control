@@ -594,6 +594,24 @@
 }
 
 
+.sn-scroll-vertical {
+    cursor: default;
+    background-color: #ebebeb;
+    width: 7px;
+    height: 100%;
+}
+
+.sn-scroll-vertical .scrollbar {
+    position: relative;
+    cursor: default;
+    width: 7px;
+    height: 30px;
+    opacity: 0.4;
+    display: block;
+    border-radius: 7px;
+    background: rgb(0, 0, 0);
+}
+
 ul.sn-tree {
 	/* prevent user selection */
 	-moz-user-select: -moz-none;

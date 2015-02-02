@@ -29,13 +29,13 @@ angular.module("sn.controls").directive("snDatagrid", ["$document", "UIHelper", 
             getVisibleItems(index);
 
             function getVisibleItems(index) {
-                var displayLength = 20;
+                var displayLength = 8;
 
                 if ($scope.gridData.length <= displayLength) {
                     $scope.visibleGridData = $scope.gridData;
                 }
                 else if ($scope.gridData.length < index + displayLength) {
-                    $scope.visibleGridData = $scope.gridData.slice($scope.gridData.length - displayLength, $scope.gridData.length);
+                    $scope.visibleGridData = $scope.gridData.slice($scope.gridData.length - displayLength, $scope.gridData.length-1);
                 }
                 else {
                     $scope.visibleGridData = $scope.gridData.slice(index, index + displayLength);

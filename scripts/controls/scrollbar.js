@@ -74,22 +74,62 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
             var dragging = false;
             var value = scope.currentValue;
 
-            var handler = angular.element(element.find("div")[0]);
+            var handler = angular.element(element.find("div")[1]);
 
             var scrollHeight = 30;
-            var allHeight = element.children()[0].offsetHeight - scrollHeight;
+            var allHeight = element[0].offsetHeight - scrollHeight;
+
+
+            scope.mousemove = function() {
+                dragging = true;
+            };
 
             handler.on("mousedown", function () {
                 dragging = true;
                 console.log("start");
             });
 
+            element.on("mousemove", (function(){
+                var x,y;
+
+                return function(evt) {
+                    if (evt.clientX == x && evt.clientY == y){
+                        return;
+                    }
+                    x = evt.clientX;
+                    y = evt.clientY;
+
+                    if (dragging) {
+                        var currentHeight = evt.offsetY;
+
+                        if (evt.target == handler[0]) {
+                            currentHeight += element.find("div")[0].offsetHeight;
+                        }
+
+                        //console.log(currentHeight + ":" +  allHeight);
+
+                        var temp = Math.round(scope.maxStep * currentHeight / allHeight);
+                        if ((temp >= 0) && (temp <= scope.maxStep)) {
+                            value = temp;
+
+                            handler.css("top", currentHeight + "px");
+
+                            console.log(value);
+                            scope.changeValue(value);
+                        }
+                    }
+                };
+            })());
+
+            /*
             element.on("mousemove", function (evt) {
+
+
                 if (dragging) {
-                    var currentHeight = evt.offsetY - scrollHeight / 2;
+                    var currentHeight = evt.offsetY;
 
                     if (evt.target == handler[0]) {
-                        currentHeight += element.find("div")[1].offsetHeight - 1;
+                        currentHeight += element.find("div")[0].offsetHeight;
                     }
 
                     console.log(currentHeight + ":" +  allHeight);
@@ -98,12 +138,12 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
                     if ((temp >= 0) && (temp <= scope.maxStep)) {
                         value = temp;
 
-                        handler.css("top", currentHeight + 1 + "px");
+                        handler.css("top", currentHeight + "px");
 
                         scope.changeValue(value);
                     }
                 }
-            });
+            });*/
 
             $document.on("mouseup", function () {
                 if (dragging) {

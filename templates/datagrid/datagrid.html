@@ -1,25 +1,28 @@
 <div>
     <div class="col-md-11">
-    <table class="table table-bordered table-hover" style="table-layout: fixed">
-        <thead>
-        <tr>
-            <th width="200" style="width: 200px" ng-repeat="col in cols">{{col.name}}</th>
-        </tr>
-        </thead>
-        <tbody style="display: block;
-max-height: 262px;
-overflow-y: hidden;
-width: 100%;">
-        <tr ng-repeat="item in visibleGridData"
-            ng-click="select(item)"
-            ng-class="{true:'active'}[item==selectedItem]"
-            ng-class-even="even"
-            ng-class-odd="odd">
-            <td width="200" ng-repeat="col in cols">{{item[col.key]}}</td>
-        </tr>
-        </tbody>
-    </table>
+        <div style="overflow: hidden;width: 100%;">
+            <table class="table table-bordered table-hover" style="table-layout: fixed; margin-bottom: -2px">
+                <thead>
+                <tr>
+                    <th width="200" style="width: 200px" ng-repeat="col in cols">{{col.name}}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div style="max-height: 260px;overflow: hidden;width: 100%;">
+            <table class="table table-bordered table-hover" style="table-layout: fixed;">
+                <tbody>
+                <tr ng-repeat="item in visibleGridData"
+                    ng-click="select(item)"
+                    ng-class="{true:'active'}[item==selectedItem]"
+                    ng-class-even="even"
+                    ng-class-odd="odd">
+                    <td width="200" ng-repeat="col in cols">{{item[col.key]}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <sn-scrollbar class="col-md-1" style="height:250px" maxStep="{{gridData.length}}"></sn-scrollbar>
 
+    <sn-scrollbar class="col-md-1" style="height:250px" maxStep="{{gridData.length}}"></sn-scrollbar>
 </div>
