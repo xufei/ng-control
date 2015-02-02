@@ -59,7 +59,7 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 
 				$scope.currentDate = new Date(
 					$scope.year,
-					$scope.month,
+					$scope.month-1,
 					$scope.date,
 					$scope.hour,
 					$scope.minute,
