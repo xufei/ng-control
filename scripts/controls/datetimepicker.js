@@ -65,7 +65,6 @@ angular.module("sn.controls").directive("snDatetimepicker", ["$document", "$filt
 					$scope.minute,
 					$scope.second
 				);
-				$scope.currentDateStr = $filter('date')($scope.currentDate, "yyyy-MM-dd HH:mm:ss");
 
 				if ($scope.$modelKey) {
 					$scope.$parent[$scope.$modelKey] = $scope.currentDate;
