@@ -38,6 +38,7 @@
 	<script type="text/javascript" src="scripts/demo/calendar.js"></script>
 	<script type="text/javascript" src="scripts/demo/date.js"></script>
 	<script type="text/javascript" src="scripts/demo/contentmenu.js"></script>
+	<script type="text/javascript" src="scripts/demo/scrollbar.js"></script>
 	<script type="text/javascript" src="scripts/demo/pager.js"></script>
 	<script type="text/javascript" src="scripts/demo/stepper.js"></script>
 	<script type="text/javascript" src="scripts/demo/tree.js"></script>
@@ -161,13 +162,20 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel panel-default" ng-controller="TestScrollCtrl">
 		<div class="panel-heading">滚动条</div>
 		<div class="panel-body">
+			<style>
+				#scrollbar {margin: 20px 0 10px; }
+				#scrollbar .viewport { height: 200px; overflow: hidden; position: relative; }
+				#scrollbar .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+
+			</style>
+
 			<div id="scrollbar">
 				<sn-scrollbar></sn-scrollbar>
 				<div class="viewport">
-					<div class="overview">
+					<div class="overview" ng-style="{top:-position+'px'}">
 						<h3>Magnis dis parturient montes</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae velit at velit pretium sodales. Maecenas egestas imperdiet mauris, vel elementum turpis iaculis eu. Duis egestas augue quis ante ornare eu tincidunt magna interdum. Vestibulum posuere risus non ipsum sollicitudin quis viverra ante feugiat. Pellentesque non faucibus lorem. Nunc tincidunt diam nec risus ornare quis porttitor enim pretium. Ut adipiscing tempor massa, a ullamcorper massa bibendum at. Suspendisse potenti. In vestibulum enim orci, nec consequat turpis. Suspendisse sit amet tellus a quam volutpat porta. Mauris ornare augue ut diam tincidunt elementum. Vivamus commodo dapibus est, a gravida lorem pharetra eu. Maecenas ultrices cursus tellus sed congue. Cras nec nulla erat.</p>
 

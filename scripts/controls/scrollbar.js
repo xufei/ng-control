@@ -1,4 +1,4 @@
-angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper", function ($document, UIHelper) {
+angular.module("sn.controls").directive("snScrollbar", ["$document", function ($document) {
     return {
         restrict: "E",
         scope: {},
@@ -15,18 +15,19 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
                 wheelLock: true,
                 touchLock: true,
                 trackSize: false,
-                thumbSize: false,
-                thumbSizeMin: 20
+                handleSize: false,
+                handleSizeMin: 20
             };
 
             var $container = element.parent()[0];
 
-            var $body = document.querySelectorAll("body")[0];
+            var $body = angular.element(document.querySelectorAll("body")[0]);
             var $viewport = $container.querySelectorAll(".viewport")[0];
             var $overview = $container.querySelectorAll(".overview")[0];
+
             var $scrollbar = element[0];
-            var $track = $scrollbar.querySelectorAll(".track")[0];
-            var $handle = $scrollbar.querySelectorAll(".handle")[0];
+            var $track = angular.element($scrollbar.querySelectorAll(".track")[0]);
+            var $handle = angular.element($scrollbar.querySelectorAll(".handle")[0]);
 
             var mousePosition = 0;
             var isHorizontal = options.axis === 'x';
@@ -44,23 +45,28 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
             var contentRatio = 0;
             var trackSize = 0;
             var trackRatio = 0;
-            var thumbSize = 0;
-            var thumbPosition = 0;
-            var hasContentToSroll = false;
+            var handleSize = 0;
+            var handlePosition = 0;
+            var hasContentToScroll = false;
 
             function update(scrollTo) {
                 var sizeLabelCap = sizeLabel.charAt(0).toUpperCase() + sizeLabel.slice(1).toLowerCase();
-                var scrcls = $scrollbar.className;
 
                 viewportSize = $viewport['offset' + sizeLabelCap];
                 contentSize = $overview['scroll' + sizeLabelCap];
+
                 contentRatio = viewportSize / contentSize;
                 trackSize = options.trackSize || viewportSize;
-                thumbSize = Math.min(trackSize, Math.max(options.thumbSizeMin, (options.thumbSize || (trackSize * contentRatio))));
-                trackRatio = (contentSize - viewportSize) / (trackSize - thumbSize);
-                hasContentToSroll = contentRatio < 1;
+                handleSize = Math.min(trackSize, Math.max(options.handleSizeMin, (options.handleSize || (trackSize * contentRatio))));
+                trackRatio = (contentSize - viewportSize) / (trackSize - handleSize);
+                hasContentToScroll = contentRatio < 1;
 
-                $scrollbar.className = hasContentToSroll ? scrcls.replace(/disable/g, "") : scrcls + " disable";
+                if (hasContentToScroll) {
+                    element.removeClass("disable");
+                }
+                else {
+                    element.addClass("disable");
+                }
 
                 switch (scrollTo) {
                     case "bottom":
@@ -75,36 +81,30 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
                         contentPosition = parseInt(scrollTo, 10) || 0;
                 }
 
-                thumbPosition = contentPosition / trackRatio;
+                handlePosition = contentPosition / trackRatio;
 
-                $handle.style[posiLabel] = thumbPosition + "px";
-                $overview.style[posiLabel] = -contentPosition + "px";
+                $handle[0].style[posiLabel] = handlePosition + "px";
                 $scrollbar.style[sizeLabel] = trackSize + "px";
-                $track.style[sizeLabel] = trackSize + "px";
-                $handle.style[sizeLabel] = thumbSize + "px";
+                $track[0].style[sizeLabel] = trackSize + "px";
+                $handle[0].style[sizeLabel] = handleSize + "px";
             }
 
-            function _isAtBegin() {
-                return contentPosition > 0;
-            }
-
-            function _isAtEnd() {
-                return contentPosition <= (contentSize - viewportSize) - 5;
+            function hitBorder() {
+                return (contentPosition > 0) && (contentPosition <= (contentSize - viewportSize) - 5);
             }
 
             function _start(event, gotoMouse) {
-                if (hasContentToSroll) {
-                    var posiLabelCap = posiLabel.charAt(0).toUpperCase() + posiLabel.slice(1).toLowerCase();
-                    mousePosition = gotoMouse ? $handle.getBoundingClientRect()[posiLabel] : (isHorizontal ? event.clientX : event.clientY);
+                if (hasContentToScroll) {
+                    mousePosition = gotoMouse ? $handle[0].getBoundingClientRect()[posiLabel] : (isHorizontal ? event.clientX : event.clientY);
 
-                    $body.className += " noSelect";
+                    $body.addClass("noSelect");
 
                     if (hasTouchEvents) {
                         document.ontouchmove = function (event) {
-                            if (options.touchLock || _isAtBegin() && _isAtEnd()) {
+                            if (options.touchLock || hitBorder()) {
                                 event.preventDefault();
                             }
-                            drag(event.touches[0]);
+                            _drag(event.touches[0]);
                         };
                         document.ontouchend = _end;
                     }
@@ -118,58 +118,53 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
             }
 
             function _wheel(event) {
-                if (hasContentToSroll) {
-                    var evntObj = event || window.event
-                        , wheelSpeedDelta = -(evntObj.deltaY || evntObj.detail || (-1 / 3 * evntObj.wheelDelta)) / 40
-                        , multiply = (evntObj.deltaMode === 1) ? options.wheelSpeed : 1
-                        ;
+                if (hasContentToScroll) {
+                    var evt = event || window.event;
+                    var wheelSpeedDelta = -(evt.deltaY || evt.detail || (-1 / 3 * evt.wheelDelta)) / 40;
+                    var multiply = (evt.deltaMode === 1) ? options.wheelSpeed : 1;
 
                     contentPosition -= wheelSpeedDelta * options.wheelSpeed;
                     contentPosition = Math.min((contentSize - viewportSize), Math.max(0, contentPosition));
-                    thumbPosition = contentPosition / trackRatio;
+                    handlePosition = contentPosition / trackRatio;
 
                     dispatchMoveEvent();
 
-                    $handle.style[posiLabel] = thumbPosition + "px";
-                    $overview.style[posiLabel] = -contentPosition + "px";
+                    $handle[0].style[posiLabel] = handlePosition + "px";
 
-                    if (options.wheelLock || _isAtBegin() && _isAtEnd()) {
-                        evntObj.preventDefault();
+                    if (options.wheelLock || hitBorder()) {
+                        evt.preventDefault();
                     }
                 }
             }
 
             function _drag(event) {
-                if (hasContentToSroll) {
-                    var mousePositionNew = isHorizontal ? event.clientX : event.clientY
-                        , thumbPositionDelta = hasTouchEvents ? (mousePosition - mousePositionNew) : (mousePositionNew - mousePosition)
-                        , thumbPositionNew = Math.min((trackSize - thumbSize), Math.max(0, thumbPosition + thumbPositionDelta))
-                        ;
+                if (hasContentToScroll) {
+                    var mousePositionNew = isHorizontal ? event.clientX : event.clientY;
+                    var handlePositionDelta = hasTouchEvents ? (mousePosition - mousePositionNew) : (mousePositionNew - mousePosition);
+                    var handlePositionNew = Math.min((trackSize - handleSize), Math.max(0, handlePosition + handlePositionDelta));
 
-                    contentPosition = thumbPositionNew * trackRatio;
+                    contentPosition = handlePositionNew * trackRatio;
 
                     dispatchMoveEvent();
 
-                    $handle.style[posiLabel] = thumbPositionNew + "px";
-                    $overview.style[posiLabel] = -contentPosition + "px";
+                    $handle[0].style[posiLabel] = handlePositionNew + "px";
                 }
             }
 
             function _end() {
-                thumbPosition = parseInt($handle.style[posiLabel], 10) || 0;
+                handlePosition = parseInt($handle[0].style[posiLabel], 10) || 0;
 
-                $body.className = $body.className.replace(" noSelect", "");
+                $body.removeClass("noSelect");
+
                 document.onmousemove = document.onmouseup = null;
-                $handle.onmouseup = null;
-                $track.onmouseup = null;
+                $handle.off("onmouseup");
+                $track.off("onmouseup");
                 document.ontouchmove = document.ontouchend = null;
             }
 
             function dispatchMoveEvent() {
                 scope.updatePosition(contentPosition);
-                console.log(contentPosition);
             }
-
 
             update();
 
@@ -182,14 +177,14 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", "UIHelper",
                 };
             }
             else {
-                $handle.onmousedown = function (event) {
+                $handle.on("mousedown", function (event) {
                     event.stopPropagation();
                     _start(event);
-                };
+                });
 
-                $track.onmousedown = function (event) {
+                $track.on("mousedown", function (event) {
                     _start(event, true);
-                };
+                });
             }
 
             window.addEventListener("resize", function () {

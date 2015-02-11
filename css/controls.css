@@ -670,13 +670,6 @@
 }
 
 
-
-#scrollbar {margin: 20px 0 10px; }
-#scrollbar .viewport { height: 200px; overflow: hidden; position: relative; }
-#scrollbar .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
-
-
-
 .sn-scroll {
     background-color: #dddddd;
     position: relative;
