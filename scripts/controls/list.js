@@ -3,10 +3,13 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
         restrict: "E",
         scope: {},
         controller: function ($scope) {
+            $scope.options = {
+
+            };
             $scope.listData = [];
             $scope.visibleListData = [];
 
-            for (var i=0; i<100; i++) {
+            for (var i=0; i<10000; i++) {
                 $scope.listData.push({
                     index: i
                 });
@@ -16,7 +19,7 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
             getVisibleItems(index);
 
             function getVisibleItems(index) {
-                var displayLength = 10;
+                var displayLength = 6;
 
                 if ($scope.listData.length <= displayLength) {
                     $scope.visibleListData = $scope.listData;
@@ -33,8 +36,8 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 $scope.selectedItem = item;
             };
 
-            $scope.$on("sn.controls.scrollbar:positionChanged", function(evt, newValue) {
-                index = newValue;
+            $scope.$on("sn.controls.scrollbar:positionChanged", function(evt, position) {
+                index = $scope.listData.length * (position / 245);
                 getVisibleItems(index);
                 $scope.$digest();
             });

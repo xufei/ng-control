@@ -1,5 +1,6 @@
 <div>
-    <div class="col-md-11">
+    <sn-scrollbar></sn-scrollbar>
+    <div class="viewport">
         <div style="overflow: hidden;width: 100%;">
             <table class="table table-bordered table-hover" style="table-layout: fixed; margin-bottom: -2px">
                 <thead>
@@ -9,7 +10,7 @@
                 </thead>
             </table>
         </div>
-        <div style="max-height: 260px;overflow: hidden;width: 100%;">
+        <div class="overview" style="max-height: 260px;overflow: hidden;width: 100%;">
             <table class="table table-bordered table-hover" style="table-layout: fixed;">
                 <tbody>
                 <tr ng-repeat="item in visibleGridData"
