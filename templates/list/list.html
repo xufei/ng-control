@@ -1,0 +1,14 @@
+<div>
+    <sn-scrollbar></sn-scrollbar>
+    <div class="viewport">
+        <div class="overview" style="max-height: 260px;overflow: hidden;">
+            <ul class="list-group">
+                <li ng-repeat="item in visibleListData" class="list-group-item"
+                        ng-click="select(item)"
+                        ng-class="{true:'active'}[item==selectedItem]">
+                    {{item.index}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

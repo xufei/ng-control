@@ -27,6 +27,7 @@
 	<script type="text/javascript" src="scripts/controls/datetimepicker.js"></script>
 	<script type="text/javascript" src="scripts/controls/stepper.js"></script>
 	<script type="text/javascript" src="scripts/controls/scrollbar.js"></script>
+	<script type="text/javascript" src="scripts/controls/list.js"></script>
 	<script type="text/javascript" src="scripts/controls/datagrid.js"></script>
 	<!-- endbuild -->
 
@@ -41,6 +42,7 @@
 	<script type="text/javascript" src="scripts/demo/scrollbar.js"></script>
 	<script type="text/javascript" src="scripts/demo/pager.js"></script>
 	<script type="text/javascript" src="scripts/demo/stepper.js"></script>
+	<script type="text/javascript" src="scripts/demo/list.js"></script>
 	<script type="text/javascript" src="scripts/demo/tree.js"></script>
 
 	<script type="text/javascript" src="scripts/main.js"></script>
@@ -95,6 +97,13 @@
 		<div class="panel-body">
 			<div>{{result}}</div>
 			<button class="btn btn-default" ng-click="dialog()">dialog</button>
+		</div>
+	</div>
+
+	<div ng-controller="TestListCtrl" class="panel panel-default">
+		<div class="panel-heading">列表</div>
+		<div class="panel-body">
+			<sn-list></sn-list>
 		</div>
 	</div>
 
