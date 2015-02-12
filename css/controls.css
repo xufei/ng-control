@@ -669,12 +669,15 @@
     margin-top: -5px;
 }
 
-
+/* 滚动条 */
 .sn-scroll {
     background-color: #dddddd;
     position: relative;
     float: right;
     width: 9px;
+}
+
+.sn-scroll .arrow {
 }
 
 .sn-scroll .track {

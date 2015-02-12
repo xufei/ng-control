@@ -29,6 +29,9 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", function ($
             var $track = angular.element($scrollbar.querySelectorAll(".track")[0]);
             var $handle = angular.element($scrollbar.querySelectorAll(".handle")[0]);
 
+            var $topArrow = angular.element($scrollbar.querySelectorAll(".arrow")[0]);
+            var $bottomArrow = angular.element($scrollbar.querySelectorAll(".arrow")[1]);
+
             var mousePosition = 0;
             var isHorizontal = options.axis === 'x';
             var hasTouchEvents = ("ontouchstart" in document.documentElement);
@@ -49,87 +52,40 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", function ($
             var handlePosition = 0;
             var hasContentToScroll = false;
 
-            function updateForNormal(scrollTo) {
-                var sizeLabelCap = sizeLabel.charAt(0).toUpperCase() + sizeLabel.slice(1).toLowerCase();
-
-                viewportSize = $viewport['offset' + sizeLabelCap];
-                contentSize = $overview['scroll' + sizeLabelCap];
-
-                contentRatio = viewportSize / contentSize;
-                trackSize = options.trackSize || viewportSize;
-                handleSize = Math.min(trackSize, Math.max(options.handleSizeMin, (options.handleSize || (trackSize * contentRatio))));
-                trackRatio = (contentSize - viewportSize) / (trackSize - handleSize);
-
-                hasContentToScroll = contentRatio < 1;
-
-                if (hasContentToScroll) {
-                    element.removeClass("disable");
-                }
-                else {
-                    element.addClass("disable");
-                }
-
-                switch (scrollTo) {
-                    case "bottom":
-                        contentPosition = Math.max(contentSize - viewportSize, 0);
-                        break;
-
-                    case "relative":
-                        contentPosition = Math.min(contentSize - viewportSize, Math.max(0, contentPosition));
-                        break;
-
-                    default:
-                        contentPosition = parseInt(scrollTo, 10) || 0;
-                }
-
-                handlePosition = contentPosition / trackRatio;
-            }
-
-            function updateForList(scrollTo) {
-                var sizeLabelCap = sizeLabel.charAt(0).toUpperCase() + sizeLabel.slice(1).toLowerCase();
-
-                viewportSize = $viewport['offset' + sizeLabelCap];
-                contentSize = $overview['scroll' + sizeLabelCap];
-
-                contentRatio = viewportSize / contentSize;
-                trackSize = options.trackSize || viewportSize;
-                handleSize = Math.min(trackSize, Math.max(options.handleSizeMin, (options.handleSize || (trackSize * contentRatio))));
-                trackRatio = (contentSize - viewportSize) / (trackSize - handleSize);
-
-                hasContentToScroll = contentRatio < 1;
-
-                handleSize = 20;
-
-                if (hasContentToScroll) {
-                    element.removeClass("disable");
-                }
-                else {
-                    element.addClass("disable");
-                }
-
-                switch (scrollTo) {
-                    case "bottom":
-                        contentPosition = Math.max(contentSize - viewportSize, 0);
-                        break;
-
-                    case "relative":
-                        contentPosition = Math.min(contentSize - viewportSize, Math.max(0, contentPosition));
-                        break;
-
-                    default:
-                        contentPosition = parseInt(scrollTo, 10) || 0;
-                }
-
-                handlePosition = contentPosition / trackRatio;
-            }
-
             function update(scrollTo) {
-                if (scope.$parent.options) {
-                    updateForList(scrollTo);
+                var sizeLabelCap = sizeLabel.charAt(0).toUpperCase() + sizeLabel.slice(1).toLowerCase();
+
+                viewportSize = $viewport['offset' + sizeLabelCap];
+                contentSize = $overview['scroll' + sizeLabelCap];
+
+                contentRatio = viewportSize / contentSize;
+                trackSize = options.trackSize || viewportSize;
+                handleSize = Math.min(trackSize, Math.max(options.handleSizeMin, (options.handleSize || (trackSize * contentRatio))));
+                trackRatio = (contentSize - viewportSize) / (trackSize - handleSize);
+
+                hasContentToScroll = contentRatio < 1;
+
+                if (hasContentToScroll) {
+                    element.removeClass("disable");
                 }
                 else {
-                    updateForNormal(scrollTo);
+                    element.addClass("disable");
                 }
+
+                switch (scrollTo) {
+                    case "bottom":
+                        contentPosition = Math.max(contentSize - viewportSize, 0);
+                        break;
+
+                    case "relative":
+                        contentPosition = Math.min(contentSize - viewportSize, Math.max(0, contentPosition));
+                        break;
+
+                    default:
+                        contentPosition = parseInt(scrollTo, 10) || 0;
+                }
+
+                handlePosition = contentPosition / trackRatio;
 
                 $handle[0].style[posiLabel] = handlePosition + "px";
                 $scrollbar.style[sizeLabel] = trackSize + "px";
@@ -211,7 +167,7 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", function ($
             }
 
             function dispatchMoveEvent() {
-                scope.updatePosition(contentPosition);
+                //contentPosition;
             }
 
             update();
@@ -234,6 +190,14 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", function ($
                     _start(event, true);
                 });
             }
+
+            $topArrow.on("mousedown", function() {
+                update(contentPosition - 10);
+            });
+
+            $bottomArrow.on("mousedown", function() {
+                update(contentPosition + 10);
+            });
 
             window.addEventListener("resize", function () {
                 update("relative");
