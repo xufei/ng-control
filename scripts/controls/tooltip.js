@@ -1,27 +1,41 @@
-angular.module("sn.controls").directive("snTooltip", ["$document", "$http", "UIHelper", function ($document, $http, UIHelper) {
-    return {
-        restrict: "A",
-        link: function (scope, element, attrs) {
-            var url = attrs["snTooltip"];
-            var popover;
+angular.module("sn.controls").directive("snTooltip", ["$document", "$http", "$compile", "$rootScope", "UIHelper",
+    function ($document, $http, $compile, $rootScope, UIHelper) {
+        return {
+            restrict: "A",
+            link: function (scope, element, attrs) {
+                var url = attrs.snTooltip || "templates/tooltip/tooltip.html";
+                var content = attrs.content;
 
-            $http.get(url).then(function (result) {
-                popover = angular.element(result.data);
+                var tooltip;
 
-                element.on("mouseenter", function () {
-                    var position = UIHelper.getOffset(element[0]);
+                $http.get(url).then(function (result) {
+                    tooltip = angular.element(result.data);
 
-                    popover.css("display", "block");
-                    popover.css("left", position.x + "px");
-                    popover.css("top", position.y + element[0].offsetHeight + "px");
+                    var newScope = angular.extend($rootScope.$new(), {
+                        content: content
+                    });
+                    $compile(tooltip)(newScope);
 
-                    $document.find("body").append(popover);
+                    element.on("mouseenter", function (evt) {
+                        var target = evt.target;
+                        var offset = UIHelper.getOffset(target);
+
+                        $document.find("body").append(tooltip);
+                        tooltip.addClass("in");
+
+                        var x = offset.x + element[0].offsetWidth;
+                        var y = offset.y + (element[0].offsetHeight - tooltip[0].offsetHeight) / 2;
+
+                        tooltip.css("z-index", "1500");
+                        tooltip.css("display", "block");
+                        tooltip.css("left", x + "px");
+                        tooltip.css("top", y + "px");
+                    });
+
+                    element.on("mouseleave", function () {
+                        tooltip.remove();
+                    });
                 });
-
-                element.on("mouseleave", function () {
-                    popover.remove();
-                });
-            });
-        }
-    };
-}]);
+            }
+        };
+    }]);

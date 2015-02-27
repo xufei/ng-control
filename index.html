@@ -69,6 +69,15 @@
     </div>
 
 	<div ng-controller="TestHintCtrl" class="panel panel-default">
+		<div class="panel-heading">Tooltip</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<i class="glyphicon glyphicon-question-sign" sn-tooltip content="测试这里写很多很多提示，你好，我是一个提示，啦啦啦啦"></i>
+			</div>
+		</div>
+	</div>
+
+	<div ng-controller="TestHintCtrl" class="panel panel-default">
 		<div class="panel-heading">操作提示</div>
 		<div class="panel-body">
 			<input type="text" class="form-control" ng-model="operation"/>
