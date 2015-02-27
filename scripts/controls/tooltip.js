@@ -3,12 +3,11 @@ angular.module("sn.controls").directive("snTooltip", ["$document", "$http", "$co
         return {
             restrict: "A",
             link: function (scope, element, attrs) {
-                var url = attrs.snTooltip || "templates/tooltip/tooltip.html";
-                var content = attrs.content;
+                var content = attrs.snTooltip;
 
                 var tooltip;
 
-                $http.get(url).then(function (result) {
+                $http.get("templates/tooltip/tooltip.html").then(function (result) {
                     tooltip = angular.element(result.data);
 
                     var newScope = angular.extend($rootScope.$new(), {
