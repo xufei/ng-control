@@ -4,7 +4,7 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
         scope: {},
         controller: function ($scope) {
             $scope.options = {
-                visibleSize: 6
+                visibleSize: 7
             };
 
             $scope.listData = [];
@@ -35,8 +35,7 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 $scope.selectedItem = item;
             };
 
-            $scope.$on("sn.controls.scrollbar:positionChanged", function (evt, position) {
-                index = $scope.listData.length * (position / 245);
+            $scope.$on("sn.controls.scrollbar:positionChanged", function (evt, index) {
                 getVisibleItems(index);
                 $scope.$digest();
             });
@@ -46,7 +45,7 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
         },
         templateUrl: "templates/list/list.html"
     }
-}]).directive("snListScroll", ["$document", function ($document) {
+}]).directive("snListScroll", ["$document", "$timeout", function ($document, $timeout) {
     return {
         restrict: "E",
         scope: {},
@@ -68,6 +67,10 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
             };
 
             options = angular.extend(options, scope.$parent.options);
+
+            var size = 10000;
+            var listSize = 7;
+            var currentIndex = 0;
 
             var $container = element.parent()[0];
 
@@ -108,14 +111,21 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 viewportSize = $viewport['offset' + sizeLabelCap];
                 contentSize = $overview['scroll' + sizeLabelCap];
 
-                contentRatio = viewportSize / contentSize;
+                contentRatio = listSize / size;
                 trackSize = options.trackSize || viewportSize;
                 handleSize = Math.min(trackSize, Math.max(options.handleSizeMin, (options.handleSize || (trackSize * contentRatio))));
-                trackRatio = (contentSize - viewportSize) / (trackSize - handleSize);
+                trackRatio = trackSize / (trackSize - handleSize);
 
                 hasContentToScroll = contentRatio < 1;
 
-                handleSize = options.visibleSize;
+                //handleSize = options.visibleSize;
+
+                console.log("viewportSize:" + viewportSize);
+                console.log("contentSize:" + contentSize);
+                console.log("trackSize:" + trackSize);
+                console.log("handleSize:" + handleSize);
+                console.log("contentRatio:" + contentRatio);
+                console.log("trackRatio:" + trackRatio);
 
                 if (hasContentToScroll) {
                     element.removeClass("disable");
@@ -145,10 +155,6 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 $handle[0].style[sizeLabel] = handleSize + "px";
             }
 
-            function hitBorder() {
-                return (contentPosition > 0) && (contentPosition <= (contentSize - viewportSize) - 5);
-            }
-
             function _start(event, gotoMouse) {
                 if (hasContentToScroll) {
                     mousePosition = gotoMouse ? $handle[0].getBoundingClientRect()[posiLabel] : (isHorizontal ? event.clientX : event.clientY);
@@ -157,7 +163,7 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
 
                     if (hasTouchEvents) {
                         document.ontouchmove = function (event) {
-                            if (options.touchLock || hitBorder()) {
+                            if (options.touchLock) {
                                 event.preventDefault();
                             }
                             _drag(event.touches[0]);
@@ -174,22 +180,16 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
             }
 
             function _wheel(event) {
-                if (hasContentToScroll) {
-                    var evt = event || window.event;
-                    var wheelSpeedDelta = -(evt.deltaY || evt.detail || (-1 / 3 * evt.wheelDelta)) / 40;
-                    var multiply = (evt.deltaMode === 1) ? options.wheelSpeed : 1;
+                var evt = event || window.event;
+                var wheelSpeedDelta = -(evt.deltaY || evt.detail || (-1 / 3 * evt.wheelDelta)) / 40;
+                var multiply = (evt.deltaMode === 1) ? options.wheelSpeed : 1;
 
-                    contentPosition -= wheelSpeedDelta * options.wheelSpeed;
-                    contentPosition = Math.min((contentSize - viewportSize), Math.max(0, contentPosition));
-                    handlePosition = contentPosition / trackRatio;
+                var delta = wheelSpeedDelta * options.wheelSpeed * listSize;
 
-                    dispatchMoveEvent();
+                scroll(delta);
 
-                    $handle[0].style[posiLabel] = handlePosition + "px";
-
-                    if (options.wheelLock || hitBorder()) {
-                        evt.preventDefault();
-                    }
+                if (options.wheelLock) {
+                    evt.preventDefault();
                 }
             }
 
@@ -199,11 +199,10 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                     var handlePositionDelta = hasTouchEvents ? (mousePosition - mousePositionNew) : (mousePositionNew - mousePosition);
                     var handlePositionNew = Math.min((trackSize - handleSize), Math.max(0, handlePosition + handlePositionDelta));
 
-                    contentPosition = handlePositionNew * trackRatio;
+                    contentPosition = handlePositionNew;
 
-                    console.log(handlePositionDelta);
-
-                    dispatchMoveEvent();
+                    currentIndex = size * (contentPosition / trackSize);
+                    scope.updatePosition(currentIndex);
 
                     $handle[0].style[posiLabel] = handlePositionNew + "px";
                 }
@@ -218,10 +217,6 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 $handle.off("onmouseup");
                 $track.off("onmouseup");
                 document.ontouchmove = document.ontouchend = null;
-            }
-
-            function dispatchMoveEvent() {
-                scope.updatePosition(contentPosition);
             }
 
             update();
@@ -245,12 +240,47 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
                 });
             }
 
+            var topButtonDown = false;
+            var bottomButtonDown = false;
+
             $topArrow.on("mousedown", function () {
-                update(contentPosition - 10);
+                topButtonDown = true;
+
+                scroll(-1);
+
+                $timeout(fastUp, 500);
+
+                function fastUp() {
+                    if (topButtonDown) {
+                        scroll(-1);
+
+                        $timeout(fastUp, 50);
+                    }
+                }
             });
 
             $bottomArrow.on("mousedown", function () {
-                update(contentPosition + 10);
+                bottomButtonDown = true;
+
+                scroll(1);
+
+                $timeout(fastDown, 500);
+
+                function fastDown() {
+                    if (bottomButtonDown) {
+                        scroll(1);
+
+                        $timeout(fastDown, 50);
+                    }
+                }
+            });
+
+            $topArrow.on("mouseup", function () {
+                topButtonDown = false;
+            });
+
+            $bottomArrow.on("mouseup", function () {
+                bottomButtonDown = false;
             });
 
             window.addEventListener("resize", function () {
@@ -262,6 +292,29 @@ angular.module("sn.controls").directive("snList", ["$document", function ($docum
             }
             else if (options.wheel) {
                 $container.onmousewheel = _wheel;
+            }
+
+
+            function scroll(amount) {
+                if (currentIndex + amount < 0) {
+                    currentIndex = 0;
+                }
+                else if (currentIndex + amount > size) {
+                    currentIndex = size;
+                }
+                else {
+                    currentIndex += amount;
+                }
+
+                contentPosition = currentIndex * trackSize / size;
+                handlePosition = contentPosition * (trackSize - handleSize) / trackSize;
+
+                console.log("contentPosition:" + contentPosition);
+                console.log("handlePosition:" + handlePosition);
+
+                $handle[0].style[posiLabel] = handlePosition + "px";
+
+                scope.updatePosition(currentIndex);
             }
         },
         templateUrl: "templates/scrollbar/scrollbar.html"

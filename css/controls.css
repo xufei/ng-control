@@ -678,6 +678,7 @@
 }
 
 .sn-scroll .arrow {
+    width: 7px;
 }
 
 .sn-scroll .track {

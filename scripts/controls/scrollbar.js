@@ -192,11 +192,11 @@ angular.module("sn.controls").directive("snScrollbar", ["$document", function ($
             }
 
             $topArrow.on("mousedown", function() {
-                update(contentPosition - 10);
+                update(contentPosition - 1);
             });
 
             $bottomArrow.on("mousedown", function() {
-                update(contentPosition + 10);
+                update(contentPosition + 1);
             });
 
             window.addEventListener("resize", function () {
