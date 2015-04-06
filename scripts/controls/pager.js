@@ -1,6 +1,6 @@
 angular.module("sn.controls").directive('snPager', function () {
 	return {
-		restrict: 'E',
+		restrict: 'EA',
 		scope: {},
 		controller: function ($scope, pagerConfig) {
 			$scope.pages = [];
@@ -26,14 +26,14 @@ angular.module("sn.controls").directive('snPager', function () {
 				if (initialized) {
 					if (($scope.pageOffset > $scope.totalPages)) {
 						$scope.pageOffset = 0;
-
-						if (($scope.currentPage < $scope.pageOffset)
-							|| ($scope.currentPage >= $scope.pageOffset + $scope.pages.length)) {
-							$scope.currentPage = 0;
-						}
 					}
 				}
 				resetPageList();
+
+				if (($scope.currentPage < $scope.pageOffset)
+					|| ($scope.currentPage >= $scope.pageOffset + $scope.pages.length)) {
+					$scope.currentPage = 0;
+				}
 
 				initialized = true;
 
