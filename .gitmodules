@@ -1,6 +1,3 @@
-[submodule "src/components/models/--force"]
-	path = src/components/models/--force
-	url = https://github.com/xufei/calendar.git
 [submodule "src/components/models/calendar"]
 	path = src/components/models/calendar
 	url = https://github.com/xufei/calendar.git
