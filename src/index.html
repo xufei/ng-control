@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ng1 controls</title>
+	<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//cdn.bootcss.com/angular.js/1.4.5/angular.min.js"></script>
+	<base href="/">
+
+</head>
+<body ng-app="snail">
+
+<main class="container">
+<section ng-controller="CheckboxController">
+	<h3>Checkbox</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<label>
+				<sn-checkbox></sn-checkbox>
+				测试测试
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-checkbox ng-model="checkValue"></sn-checkbox>
+				绑定到controller中的变量 checkValue: {{checkValue}}
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-checkbox disabled="true"></sn-checkbox>
+				不可用状态
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-checkbox disabled="checkValue"></sn-checkbox>
+				不可用状态绑定到另外一个变量
+			</label>
+		</div>
+	</div>
+</section>
+
+<hr/>
+
+<section ng-controller="DateController">
+	<h3>日历和日期选择</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			one day in Teletubbies land: {{oneDay.toLocaleString()}}
+			<sn-calendar selected-date="oneDay" date-click="click()"></sn-calendar>
+		</div>
+		<div class="col-xs-4">
+			日历限定选择范围
+			<sn-calendar min-date="min" max-date="max"></sn-calendar>
+		</div>
+		<div class="col-xs-4">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label>日期选择与模型绑定</label>
+					<sn-datepicker ng-model="oneDay"></sn-datepicker>
+				</div>
+				<div class="form-group">
+					<label>不可用的日期选择</label>
+					<sn-datepicker disabled="true"></sn-datepicker>
+				</div>
+				<div class="form-group">
+					<label>日期限定选择范围</label>
+					<sn-datepicker min-date="min" max-date="max"></sn-datepicker>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<hr/>
+
+<section ng-controller="NumberController">
+	<h3>数字输入</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<label>
+				<sn-number-input></sn-number-input>
+				测试测试
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-number-input ng-model="value"></sn-number-input>
+				绑定到controller中的变量 value: {{value}}
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-number-input disabled="true"></sn-number-input>
+				不可用状态
+			</label>
+		</div>
+		<div class="col-xs-4">
+			<label>
+				<sn-number-input ng-model="value" min-value="3" max-value="maxValue"></sn-number-input>
+				限定最大最小值
+			</label>
+		</div>
+	</div>
+</section>
+
+<hr/>
+
+<section ng-controller="NumberController">
+	<h3>滑动选择器</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			一个简单的滑动选择器
+			<sn-slider></sn-slider>
+		</div>
+		<div class="col-xs-4">
+			绑定一个值value:{{value}}
+			<sn-slider ng-model="value"></sn-slider>
+		</div>
+		<div class="col-xs-4">
+			限定最大最小值
+			<sn-slider min="2" max="maxValue"></sn-slider>
+		</div>
+		<div class="col-xs-4">
+			禁用
+			<sn-slider disabled="true"></sn-slider>
+		</div>
+	</div>
+</section>
+
+<hr/>
+
+<section ng-controller="SelectController">
+	<h3>下拉选择</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<sn-select></sn-select>
+		</div>
+	</div>
+</section>
+
+<hr/>
+
+<section>
+	<h3>分页</h3>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<sn-pager count="177"></sn-pager>
+		</div>
+	</div>
+</section>
+
+
+<hr/>
+
+<section ng-controller="TreeController">
+	<h3>树</h3>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<button ng-click="expandAll()">全部展开</button>
+			<button ng-click="collapseAll()">全部折叠</button>
+			<button ng-click="getCheckedItems()">获取选中项</button>
+			<sn-tree tree-data="areaData" tree-id="aaa"></sn-tree>
+		</div>
+	</div>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<div class="calendar">
+	<div class="date-view" ng-show="viewMode==0">
+		<div class="calendar-row calendar-header">
+			<div class="prev" ng-click="calendar.previousYear()">
+				<a href="javascript:void(0)">‹‹</a>
+			</div>
+			<div class="prev" ng-click="calendar.previousMonth()">
+				<a href="javascript:void(0)">‹</a>
+			</div>
+			<div class="date-title" ng-click="viewMode=1">
+				<a href="javascript:void(0)">{{calendar.year + "年 " + monthArr[calendar.month]}}</a>
+			</div>
+			<div class="next" ng-click="calendar.nextMonth()">
+				<a href="javascript:void(0)">›</a>
+			</div>
+			<div class="next" ng-click="calendar.nextYear()">
+				<a href="javascript:void(0)">››</a>
+			</div>
+		</div>
+
+		<div class="calendar-row">
+			<div class="day" ng-repeat="day in calendar.weekdays">
+				<span>{{day}}</span>
+			</div>
+		</div>
+
+		<div class="calendar-row" ng-repeat="row in calendar.days">
+			<div class="date" ng-repeat="day in row track by $index"
+			     ng-class="{'disabled':!dateInRange(day),'active':!(day-calendar.selectedDate)}"
+			     ng-click="selectDate(day)">
+				<a href="javascript:void(0)" ng-if="day">{{day.date.getDate()}}</a>
+				<span ng-if="!day"></span>
+			</div>
+		</div>
+	</div>
+	<div class="month-view" ng-show="viewMode==1">
+		<div class="calendar-row calendar-header">
+			<div class="prev" ng-click="calendar.previousYear()">
+				<a href="javascript:void(0)">‹</a>
+			</div>
+			<div class="month-title" ng-click="viewMode=2">
+				<a href="javascript:void(0)">{{calendar.year}}</a>
+			</div>
+			<div class="next" ng-click="calendar.nextYear()">
+				<a href="javascript:void(0)">›</a>
+			</div>
+		</div>
+
+		<div class="calendar-row">
+			<div class="month"
+			     ng-repeat="month in calendar.months"
+			     ng-class="{'active':month==calendar.months[calendar.month]}"
+			     ng-click="selectMonth($index)">
+				<a href="javascript:void(0)">{{monthArr[month]}}</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="year-view" ng-show="viewMode==2">
+		<div class="calendar-row calendar-header">
+			<div class="prev" ng-click="calendar.previousAge()">
+				<a href="javascript:void(0)">‹</a>
+			</div>
+			<div class="year-title">
+				<span>{{calendar.years[0] + " - " + calendar.years[9]}}</span>
+			</div>
+			<div class="next" ng-click="calendar.nextAge()">
+				<a href="javascript:void(0)">›</a>
+			</div>
+		</div>
+
+		<div class="calendar-row">
+			<div class="year"
+			     ng-repeat="year in calendar.years"
+			     ng-class="{'active':year==calendar.year}"
+			     ng-click="selectYear(year)">
+				<a href="javascript:void(0)">{{year}}</a>
+			</div>
+		</div>
+	</div>
+</div>

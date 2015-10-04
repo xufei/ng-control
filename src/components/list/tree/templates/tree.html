@@ -1,0 +1,11 @@
+<ul ng-class="treeClass()">
+	<li class="" ng-repeat="node in treeData">
+		<span class="ant-tree-switcher" ng-class="arrowClass(node)" ng-click="iconClick(node)"></span>
+		<ant-checkbox ng-model="node.$checked" ng-click="itemCheck(node)"></ant-checkbox>
+
+		<a title="leaf" ng-class="{'ant-tree-node-selected':node.$selected}" ng-click="itemClick(node)">
+			<span class="ant-tree-title">{{node.name}}</span>
+		</a>
+		<sn-tree tree-data="node.children" ng-show="node.$expanded"></sn-tree>
+	</li>
+</ul>

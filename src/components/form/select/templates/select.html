@@ -1,0 +1,36 @@
+<span class="ant-select-selection ant-select-selection--single" role="combobox" aria-autocomplete="list"
+      aria-haspopup="true" tabindex="0" aria-expanded="false"
+		ng-click="showPop()">
+	<span class="ant-select-selection__rendered">
+		<span>{{selectedItem.name}}</span>
+	</span>
+	<span class="ant-select-arrow" tabindex="-1" style="outline:none;">
+		<b></b>
+	</span>
+</span>
+
+<div class="ant-select-dropdown ant-select-dropdown--below ant-select-dropdown--single"
+     tabindex="-1" ng-show="pop">
+	<div>
+		<span class="ant-select-search ant-select-search--dropdown">
+			<span class="ant-select-search__field__wrap">
+				<input value="" class="ant-select-search__field" role="textbox">
+			</span>
+		</span>
+		<ul data-visible="true" role="menu" aria-activedescendant=""
+		    class="ant-select-dropdown-menu ant-select-dropdown-menu-vertical ant-select-dropdown-menu-root">
+			<li class="ant-select-dropdown-menu-item" role="menuitem" aria-selected="false">
+				jack
+			</li>
+			<li class="ant-select-dropdown-menu-item-selected ant-select-dropdown-menu-item" role="menuitem"
+			    aria-selected="true" data-reactid=".2z.0.1.$=1$lucy:$lucy">lucy
+			</li>
+			<li class="ant-select-dropdown-menu-item-disabled ant-select-dropdown-menu-item" role="menuitem"
+			    aria-selected="false" aria-disabled="true" data-reactid=".2z.0.1.$=1$disabled:$disabled">disabled
+			</li>
+			<li class="ant-select-dropdown-menu-item" role="menuitem" aria-selected="false"
+			    data-reactid=".2z.0.1.$=1$yiminghe:$yiminghe">yiminghe
+			</li>
+		</ul>
+	</div>
+</div>

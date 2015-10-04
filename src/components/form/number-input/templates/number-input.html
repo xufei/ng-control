@@ -1,0 +1,16 @@
+<div class="ant-input-number" ng-class="{'ant-input-number-disabled':disabled}">
+	<div class="ant-input-number-handler-wrap">
+		<div unselectable="unselectable" class="ant-input-number-handler ant-input-number-handler-up"
+			ng-click="increase()">
+			<a unselectable="unselectable" class="ant-input-number-handler-up-inner" href="javascript:void(0)"></a>
+		</div>
+		<div unselectable="unselectable" class="ant-input-number-handler ant-input-number-handler-down"
+		     ng-click="decrease()">
+			<a unselectable="unselectable" class="ant-input-number-handler-down-inner" href="javascript:void(0)"></a>
+		</div>
+	</div>
+	<div class="ant-input-number-input-wrap">
+		<input class="ant-input-number-input" autocomplete="off" max="10" min="1"
+		       ng-model="value" ng-disabled="disabled">
+	</div>
+</div>
