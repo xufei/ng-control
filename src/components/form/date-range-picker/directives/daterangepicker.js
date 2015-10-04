@@ -1,4 +1,4 @@
-import template from "../templates/datepicker.html";
+import template from "../templates/daterangepicker.html";
 
 import "../css/daterangepicker.css";
 
