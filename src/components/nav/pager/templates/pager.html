@@ -1,0 +1,20 @@
+<ul class="pagination">
+	<li ng-class="{disabled: isFirst()}">
+		<a href="javascript:void(0)" ng-click="first()">{{getText('first')}}</a>
+	</li>
+	<li ng-class="{disabled: isFirst()}">
+		<a href="javascript:void(0)" ng-click="previous()">{{getText('previous')}}</a>
+	</li>
+	<li ng-repeat="page in pager.pages" ng-class="{'active':page.active}">
+		<a href="javascript:void(0)" ng-click="goto(page)">{{page.index}}</a>
+	</li>
+	<li ng-class="{disabled: isLast()}">
+		<a href="javascript:void(0)" ng-click="next()">{{getText('next')}}</a>
+	</li>
+	<li ng-class="{disabled: isLast()}">
+		<a href="javascript:void(0)" ng-click="last()">{{getText('last')}}</a>
+	</li>
+	<li class="disabled">
+		<a href="javascript:void(0)">共{{totalItems}}条/{{totalPages}}页</a>
+	</li>
+</ul>
