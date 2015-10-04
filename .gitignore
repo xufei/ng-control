@@ -1,12 +1,4 @@
-.dev/
-.tmp/
-.DS_Store
+node_modules
+public
+build
 .idea
-*.sublime-project
-*.sublime-workspace
-bower_components/
-node_modules/
-/pages/
-/test/coverage/
-!.gitignore
-!dist/

@@ -1,1 +1,0 @@
-angular.module("sn", ["sn.controls", "sn.demo"]);

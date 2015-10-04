@@ -1,9 +1,0 @@
-<ul class="sn-tree">
-	<li ng-repeat="node in treeData">
-		<i ng-class="type(node)" ng-click="iconClick(node)"></i>
-		<span ng-click="itemClick(node)" ng-class="{true:'selected', false:''}[node.$selected]">
-			{{ node.name }}
-		</span>
-		<sn-tree tree-data="node.children" ng-hide="node.$collapsed"></sn-tree>
-	</li>
-</ul>
