@@ -2,7 +2,7 @@ import template from "../templates/daterangepicker.html";
 
 import "../css/daterangepicker.css";
 
-export default class DatePickerDirective {
+export default class DateRangePickerDirective {
 	constructor($document, $filter, $timeout) {
 		this.template = template;
 		this.restrict = "E";
@@ -57,4 +57,4 @@ export default class DatePickerDirective {
 	}
 }
 
-DatePickerDirective.$inject = ["$document", "$filter", "$timeout"];
+DateRangePickerDirective.$inject = ["$document", "$filter", "$timeout"];
