@@ -23,8 +23,12 @@ export default class SelectDirective {
 			if ($scope.disabled) {
 				return;
 			}
-
 			$scope.pop = true;
+		};
+
+		$scope.select = function(item) {
+			$scope.selectedItem = item;
+			$scope.pop = false;
 		};
 	}
 }

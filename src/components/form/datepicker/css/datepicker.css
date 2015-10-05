@@ -4,7 +4,7 @@
 
 .datetime-picker .calendar-container {
     width: 250px;
-    padding: 4px;
+    padding: 0 4px;
     margin-top: 0px;
     z-index: 99999 !important;
     border-radius: 4px;

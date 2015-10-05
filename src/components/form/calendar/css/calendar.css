@@ -11,12 +11,13 @@
     text-align: center;
     text-decoration: none;
     padding: .3125rem 0;
-    color: #2086bf;
+    border-radius: 4px;
+    color: #000000;
 }
 
 .calendar a:hover {
-    background-color: #75c7ee;
-    color: #ffffff;
+    background: #eeeeee;
+    cursor: pointer;
 }
 
 .calendar .calendar-row {
@@ -37,21 +38,19 @@
 }
 
 .calendar .calendar-row a {
-    border: 1px #bcd9e2 solid;
     margin: 0.1em;
 }
 
 .calendar .calendar-header a,
 .calendar .calendar-header span {
-    color: #ffffff;
-    background-color: #59cde2;
     padding: 1rem 0;
     border: 1px transparent solid;
+    color: #000000;
+    font-weight: 800;
+    font-size: 1.25em;
 }
 
 .calendar .calendar-header {
-    background-color: #59cde2;
-    color: #ffffff;
 }
 
 .calendar .prev,
@@ -76,15 +75,15 @@
 }
 
 .calendar .active a {
-    background-color: #60a917;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    color: #ffffff;
+    background-color: #428bca;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .calendar .disabled a,
 .calendar .disabled a:hover {
-    color: #999999;
-    background-color: #eeeeee;
+    background: none;
+    color: #a0a0a0;
     cursor: not-allowed;
 }
 
