@@ -3,7 +3,10 @@ export default class SelectController {
 		$scope.options = [
 			{name: "aaa", value: 111},
 			{name: "bbb", value: 222},
-			{name: "ccc", value: 332}
+			{name: "ccc", value: 333},
+			"seperator",
+			{name: "ddd", value: 444},
+			{name: "eee", value: 555}
 		];
 	}
 }

@@ -4,9 +4,9 @@
 		<span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu">
-		<li ng-repeat="option in options" ng-class="{'active':option==selectedItem}" ng-click="select(option)">
-			<a role="menuitem" tabindex="-1" href="javascript:void(0)">{{option.name}}</a>
+		<li ng-repeat-start="option in options" ng-if="option!='seperator'" ng-class="{'active':option==selectedItem}" ng-click="select(option)">
+			<a tabindex="-1" href="javascript:void(0)">{{option.name}}</a>
 		</li>
-		<li role="presentation" class="divider"></li>
+		<li ng-repeat-end class="divider" ng-if="option=='seperator'"></li>
 	</ul>
 </div>
