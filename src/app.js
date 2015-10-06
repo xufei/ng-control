@@ -1,3 +1,3 @@
-import form from "./modules/form/index";
+import demo from "./modules/demo/index";
 
-angular.module("snail", ["sn.components", form]);
+angular.module("snail", ["sn.components", demo]);

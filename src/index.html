@@ -11,6 +11,32 @@
 
 <body ng-app="snail">
 	<main class="container">
+		<section ng-controller="AlertController">
+			<h3>Alert</h3>
+			
+			<div class="row">
+				<div class="col-xs-4">
+					<button class="btn btn-default" ng-click="myAlert()">Alert</button>
+					<button class="btn btn-default" ng-click="myConfirm()">Confirm</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+		
+		<section ng-controller="HintController">
+			<h3>Hint</h3>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<input type="text" class="form-control" ng-model="hintContent"/>
+					<button class="btn btn-default" ng-click="myHint()">Hint</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+		
 		<section ng-controller="CheckboxController">
 			<h3>Checkbox</h3>
 
