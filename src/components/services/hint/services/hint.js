@@ -18,7 +18,7 @@ export default class HintService {
 
         hint.css("display", "block");
 
-        let scope = angular.extend(this.$rootScope.$new(), param);
+        let scope = Object.assign(this.$rootScope.$new(), param);
 
         this.$compile(hint)(scope);
         this.container.prepend(hint);

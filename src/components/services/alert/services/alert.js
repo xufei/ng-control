@@ -24,8 +24,7 @@ export default class AlertService {
             this.$document.find("body").append(this.mask);
         }
 
-        let data = this.$rootScope.$new();
-        angular.extend(data, param);
+        let data = Object.assign(this.$rootScope.$new(), param);
 
         data.ok = function () {
             this.dismiss(dialog);
@@ -56,8 +55,7 @@ export default class AlertService {
             this.$document.find("body").append(this.mask);
         }
 
-        let data = this.$rootScope.$new();
-        angular.extend(data, param);
+        let data = Object.assign(this.$rootScope.$new(), param);
 
         data.ok = function () {
             this.dismiss(dialog);
