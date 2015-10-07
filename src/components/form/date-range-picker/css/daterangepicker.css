@@ -3,8 +3,7 @@
 }
 
 .date-range-picker .calendar-container {
-    width: 480px;
-    padding: 4px;
+    width: 500px;
     margin-top: 0px;
     z-index: 99999 !important;
     border-radius: 4px;
