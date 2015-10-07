@@ -13,7 +13,7 @@
 	<main class="container">
 		<section ng-controller="AlertController">
 			<h3>Alert</h3>
-			
+
 			<div class="row">
 				<div class="col-xs-4">
 					<button class="btn btn-default" ng-click="myAlert()">Alert</button>
@@ -23,23 +23,23 @@
 		</section>
 
 		<hr/>
-		
+
 		<section ng-controller="HintController">
 			<h3>Hint</h3>
-			
+
 			<div class="row">
 				<div class="col-xs-6">
-					<input type="text" class="form-control" ng-model="hintContent"/>
+					<input type="text" class="form-control" ng-model="hintContent" />
 					<button class="btn btn-default" ng-click="myHint()">Hint</button>
 				</div>
 			</div>
 		</section>
 
 		<hr/>
-		
+
 		<section ng-controller="DialogController">
 			<h3>Hint</h3>
-			
+
 			<div class="row">
 				<div class="col-xs-6">
 					<button class="btn btn-default" ng-click="myDialog()">Dialog</button>
@@ -48,7 +48,34 @@
 		</section>
 
 		<hr/>
-		
+
+		<section ng-controller="ContextMenuController">
+			<h3>Hint</h3>
+
+			<div class="row">
+				<div class="col-xs-6">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Age</th>
+								<th>Gender</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in students" sn-contextmenu="itemMenu(student)">
+								<td>{{student.name}}</td>
+								<td>{{student.age}}</td>
+								<td>{{student.gender}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
 		<section ng-controller="CheckboxController">
 			<h3>Checkbox</h3>
 
@@ -193,7 +220,7 @@
 
 		<section ng-controller="SelectController">
 			<h3>下拉选择</h3>
-			
+
 			<p>
 				这里面可以有两种用法，一种是使用sn-dropdown，这是一个自定义属性，结构是固定的，然后，dropdown-menu这里面的部分可以更自由地定制，比如想要做成一个自定义的下拉菜单，每个点击有不同的操作，可以用这种。另外一种就是用于取代默认的select，这个可以使用sn-select来做。
 			</p>
