@@ -1,0 +1,33 @@
+.sn-tree {
+    /* prevent user selection */
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    overflow: hidden;
+}
+
+.sn-tree li {
+    position: relative;
+    padding: 0 0 0 20px;
+    line-height: 20px;
+}
+
+.sn-tree .glyphicon {
+    width: 1em;
+}
+
+.sn-tree li i, .sn-tree li span {
+    cursor: pointer;
+}
+
+.sn-tree li .selected {
+    background-color: #aaddff;
+    font-weight: bold;
+    padding: 1px 5px;
+}

@@ -1,11 +1,10 @@
-<ul ng-class="treeClass()">
-	<li class="" ng-repeat="node in treeData">
-		<span class="ant-tree-switcher" ng-class="arrowClass(node)" ng-click="iconClick(node)"></span>
-		<ant-checkbox ng-model="node.$checked" ng-click="itemCheck(node)"></ant-checkbox>
-
-		<a title="leaf" ng-class="{'ant-tree-node-selected':node.$selected}" ng-click="itemClick(node)">
-			<span class="ant-tree-title">{{node.name}}</span>
-		</a>
+<ul class="sn-tree">
+	<li ng-repeat="node in treeData">
+		<i class="glyphicon" ng-click="iconClick(node)" ng-class="arrowClass(node)"></i>
+		<input type="checkbox" ng-model="node.$checked" ng-change="itemCheck(node)"></input>
+		<span ng-click="itemClick(node)" ng-class="{true:'selected', false:''}[node.$selected]">
+			{{ node.name }}
+		</span>
 		<sn-tree tree-data="node.children" ng-show="node.$expanded"></sn-tree>
 	</li>
 </ul>

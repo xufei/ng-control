@@ -1,5 +1,7 @@
 import template from "../templates/tree.html";
 
+import "../css/tree.css";
+
 export default class TreeDirective {
 	constructor($compile) {
 		this.restrict = "E";
@@ -23,8 +25,8 @@ export default class TreeDirective {
 		$scope.$isTreeNode = true;
 
 		$scope.getRoot = function() {
-			var pointer = this;
-			var parent = pointer.$parent;
+			let pointer = this;
+			let parent = pointer.$parent;
 			while (parent.$isTreeNode) {
 				pointer = parent;
 				parent = parent.$parent;
@@ -33,32 +35,23 @@ export default class TreeDirective {
 			return pointer;
 		};
 
-		$scope.treeClass = function() {
-			if (!$scope.$parent.$isTreeNode) {
-				return "sn-tree";
-			}
-			else {
-				return "sn-tree-child-tree sn-tree-child-tree-open";
-			}
-		};
-
 		$scope.arrowClass = function(node) {
 			if (node.children && node.children.length > 0) {
 				if (node.$expanded) {
-					return "sn-tree-noline_close";
+					return "glyphicon-triangle-bottom";
 				}
 				else {
-					return "sn-tree-noline_open";
+					return "glyphicon-triangle-right";
 				}
 			}
 			else {
-				return "sn-tree-noline_noop";
+				return "";
 			}
 		};
 
 		$scope.select = function(node) {
 			if (node != $scope.selectedNode) {
-				var root = $scope.getRoot();
+				let root = $scope.getRoot();
 				if (root.selectedNode) {
 					root.selectedNode.$selected = false;
 				}
@@ -66,7 +59,7 @@ export default class TreeDirective {
 
 				root.selectedNode = node;
 
-				var evt = {newNode:node, oldNode:$scope.selectedNode, treeId: root.treeId};
+				let evt = {newNode:node, oldNode:$scope.selectedNode, treeId: root.treeId};
 
 				root.$emit("sn.controls.tree:selectedNodeChanged", evt);
 			}
@@ -77,11 +70,11 @@ export default class TreeDirective {
 
 			node.$checked = !node.$checked;
 			checkChildren(node);
+			$scope.$emit("sn.controls.tree:itemChecked", {});
 		};
 
 		$scope.itemCheck = function(node) {
 			checkChildren(node);
-
 			$scope.$emit("sn.controls.tree:itemChecked", {});
 		};
 
@@ -89,7 +82,7 @@ export default class TreeDirective {
 			if ($scope.treeData) {
 				$scope.treeData.forEach(function(node) {
 					if (node.children) {
-						var checkedLength = node.children.filter(function (it) {
+						let checkedLength = node.children.filter(function (it) {
 							return it.$checked;
 						}).length;
 
