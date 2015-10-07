@@ -11,7 +11,8 @@ export default class DateRangePickerDirective {
 			minDate: "=",
 			maxDate: "=",
 			placeholder: "=",
-			currentDate: "=ngModel",
+			fromDate: "=",
+			toDate: "=",
 			disabled: "="
 		};
 
@@ -35,24 +36,22 @@ export default class DateRangePickerDirective {
 	}
 
 	controller($scope) {
-		$scope.$watch("currentDate", function(newDate) {
-			if (newDate) {
-				$scope.selectedDate = newDate;
-				$scope.currentDateStr = this.$filter('date')(newDate, "yyyy-MM-dd");
-			}
+		$scope.$watchGroup(["fromDate", "toDate"], function (newValues, oldValues) {
+			$scope.currentDateStr = this.$filter('date')(newValues[0] || "未选择开始日期", "yyyy-MM-dd")
+			+ " 至 " + this.$filter('date')(newValues[1] || "未选择结束日期", "yyyy-MM-dd");
 		}.bind(this));
 
-		$scope.showPop = function() {
+		$scope.showPop = function () {
 			if (!$scope.disabled) {
 				$scope.pop = true;
 			}
 		};
 
-		$scope.dateClick = function() {
-			this.$timeout(function() {
-				$scope.currentDate = $scope.selectedDate;
+		$scope.dateClick = function () {
+			this.$timeout(function () {
+				//$scope.currentDate = $scope.selectedDate;
 			}, 0);
-			$scope.pop = false;
+			//$scope.pop = false;
 		};
 	}
 }

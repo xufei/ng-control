@@ -1,5 +1,6 @@
 .date-picker {
     position: relative;
+    display: table;
 }
 
 .date-picker .calendar-container {

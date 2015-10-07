@@ -1,5 +1,6 @@
 .date-range-picker {
     position: relative;
+    display: table;
 }
 
 .date-range-picker .calendar-container {
