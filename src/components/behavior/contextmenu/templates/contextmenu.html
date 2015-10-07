@@ -1,0 +1,6 @@
+<ul class="dropdown-menu">
+	<li ng-repeat-start="menu in menuArr" ng-if="menu.action" ng-click="menu.action()">
+		<a>{{menu.title}} {{aaa}}</a>
+	</li>
+	<li ng-repeat-end ng-if="!menu.action" class="divider"></li>
+</ul>

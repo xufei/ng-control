@@ -1,5 +1,3 @@
-
-
 export default class DropdownDirective {
     constructor($document) {
         this.restrict = "A";
