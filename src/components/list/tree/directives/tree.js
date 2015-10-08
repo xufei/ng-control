@@ -23,6 +23,10 @@ export default class TreeDirective {
 
 	controller($scope) {
 		$scope.$isTreeNode = true;
+		
+		if ($scope.treeData) {
+			$scope.treeData.forEach(v => v.$checked=false);
+		}
 
 		$scope.getRoot = function() {
 			let pointer = this;
