@@ -139,10 +139,13 @@
 					</form>
 				</div>
 				<div class="col-xs-4">
+					<div>
+						from : {{fromDate}} to : {{toDate}}
+					</div>
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label>日期选择与模型绑定</label>
-							<sn-date-range-picker ng-model="oneDay"></sn-date-range-picker>
+							<sn-date-range-picker from-date="fromDate" to-date="toDate"></sn-date-range-picker>
 						</div>
 						<div class="form-group">
 							<label>不可用的日期选择</label>

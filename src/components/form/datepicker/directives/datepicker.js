@@ -3,7 +3,7 @@ import template from "../templates/datepicker.html";
 import "../css/datepicker.css";
 
 export default class DatePickerDirective {
-	constructor($document, $filter, $timeout) {
+	constructor($filter, $timeout, UIHelper) {
 		this.template = template;
 		this.restrict = "E";
 
@@ -15,23 +15,26 @@ export default class DatePickerDirective {
 			disabled: "="
 		};
 
-		this.$document = $document;
 		this.$filter = $filter;
 		this.$timeout = $timeout;
+		this.UIHelper = UIHelper;
 	}
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择日期";
 
-		this.$document.on("click", function (evt) {
-			var src = evt.srcElement ? evt.srcElement : evt.target;
-			if ((scope.pop) && (!element[0].contains(src))) {
-				scope.pop = false;
+		let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+            if (!element[0].contains(e.target)) {
+                scope.pop = false;
 				scope.currentDate = scope.selectedDate;
 				scope.$digest();
-			}
-		});
+            }
+        });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
+        });
 	}
 
 	controller($scope) {
@@ -57,4 +60,4 @@ export default class DatePickerDirective {
 	}
 }
 
-DatePickerDirective.$inject = ["$document", "$filter", "$timeout"];
+DatePickerDirective.$inject = ["$filter", "$timeout", "UIHelper"];

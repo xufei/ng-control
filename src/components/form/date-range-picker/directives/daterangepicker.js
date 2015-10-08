@@ -3,7 +3,7 @@ import template from "../templates/daterangepicker.html";
 import "../css/daterangepicker.css";
 
 export default class DateRangePickerDirective {
-	constructor($document, $filter, $timeout) {
+	constructor($filter, $timeout, UIHelper) {
 		this.template = template;
 		this.restrict = "E";
 
@@ -16,23 +16,25 @@ export default class DateRangePickerDirective {
 			disabled: "="
 		};
 
-		this.$document = $document;
 		this.$filter = $filter;
 		this.$timeout = $timeout;
+		this.UIHelper = UIHelper;
 	}
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择日期";
-
-		this.$document.on("click", function (evt) {
-			var src = evt.srcElement ? evt.srcElement : evt.target;
-			if ((scope.pop) && (!element[0].contains(src))) {
-				scope.pop = false;
-				scope.currentDate = scope.selectedDate;
+		
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+            if (!element[0].contains(e.target)) {
+                scope.pop = false;
 				scope.$digest();
-			}
-		});
+            }
+        });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
+        });
 	}
 
 	controller($scope) {
@@ -49,11 +51,9 @@ export default class DateRangePickerDirective {
 
 		$scope.dateClick = function () {
 			this.$timeout(function () {
-				//$scope.currentDate = $scope.selectedDate;
 			}, 0);
-			//$scope.pop = false;
 		}.bind(this);
 	}
 }
 
-DateRangePickerDirective.$inject = ["$document", "$filter", "$timeout"];
+DateRangePickerDirective.$inject = ["$filter", "$timeout", "UIHelper"];
