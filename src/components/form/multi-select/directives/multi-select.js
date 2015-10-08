@@ -1,7 +1,9 @@
 import template from "../templates/multi-select.html";
 
-export default class SelectDirective {
-	constructor() {
+export default class MultiSelectDirective {
+	constructor(UIHelper) {
+		this.UIHelper = UIHelper;
+		
 		this.template = template;
 		this.restrict = "E";
 
@@ -14,11 +16,16 @@ export default class SelectDirective {
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
+		
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+            if (!element[0].contains(e.target)) {
+                scope.pop = false;
+				scope.$digest();
+            }
+        });
 	}
 
 	controller($scope) {
-		$scope.pop = false;
-
 		$scope.showPop = function() {
 			if ($scope.disabled) {
 				return;
@@ -35,3 +42,5 @@ export default class SelectDirective {
 		};
 	}
 }
+
+MultiSelectDirective.$inject = ["UIHelper"];

@@ -1,7 +1,9 @@
 import template from "../templates/select.html";
 
 export default class SelectDirective {
-	constructor() {
+	constructor(UIHelper) {
+		this.UIHelper = UIHelper;
+		
 		this.template = template;
 		this.restrict = "E";
 
@@ -14,6 +16,13 @@ export default class SelectDirective {
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
+		
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+            if (!element[0].contains(e.target)) {
+                scope.pop = false;
+				scope.$digest();
+            }
+        });
 	}
 
 	controller($scope) {
@@ -32,3 +41,5 @@ export default class SelectDirective {
 		};
 	}
 }
+
+SelectDirective.$inject = ["UIHelper"];

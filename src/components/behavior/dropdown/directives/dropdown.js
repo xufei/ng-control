@@ -1,8 +1,9 @@
 export default class DropdownDirective {
-    constructor($document) {
+    constructor($document, UIHelper) {
         this.restrict = "A";
-        
+
         this.$document = $document;
+        this.UIHelper = UIHelper;
     }
 
     link(scope, element) {
@@ -13,10 +14,12 @@ export default class DropdownDirective {
             evt.stopPropagation();
         });
 
-        this.$document.on("click", function () {
-            element.removeClass("open");
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+            //if (!element[0].contains(e.target)) {
+                element.removeClass("open");
+            //}
         });
     }
 }
 
-DropdownDirective.$inject = ["$document"];
+DropdownDirective.$inject = ["$document", "UIHelper"];

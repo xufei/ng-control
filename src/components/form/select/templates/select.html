@@ -1,5 +1,5 @@
-<div class="dropdown" sn-dropdown>
-	<button class="btn btn-default dropdown-toggle" type="button">
+<div class="dropdown" ng-class="{'open':pop}">
+	<button class="btn btn-default dropdown-toggle" type="button" ng-click="showPop()">
 		{{selectedItem.name}}
 		<span class="caret"></span>
 	</button>
