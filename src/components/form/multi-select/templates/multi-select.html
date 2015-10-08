@@ -1,0 +1,15 @@
+<div class="dropdown" sn-dropdown>
+	<button class="btn btn-default dropdown-toggle" type="button">
+		{{selectedItemsStr()}}
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu">
+		<li ng-repeat-start="option in options" ng-if="option!='seperator'" ng-class="{'active':option==selectedItem}" ng-click="select(option)">
+			<a tabindex="-1" href="javascript:void(0)">
+				{{option.name}}
+				<span class="glyphicon glyphicon-ok pull-right" ng-if="option.$checked"></span>
+			</a>
+		</li>
+		<li ng-repeat-end class="divider" ng-if="option=='seperator'"></li>
+	</ul>
+</div>
