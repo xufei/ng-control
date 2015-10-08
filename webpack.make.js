@@ -48,7 +48,8 @@ module.exports = function makeWebpackConfig (options) {
   } else {
     config.output = {
       // Absolute output directory
-      path: __dirname + '/dist',
+      path: __dirname,
+      //path: __dirname + '/dist',
 
       // Output path from the view of the page
       // Uses webpack-dev-server in development
@@ -56,11 +57,13 @@ module.exports = function makeWebpackConfig (options) {
 
       // Filename for entry points
       // Only adds hash in build mode
-      filename: BUILD ? '[name].[hash].js' : '[name].bundle.js',
+      filename: BUILD ? '[name].js' : '[name].bundle.js',
+      //filename: BUILD ? '[name].[hash].js' : '[name].bundle.js',
 
       // Filename for non-entry points
       // Only adds hash in build mode
-      chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
+      chunkFilename: BUILD ? '[name].js' : '[name].bundle.js'
+      //chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
     }
   }
 
@@ -174,9 +177,15 @@ module.exports = function makeWebpackConfig (options) {
     // Reference: https://github.com/webpack/extract-text-webpack-plugin
     // Extract css files
     // Disabled when in test mode or not in build mode
+    new ExtractTextPlugin('[name].css', {
+      disable: !BUILD || TEST
+    })
+    
+    /*
     new ExtractTextPlugin('[name].[hash].css', {
       disable: !BUILD || TEST
     })
+    */
   ];
 
   // Skip rendering index.html in test mode

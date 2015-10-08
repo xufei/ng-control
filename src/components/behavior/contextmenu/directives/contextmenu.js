@@ -46,8 +46,12 @@ export default class ContextMenuDirective {
             ContextMenuDirective.currentMenu = menu;
         }.bind(this));
 
-        this.$document.on("click", function (evt) {
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
             menu.css("display", "none");
+        });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
         });
     }
 }
