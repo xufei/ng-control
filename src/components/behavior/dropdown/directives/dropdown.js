@@ -19,6 +19,10 @@ export default class DropdownDirective {
                 element.removeClass("open");
             //}
         });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
+        });
     }
 }
 

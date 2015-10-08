@@ -23,6 +23,10 @@ export default class SelectDirective {
 				scope.$digest();
             }
         });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
+        });
 	}
 
 	controller($scope) {

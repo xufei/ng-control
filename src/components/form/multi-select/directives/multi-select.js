@@ -25,6 +25,10 @@ export default class MultiSelectDirective {
 				scope.$digest();
             }
         });
+		
+		scope.$on('$destroy', function() {
+            closeEvent.remove();
+        });
 	}
 
 	controller($scope) {
