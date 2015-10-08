@@ -17,6 +17,8 @@ export default class MultiSelectDirective {
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		
+		scope.selectedItems = scope.selectedItems || [];
+		
         let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
                 scope.pop = false;
@@ -35,10 +37,12 @@ export default class MultiSelectDirective {
 
 		$scope.select = function(item) {
 			item.$checked = !item.$checked;
+			
+			$scope.selectedItems = $scope.options.filter(v => v.$checked);
 		};
 		
 		$scope.selectedItemsStr = function() {
-			return $scope.options.reduce((last, current) => current.$checked ? (last + current.name + ";") : last, "");
+			return $scope.selectedItems.reduce((last, current) => last + current.name + ";", "");
 		};
 	}
 }
