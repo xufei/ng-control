@@ -53,7 +53,7 @@ export default class DatePickerDirective {
 				$scope.currentDate = $scope.selectedDate;
 			}, 0);
 			$scope.pop = false;
-		};
+		}.bind(this);
 	}
 }
 
