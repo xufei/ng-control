@@ -1,0 +1,97 @@
+
+.icon{
+  width: 32px;
+  height: 32px;
+  fill: #22A62B;
+  animation: anima 30s ease-out infinite;
+}
+
+.icon.is-check{
+  fill: #FE4365;
+}
+
+.icon.is-x10{
+  width: 320px;
+  height: 320px;
+}
+
+.icon.is-x2{
+  width: 64px;
+  height: 64px;
+}
+
+.icon.is-x3{
+  width: 96px;
+  height: 96px;
+}
+
+.icon.is-x4{
+  width: 128px;
+  height: 128px;
+}
+
+.icon.is-x5{
+  width: 160px;
+  height: 160px;
+}
+
+.icon.is-x6{
+  width: 192px;
+  height: 192px;
+}
+
+
+@keyframes anima {
+    0% {fill: #22A62B;color: #22A62B;}  
+  10% {fill: #14E3E6;color: #14E3E6;}
+  20%{fill: #195BEF;color: #195BEF;}
+  30%{fill: #DF26D9;color: #DF26D9;}
+  40%{fill: #DF2688;color: #DF2688;}
+  50%{fill: #FEA903;color: #FEA903;}
+  60%{fill: #DF26DE;color: #DF26DE;}
+  70%{fill: #2C4AED;color: #2C4AED;}
+  80%{fill: #14E3F7;color: #14E3F7;}
+  90%{fill: #195BEF;color: #195BEF;}
+  100% {fill: #22A62B;}
+}
+
+.icon.is-delay-1s{
+  animation-delay: .5s;
+}
+
+.icon.is-delay-2s{
+  animation-delay: 1s;
+}
+
+.icon.is-delay-3s{
+  animation-delay: 1.5s;
+}
+
+.icon.is-delay-4s{
+  animation-delay: 2s;
+}
+
+.icon.is-delay-5s{
+  animation-delay: 2.5s;
+}
+
+
+.icon.is-delay-6s{
+  animation-delay: 3s;
+}
+
+.icon.is-delay-7s{
+  animation-delay: 3.5s;
+}
+
+.icon.is-delay-8s{
+  animation-delay: 4s;
+}
+
+.icon.is-delay-9s{
+  animation-delay: 4.5s;
+}
+
+.icon.is-delay-10s{
+  animation-delay: 5s;
+}
