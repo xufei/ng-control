@@ -5,7 +5,7 @@ export default class EventBus {
 
     on (eventType, handler) {
         //multiple event listener
-        if (!EventBus.eventMap.get(eventType)) {
+        if (!EventBus.eventMap.has(eventType)) {
             EventBus.eventMap.set(eventType, []);
         }
         EventBus.eventMap[eventType].push(handler);
