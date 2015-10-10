@@ -28,7 +28,7 @@ export default class TreeDirective {
 			$scope.treeData.forEach(v => v.$checked=false);
 		}
 
-		$scope.getRoot = function() {
+		$scope.getRoot = () => {
 			let pointer = this;
 			let parent = pointer.$parent;
 			while (parent.$isTreeNode) {
@@ -39,7 +39,7 @@ export default class TreeDirective {
 			return pointer;
 		};
 
-		$scope.arrowClass = function(node) {
+		$scope.arrowClass = node => {
 			if (node.children && node.children.length > 0) {
 				if (node.$expanded) {
 					return "glyphicon-triangle-bottom";
@@ -53,7 +53,7 @@ export default class TreeDirective {
 			}
 		};
 
-		$scope.select = function(node) {
+		$scope.select = node => {
 			if (node != $scope.selectedNode) {
 				let root = $scope.getRoot();
 				if (root.selectedNode) {
@@ -69,7 +69,7 @@ export default class TreeDirective {
 			}
 		};
 
-		$scope.itemClick = function(node) {
+		$scope.itemClick = node => {
 			this.select(node);
 
 			node.$checked = !node.$checked;
@@ -77,12 +77,12 @@ export default class TreeDirective {
 			$scope.$emit("sn.controls.tree:itemChecked", {});
 		};
 
-		$scope.itemCheck = function(node) {
+		$scope.itemCheck = node => {
 			checkChildren(node);
 			$scope.$emit("sn.controls.tree:itemChecked", {});
 		};
 
-		$scope.$on("sn.controls.tree:itemChecked", function(e) {
+		$scope.$on("sn.controls.tree:itemChecked", e => {
 			if ($scope.treeData) {
 				for (let node of $scope.treeData) {
 					if (node.children) {

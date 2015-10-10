@@ -39,7 +39,7 @@ export default class CalendarDirective {
 
 		$scope.viewMode = CalendarDirective.ViewStates.DATE;
 
-		$scope.dateInRange = function(day) {
+		$scope.dateInRange = day => {
 			if (!day) {
 				return true;
 			}
@@ -57,7 +57,7 @@ export default class CalendarDirective {
 			return true;
 		};
 
-		$scope.selectDate = function (day) {
+		$scope.selectDate = day => {
 			if ($scope.dateInRange(day)) {
 				calendar.date = day.date.getDate();
 
@@ -69,21 +69,21 @@ export default class CalendarDirective {
 			}
 		};
 
-		$scope.selectMonth = function (month) {
+		$scope.selectMonth = month => {
 			calendar.month = month;
 			$scope.viewMode = CalendarDirective.ViewStates.DATE;
 
 			$scope.selectedDate = new Date(calendar.year, calendar.month, calendar.date);
 		};
 
-		$scope.selectYear = function (year) {
+		$scope.selectYear = year => {
 			calendar.year = year;
 			$scope.viewMode = CalendarDirective.ViewStates.DATE;
 
 			$scope.selectedDate = new Date(calendar.year, calendar.month, calendar.date);
 		};
 
-		$scope.selectNow = function() {
+		$scope.selectNow = () => {
 			$scope.now = new Date();
 
 			calendar.currentDate = $scope.now;

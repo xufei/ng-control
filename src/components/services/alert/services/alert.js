@@ -26,15 +26,15 @@ export default class AlertService {
 
         let data = Object.assign(this.$rootScope.$new(), param);
 
-        data.ok = function () {
+        data.ok = () => {
             this.dismiss(dialog);
             defer.resolve("ok");
-        }.bind(this);
+        };
 
-        data.cancel = function () {
+        data.cancel = () => {
             this.dismiss(dialog);
             defer.reject("cancel");
-        }.bind(this);
+        };
 
         dialog = this.$compile(angular.element(template))(data);
 
@@ -57,19 +57,17 @@ export default class AlertService {
 
         let data = Object.assign(this.$rootScope.$new(), param);
 
-        data.ok = function () {
+        data.ok = () => {
             this.dismiss(dialog);
             defer.resolve("ok");
-        }.bind(this);
+        };
 
-        data.cancel = function () {
+        data.cancel = () => {
             this.dismiss(dialog);
             defer.reject("cancel");
-        }.bind(this);
+        };
 
-        data.close = function () {
-            this.dismiss(dialog);
-        }.bind(this);
+        data.close = () => this.dismiss(dialog);
 
         dialog = this.$compile(template)(data);
 

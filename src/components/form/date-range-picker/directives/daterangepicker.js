@@ -38,10 +38,10 @@ export default class DateRangePickerDirective {
 	}
 
 	controller($scope) {
-		$scope.$watchGroup(["fromDate", "toDate"], function (newValues, oldValues) {
+		$scope.$watchGroup(["fromDate", "toDate"], (newValues, oldValues) => {
 			$scope.currentDateStr = this.$filter('date')(newValues[0] || "未选择开始日期", "yyyy-MM-dd")
 			+ " 至 " + this.$filter('date')(newValues[1] || "未选择结束日期", "yyyy-MM-dd");
-		}.bind(this));
+		});
 
 		$scope.showPop = function () {
 			if (!$scope.disabled) {
@@ -49,10 +49,7 @@ export default class DateRangePickerDirective {
 			}
 		};
 
-		$scope.dateClick = function () {
-			this.$timeout(function () {
-			}, 0);
-		}.bind(this);
+		$scope.dateClick = () => {};
 	}
 }
 

@@ -22,7 +22,7 @@ export default class NumberInputDirective {
 	}
 
 	controller($scope) {
-		$scope.decrease = function() {
+		$scope.decrease = () => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -35,7 +35,7 @@ export default class NumberInputDirective {
 			$scope.value--;
 		};
 
-		$scope.increase = function() {
+		$scope.increase = () => {
 			if ($scope.disabled) {
 				return;
 			}

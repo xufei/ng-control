@@ -21,25 +21,21 @@ export default class PagerDirective {
 
 		$scope.pager = pager;
 
-		$scope.$watch("pageSize", function (size) {
+		$scope.$watch("pageSize", size => {
 			if (typeof size == "number") {
 				pager.pageSize = size;
 			}
 		});
 
-		$scope.$watch("count", function (count) {
+		$scope.$watch("count", count => {
 			if (typeof count == "number") {
 				pager.count = count;
 			}
 		});
 
-		$scope.goto = function(index) {
-			pager.currentPage = index;
-		};
+		$scope.goto = index => pager.currentPage = index;
 
-		$scope.getText = function(key) {
-			return PagerDirective.texts[key];
-		};
+		$scope.getText = key => PagerDirective.texts[key];
 	}
 }
 
@@ -87,8 +83,6 @@ class Pager {
 		if (this.totalPages == 0) {
 			this.totalPages = 1;
 		}
-
-		console.log(this.totalPages);
 
 		var last = Math.min(this._offset + this._listSize, this.totalPages);
 

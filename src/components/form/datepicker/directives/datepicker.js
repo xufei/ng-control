@@ -32,9 +32,7 @@ export default class DatePickerDirective {
             }
         });
 		
-		scope.$on('$destroy', function() {
-            closeEvent.remove();
-        });
+		scope.$on('$destroy', () => closeEvent.remove());
 	}
 
 	controller($scope) {
