@@ -84,7 +84,7 @@ export default class TreeDirective {
 
 		$scope.$on("sn.controls.tree:itemChecked", function(e) {
 			if ($scope.treeData) {
-				$scope.treeData.forEach(function(node) {
+				for (let node of $scope.treeData) {
 					if (node.children) {
 						let checkedLength = node.children.filter(function (it) {
 							return it.$checked;
@@ -100,7 +100,7 @@ export default class TreeDirective {
 							node.$checked = null;
 						}
 					}
-				});
+				}
 			}
 		});
 

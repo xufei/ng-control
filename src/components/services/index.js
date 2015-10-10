@@ -3,6 +3,7 @@ import hint from "./hint/index";
 import dialog from "./dialog/index";
 
 import uiHelper from "./ui-helper/index";
+import eventbus from "./eventbus/index";
 
-export default angular.module("components.services", [alert, hint, dialog, uiHelper])
+export default angular.module("components.services", [alert, hint, dialog, uiHelper, eventbus])
 	.name;
