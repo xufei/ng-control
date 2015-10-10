@@ -26,26 +26,24 @@ export default class MultiSelectDirective {
             }
         });
 		
-		scope.$on('$destroy', function() {
-            closeEvent.remove();
-        });
+		scope.$on('$destroy', () => closeEvent.remove());
 	}
 
 	controller($scope) {
-		$scope.showPop = function() {
+		$scope.showPop = () => {
 			if ($scope.disabled) {
 				return;
 			}
 			$scope.pop = true;
 		};
 
-		$scope.select = function(item) {
+		$scope.select = item => {
 			item.$checked = !item.$checked;
 			
 			$scope.selectedItems = $scope.options.filter(v => v.$checked);
 		};
 		
-		$scope.selectedItemsStr = function() {
+		$scope.selectedItemsStr = () => {
 			return $scope.selectedItems.reduce((last, current) => last + current.name + ";", "");
 		};
 	}

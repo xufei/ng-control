@@ -23,16 +23,12 @@ export default class HintService {
         this.$compile(hint)(scope);
         this.container.prepend(hint);
 
-        setTimeout(function () {
-            hint.addClass("in");
-        }, 10);
+        setTimeout(() => hint.addClass("in"), 10);
 
-        setTimeout(function () {
+        setTimeout(() => {
             hint.removeClass("in");
 
-            setTimeout(function () {
-                hint.remove();
-            }, 500);
+            setTimeout(() => hint.remove(), 500);
         }, 5000);
     }
 }

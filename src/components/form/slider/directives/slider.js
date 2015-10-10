@@ -26,7 +26,7 @@ export default class SliderDirective {
 			$scope.min = 0;
 		}
 
-		this.$document.on("keypress", function (evt) {
+		this.$document.on("keypress", evt => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -41,7 +41,7 @@ export default class SliderDirective {
 			}
 		});
 
-		$scope.mousedown = function() {
+		$scope.mousedown = () => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -49,7 +49,7 @@ export default class SliderDirective {
 			$scope.dragging = true;
 		};
 
-		$scope.trackClick = function(evt) {
+		$scope.trackClick = evt => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -60,7 +60,7 @@ export default class SliderDirective {
 			$scope.changeValue(Math.round($scope.max * currentWidth / allWidth));
 		};
 
-		this.$document.on("mousemove", function (evt) {
+		this.$document.on("mousemove", evt => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -74,7 +74,7 @@ export default class SliderDirective {
 			}
 		});
 
-		this.$document.on("mouseup", function () {
+		this.$document.on("mouseup", () => {
 			if ($scope.disabled) {
 				return;
 			}
@@ -99,15 +99,15 @@ export default class SliderDirective {
 	}
 
 	controller($scope) {
-		$scope.increase = function () {
+		$scope.increase = () => {
 			$scope.changeValue($scope.value + 1);
 		};
 
-		$scope.decrease = function () {
+		$scope.decrease = () => {
 			$scope.changeValue($scope.value - 1);
 		};
 
-		$scope.valueInRange = function(value) {
+		$scope.valueInRange = value => {
 			if (!value) {
 				return true;
 			}
@@ -122,7 +122,7 @@ export default class SliderDirective {
 			return true;
 		};
 
-		$scope.changeValue = function (value) {
+		$scope.changeValue = value => {
 			if (this.valueInRange(value)) {
 				$scope.value = value;
 			}

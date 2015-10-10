@@ -29,7 +29,7 @@ export default class CalendarDirective {
 
 		$scope.now = new Date();
 
-		$scope.$watch("selectedDate", function(newDate) {
+		$scope.$watch("selectedDate", newDate => {
 			if (newDate) {
 				calendar.year = newDate.getFullYear();
 				calendar.month = newDate.getMonth();

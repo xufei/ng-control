@@ -38,12 +38,12 @@ export default class DatePickerDirective {
 	}
 
 	controller($scope) {
-		$scope.$watch("currentDate", function(newDate) {
+		$scope.$watch("currentDate", newDate => {
 			if (newDate) {
 				$scope.selectedDate = newDate;
 				$scope.currentDateStr = this.$filter('date')(newDate, "yyyy-MM-dd");
 			}
-		}.bind(this));
+		});
 
 		$scope.showPop = function() {
 			if (!$scope.disabled) {
@@ -51,12 +51,10 @@ export default class DatePickerDirective {
 			}
 		};
 
-		$scope.dateClick = function() {
-			this.$timeout(function() {
-				$scope.currentDate = $scope.selectedDate;
-			}, 0);
+		$scope.dateClick = () => {
+			this.$timeout(() => $scope.currentDate = $scope.selectedDate, 0);
 			$scope.pop = false;
-		}.bind(this);
+		};
 	}
 }
 

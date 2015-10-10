@@ -24,22 +24,20 @@ export default class SelectDirective {
             }
         });
 		
-		scope.$on('$destroy', function() {
-            closeEvent.remove();
-        });
+		scope.$on('$destroy', () => closeEvent.remove());
 	}
 
 	controller($scope) {
 		$scope.pop = false;
 
-		$scope.showPop = function() {
+		$scope.showPop = () => {
 			if ($scope.disabled) {
 				return;
 			}
 			$scope.pop = true;
 		};
 
-		$scope.select = function(item) {
+		$scope.select = item => {
 			$scope.selectedItem = item;
 			$scope.pop = false;
 		};

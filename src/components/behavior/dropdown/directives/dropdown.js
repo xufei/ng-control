@@ -7,7 +7,7 @@ export default class DropdownDirective {
     }
 
     link(scope, element) {
-        element.find("button").on("click", function (evt) {
+        element.find("button").on("click", evt => {
             element.toggleClass("open");
 
             evt.preventDefault();
@@ -20,9 +20,7 @@ export default class DropdownDirective {
             //}
         });
 		
-		scope.$on('$destroy', function() {
-            closeEvent.remove();
-        });
+		scope.$on('$destroy', () => closeEvent.remove());
     }
 }
 

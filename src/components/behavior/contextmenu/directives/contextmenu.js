@@ -19,7 +19,7 @@ export default class ContextMenuDirective {
             menuArr: scope.$eval(attrs["snContextmenu"])
         }));
 
-        element.on("contextmenu", function (evt) {
+        element.on("contextmenu", evt => {
             let target = evt.target;
             let offset = this.UIHelper.getOffset(target);
 
@@ -44,15 +44,11 @@ export default class ContextMenuDirective {
             }
 
             ContextMenuDirective.currentMenu = menu;
-        }.bind(this));
+        });
 
-        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
-            menu.css("display", "none");
-        });
+        let closeEvent = this.UIHelper.listen(window, 'click', (e) => menu.css("display", "none"));
 		
-		scope.$on('$destroy', function() {
-            closeEvent.remove();
-        });
+		scope.$on('$destroy', () => closeEvent.remove());
     }
 }
 

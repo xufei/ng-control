@@ -8,7 +8,7 @@ export default class IndeterminateDirective {
     }
 
     link(scope, element) {
-        scope.$watch("value", function (value) {
+        scope.$watch("value", value => {
             if (angular.isUndefined(value) || value === null) {
                 element[0].indeterminate = true;
             } else {

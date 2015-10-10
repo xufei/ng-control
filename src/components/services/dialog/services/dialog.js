@@ -13,24 +13,31 @@ export default class DialogService {
     }
 
     modal(param, data) {
-        this.$http.get(param.url).then(function (result) {
-            this.dialogCounter += 2;
+        if (param.url) {
+            this.$http.get(param.url).then(result => this.show(param, result.data));
+        }
+        else if (param.template) {
+            this.show(param, param.template);
+        }
+    }
+    
+    show(param, template) {
+        this.dialogCounter += 2;
 
-            let mask = angular.element('<div class="modal-backdrop fade in"></div>');
-            this.$document.find("body").append(mask);
-            mask.css("z-index", this.zIndex + this.dialogCounter);
+        let mask = angular.element('<div class="modal-backdrop fade in"></div>');
+        this.$document.find("body").append(mask);
+        mask.css("z-index", this.zIndex + this.dialogCounter);
 
-            let element = this.$compile(angular.element(result.data))(Object.assign(this.$rootScope.$new(), data));
+        let element = this.$compile(angular.element(template))(Object.assign(this.$rootScope.$new(), data));
 
-            this.$document.find("body").append(element);
-            element.css("display", "block");
-            element.css("z-index", this.zIndex + this.dialogCounter + 1);
+        this.$document.find("body").append(element);
+        element.css("display", "block");
+        element.css("z-index", this.zIndex + this.dialogCounter + 1);
 
-            this.dialogMap.set(param.key, Object.assign(param, {
-                dialog: element,
-                mask: mask
-            }));
-        });
+        this.dialogMap.set(param.key, Object.assign(param, {
+            dialog: element,
+            mask: mask
+        }));
     }
 
     accept(key, result) {
