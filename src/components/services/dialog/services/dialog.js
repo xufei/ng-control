@@ -14,14 +14,14 @@ export default class DialogService {
 
     modal(param, data) {
         if (param.url) {
-            this.$http.get(param.url).then(result => this.show(param, result.data));
+            this.$http.get(param.url).then(result => this.show(param, result.data, data));
         }
         else if (param.template) {
-            this.show(param, param.template);
+            this.show(param, param.template, data);
         }
     }
     
-    show(param, template) {
+    show(param, template, data) {
         this.dialogCounter += 2;
 
         let mask = angular.element('<div class="modal-backdrop fade in"></div>');
