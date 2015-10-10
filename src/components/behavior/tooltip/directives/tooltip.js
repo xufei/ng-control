@@ -20,14 +20,14 @@ export default class ToolTipDirective {
         this.$compile(tooltip)(scope);
 	
 		element.on("mouseenter", function (evt) {
-			var target = evt.target;
-			var offset = this.UIHelper.getOffset(target);
+			let target = evt.target;
+			let offset = this.UIHelper.getOffset(target);
 	
 			this.$document.find("body").append(tooltip);
 			tooltip.addClass("in");
 	
-			var x = offset.x + element[0].offsetWidth;
-			var y = offset.y + (element[0].offsetHeight - tooltip[0].offsetHeight) / 2;
+			let x = offset.x + element[0].offsetWidth;
+			let y = offset.y + (element[0].offsetHeight - tooltip[0].offsetHeight) / 2;
 	
 			tooltip.css("z-index", "1500");
 			tooltip.css("display", "block");
