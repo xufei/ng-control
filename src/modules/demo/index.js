@@ -4,6 +4,7 @@ import AlertController from "./controllers/alert";
 import HintController from "./controllers/hint";
 import {DialogController, TestDialogController} from "./controllers/dialog";
 
+import ToolTipController from "./controllers/tooltip";
 import ContextMenuController from "./controllers/contextmenu";
 
 import CheckboxController from "./controllers/checkbox";
@@ -17,6 +18,7 @@ export default angular.module("modules.demo", [])
 	.controller("HintController", HintController)
 	.controller("DialogController", DialogController)
 	.controller("TestDialogController", TestDialogController)
+	.controller("ToolTipController", ToolTipController)
 	.controller("ContextMenuController", ContextMenuController)
 	.controller("CheckboxController", CheckboxController)
 	.controller("NumberController", NumberController)
