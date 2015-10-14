@@ -58,7 +58,7 @@ export default class DateRangePickerDirective {
 		};
 		
 		$scope.severalMonthBefore = x => {
-			let now = new Date(2015, 7, 31);
+			let now = new Date();
 			
 			let year = now.getFullYear();
 			let month = now.getMonth();
