@@ -49,7 +49,42 @@ export default class DateRangePickerDirective {
 			}
 		};
 
-		$scope.dateClick = () => {};
+		$scope.fromDateClick = () => {
+			
+		};
+		
+		$scope.toDateClick = () => {
+			
+		};
+		
+		$scope.severalMonthBefore = x => {
+			let now = new Date(2015, 7, 31);
+			
+			let year = now.getFullYear();
+			let month = now.getMonth();
+			let day = now.getDate();
+			
+			let fromDate = new Date(year, month-x, day);
+			if (fromDate.getDate() != day) {
+				fromDate = new Date(year, month-x+1, 0);
+			}
+			
+			$scope.toDate = now;
+			$scope.fromDate = fromDate;
+			$scope.pop = false;
+		}
+		
+		$scope.lastMonth = () => {
+			$scope.severalMonthBefore(1);
+		};
+		
+		$scope.lastQuarter = () => {
+			$scope.severalMonthBefore(3);
+		};
+		
+		$scope.lastHalfYear = () => {
+			$scope.severalMonthBefore(6);
+		};
 	}
 }
 
