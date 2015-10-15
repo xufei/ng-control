@@ -1,0 +1,12 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th ng-repeat="col in cols">{{col.label}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in data">
+			<td ng-repeat="col in cols">{{item[col.key]}}</td>
+		</tr>
+	</tbody>
+</table>

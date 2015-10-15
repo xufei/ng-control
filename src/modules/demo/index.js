@@ -1,5 +1,3 @@
-"use strict";
-
 import AlertController from "./controllers/alert";
 import HintController from "./controllers/hint";
 import {DialogController, TestDialogController} from "./controllers/dialog";
@@ -11,7 +9,9 @@ import CheckboxController from "./controllers/checkbox";
 import NumberController from "./controllers/number";
 import DateController from "./controllers/date";
 import SelectController from "./controllers/select";
+
 import TreeController from "./controllers/tree";
+import DataGridController from "./controllers/datagrid";
 
 export default angular.module("modules.demo", [])
 	.controller("AlertController", AlertController)
@@ -24,5 +24,7 @@ export default angular.module("modules.demo", [])
 	.controller("NumberController", NumberController)
 	.controller("DateController", DateController)
 	.controller("SelectController", SelectController)
+	
 	.controller("TreeController", TreeController)
+	.controller("DataGridController", DataGridController)
 	.name;

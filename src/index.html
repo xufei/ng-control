@@ -292,7 +292,6 @@
 			</div>
 		</section>
 
-
 		<hr/>
 
 		<section ng-controller="TreeController">
@@ -304,6 +303,18 @@
 					<button ng-click="collapseAll()">全部折叠</button>
 					<button ng-click="getCheckedItems()">获取选中项</button>
 					<sn-tree tree-data="areaData" tree-id="aaa"></sn-tree>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="DataGridController">
+			<h3>数据表格</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<sn-datagrid grid-cols="cols" grid-data="students"></sn-datagrid>
 				</div>
 			</div>
 		</section>

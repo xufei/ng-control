@@ -1,5 +1,3 @@
-"use strict";
-
 import TreeDirective from "./directives/tree";
 
 import DirectiveFactory from "../../utils/directive";
