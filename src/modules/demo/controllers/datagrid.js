@@ -1,3 +1,8 @@
+import checkboxCellTpl from "../../../modules/demo/partials/datagrid/checkbox-cell.html";
+import sortHeaderCellTpl from "../../../modules/demo/partials/datagrid/sort-header-cell.html";
+import checkboxHeaderCellTpl from "../../../modules/demo/partials/datagrid/checkbox-header-cell.html";
+import buttonCellTpl from "../../../modules/demo/partials/datagrid/button-cell.html";
+
 export default class DataGridController {
 	constructor($scope) {
 		$scope.cols = [
@@ -7,9 +12,33 @@ export default class DataGridController {
 		];
 		
 		$scope.students = [
-			{ name: "Tom", age: 18, gender: "Male" },
-			{ name: "Lily", age: 15, gender: "Female" },
-			{ name: "Jerry", age: 14, gender: "Male" }
+			{ name: "Tom", age: 18, gender: "1" },
+			{ name: "Lily", age: 15, gender: "0" },
+			{ name: "Jerry", age: 14, gender: "1" }
+		];
+		
+		$scope.checkboxCols = [
+			{label: "", key: "$checked"},
+			{label: "Name", key: "name"},
+			{label: "Age", key: "age"},
+			{label: "Gender", key: "gender"}
+		];
+		
+		$scope.checkboxTpl = checkboxCellTpl;
+		$scope.sortHeaderTpl = sortHeaderCellTpl;
+		
+		$scope.sort = (key) => $scope.students.sort((a, b) => a[key] - b[key]);
+		
+		$scope.checkboxHeaderTpl = checkboxHeaderCellTpl;
+		
+		$scope.buttonCellTpl = buttonCellTpl;
+		
+		$scope.buttonCols = [
+			{label: "", key: "$checked"},
+			{label: "Name", key: "name"},
+			{label: "Age", key: "age"},
+			{label: "Gender", key: "gender"},
+			{label: "", key: "$operation"}
 		];
 	}
 }
