@@ -27,7 +27,16 @@ export default class DataGridController {
 		$scope.checkboxTpl = checkboxCellTpl;
 		$scope.sortHeaderTpl = sortHeaderCellTpl;
 		
-		$scope.sort = (key) => $scope.students.sort((a, b) => a[key] - b[key]);
+		$scope.headerSort = (key) => {
+			$scope.desc = !$scope.desc;
+			
+			if ($scope.desc) {
+				$scope.students.sort((a, b) => a[key] - b[key]);
+			}
+			else {
+				$scope.students.sort((a, b) => b[key] - a[key]);
+			}
+		};
 		
 		$scope.checkboxHeaderTpl = checkboxHeaderCellTpl;
 		
