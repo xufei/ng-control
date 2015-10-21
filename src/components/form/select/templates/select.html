@@ -1,6 +1,6 @@
 <div class="dropdown" ng-class="{'open':pop}">
 	<button class="btn btn-default dropdown-toggle" type="button" ng-click="showPop()" ng-disabled="disabled">
-		{{selectedItem.name}}
+		{{selectedItem.name || placeholder}}
 		<span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu">
