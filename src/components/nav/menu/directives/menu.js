@@ -11,12 +11,15 @@ export default class MenuDirective {
 		this.scope = {
 			selectedItem: "=ngModel",
 			menuData: "=",
+			placeholder: "=",
 			disabled: "="
 		};
 	}
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
+		
+		scope.placeholder = scope.placeholder || "请点击选择";
 		
         let closeEvent = this.UIHelper.listen(window, "click", (e) => {
             if (!element[0].contains(e.target)) {
