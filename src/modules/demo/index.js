@@ -13,7 +13,7 @@ import SelectController from "./controllers/select";
 import TreeController from "./controllers/tree";
 import DataGridController from "./controllers/datagrid";
 
-import MenuController from "./controllers/menu";
+import TreeSelectController from "./controllers/treeselect";
 
 export default angular.module("modules.demo", [])
 	.controller("AlertController", AlertController)
@@ -26,9 +26,8 @@ export default angular.module("modules.demo", [])
 	.controller("NumberController", NumberController)
 	.controller("DateController", DateController)
 	.controller("SelectController", SelectController)
+	.controller("TreeSelectController", TreeSelectController)
 	
 	.controller("TreeController", TreeController)
 	.controller("DataGridController", DataGridController)
-	
-	.controller("MenuController", MenuController)
 	.name;

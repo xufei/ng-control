@@ -282,24 +282,30 @@
 
 		<hr/>
 
-		<section>
-			<h3>分页</h3>
+		<section ng-controller="TreeSelectController">
+			<h3>树形下拉选择</h3>
 
 			<div class="row">
-				<div class="col-xs-12">
-					<sn-pager count="177"></sn-pager>
+				<div class="col-xs-4">
+					<sn-tree-select menu-data="areaData" ng-model="item0" menu-id="aaa"></sn-tree-select>
+				</div>
+				<div class="col-xs-4">
+					<sn-tree-select menu-data="areaData" ng-model="item1" menu-id="bbb"></sn-tree-select>
+				</div>
+				<div class="col-xs-4">
+					<sn-tree-select menu-data="areaData" disabled="true" menu-id="ccc"></sn-tree-select>
 				</div>
 			</div>
 		</section>
 
 		<hr/>
 
-		<section ng-controller="MenuController">
-			<h3>多级菜单</h3>
+		<section>
+			<h3>分页</h3>
 
 			<div class="row">
 				<div class="col-xs-12">
-					<sn-menu menu-data="areaData" menu-id="aaa"></sn-menu>
+					<sn-pager count="177"></sn-pager>
 				</div>
 			</div>
 		</section>

@@ -1,7 +1,7 @@
-import template from "../templates/menu.html";
-import "../css/menu.css";
+import template from "../templates/tree-select.html";
+import "../css/tree-select.css";
 
-export default class MenuDirective {
+export default class TreeSelectDirective {
 	constructor(UIHelper) {
 		this.UIHelper = UIHelper;
 		
@@ -48,4 +48,4 @@ export default class MenuDirective {
 	}
 }
 
-MenuDirective.$inject = ["UIHelper"];
+TreeSelectDirective.$inject = ["UIHelper"];

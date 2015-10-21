@@ -1,4 +1,4 @@
-export default class MenuController {
+export default class TreeSelectController {
 	constructor($scope) {
 		$scope.areaData = [{
 			name : "江苏",
@@ -38,7 +38,9 @@ export default class MenuController {
 			name : "福建",
 			code : "fj"
 		}];
+		
+		$scope.item1 = $scope.areaData[0].children[1];
 	}
 }
 
-MenuController.$inject = ["$scope"];
+TreeSelectController.$inject = ["$scope"];

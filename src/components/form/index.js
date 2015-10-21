@@ -7,6 +7,7 @@ import slider from "./slider/index";
 import numberInput from "./number-input/index";
 import select from "./select/index";
 import multiSelect from "./multi-select/index";
+import treeselect from "./tree-select/index";
 
-export default angular.module("components.form", [checkbox, calendar, datePicker, timePicker, dateRangePicker, slider, numberInput, select, multiSelect])
+export default angular.module("components.form", [checkbox, calendar, datePicker, timePicker, dateRangePicker, slider, numberInput, select, multiSelect, treeselect])
 	.name;

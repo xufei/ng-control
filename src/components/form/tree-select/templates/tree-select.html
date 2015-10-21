@@ -1,5 +1,5 @@
 <div class="dropdown" ng-class="{'open':pop}">
-	<button class="btn btn-default" href="javascript:void(0)" ng-click="showPop()">
+	<button class="btn btn-default" href="javascript:void(0)" ng-click="showPop()" ng-disabled="disabled">
 		{{selectedItem.name || placeholder}} <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
