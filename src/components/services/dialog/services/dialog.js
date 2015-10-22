@@ -61,6 +61,10 @@ export default class DialogService {
         dialog.mask.remove();
         dialog.dialog.remove();
     }
+    
+    dismissAll() {
+        this.dialogMap.forEach((it, key) => this.dismiss(key));
+    }
 
     postMessage(key, type, message) {
         if (this.dialogMap.get(key).messageHandler) {
