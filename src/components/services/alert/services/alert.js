@@ -7,6 +7,8 @@ export default class AlertService {
         this.$rootScope = $rootScope;
         this.$compile = $compile;
 
+        this.dialogArr = [];
+
         this.dialogCounter = 0;
         this.zIndex = 1200;
 
@@ -42,6 +44,8 @@ export default class AlertService {
         dialog.css("display", "block");
         dialog.css("z-index", this.zIndex + this.dialogCounter);
 
+        this.dialogArr.push(dialog);
+
         return defer.promise;
     }
 
@@ -75,6 +79,8 @@ export default class AlertService {
         dialog.css("display", "block");
         dialog.css("z-index", this.zIndex + this.dialogCounter);
 
+        this.dialogArr.push(dialog);
+
         return defer.promise;
     }
 
@@ -84,6 +90,19 @@ export default class AlertService {
 
         if (this.dialogCounter == 0) {
             this.mask.remove();
+        }
+
+        for (let i = 0; i < this.dialogArr.length; i++) {
+            if (this.dialogArr[i] == dialog) {
+                this.dialogArr.splice(i, 1);
+                break;
+            }
+        }
+    }
+
+    dismissAll() {
+        while (this.dialogArr.length > 0) {
+            this.dismiss(this.dialogArr[0]);
         }
     }
 }
