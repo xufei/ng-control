@@ -18,7 +18,7 @@ export default class SelectDirective {
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		
-		scope.placeholder = scope.placeholder || "请点击选择";
+		scope.placeholder = scope.placeholder || "请选择";
 		
         let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {

@@ -10,7 +10,7 @@ export default class TreeSelectDirective {
 
 		this.scope = {
 			selectedItem: "=ngModel",
-			menuData: "=",
+			treeData: "=",
 			placeholder: "=",
 			disabled: "="
 		};
@@ -19,7 +19,7 @@ export default class TreeSelectDirective {
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		
-		scope.placeholder = scope.placeholder || "请点击选择";
+		scope.placeholder = scope.placeholder || "请选择";
 		
         let closeEvent = this.UIHelper.listen(window, "click", (e) => {
             if (!element[0].contains(e.target)) {
@@ -32,7 +32,13 @@ export default class TreeSelectDirective {
 	}
 
 	controller($scope) {
+		var selectedPath = [];
+		
 		$scope.pop = false;
+		
+		$scope.selected = (item) => {
+			return selectedPath.indexOf(item) >= 0;
+		};
 
 		$scope.showPop = () => {
 			if ($scope.disabled) {
@@ -41,9 +47,11 @@ export default class TreeSelectDirective {
 			$scope.pop = true;
 		};
 
-		$scope.select = item => {
-			$scope.selectedItem = item;
+		$scope.select = (...item) => {
+			$scope.selectedItem = item[0];
 			$scope.pop = false;
+			
+			selectedPath = item;
 		};
 	}
 }
