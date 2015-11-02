@@ -322,6 +322,12 @@
 					<button ng-click="getCheckedItems()">获取选中项</button>
 					<sn-tree tree-data="areaData" tree-id="aaa"></sn-tree>
 				</div>
+				<div class="col-xs-4">
+					<button ng-click="expandAll()">全部展开</button>
+					<button ng-click="collapseAll()">全部折叠</button>
+					<button ng-click="getCheckedItems()">获取选中项</button>
+					<sn-tree tree-data="areaData" node-type="'checkbox'" tree-id="aaa"></sn-tree>
+				</div>
 			</div>
 		</section>
 

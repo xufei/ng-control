@@ -1,22 +1,41 @@
 import template from "../templates/tree.html";
+import defaultNodeTpl from "../templates/default-node.html";
+import checkboxNodeTpl from "../templates/checkbox-node.html";
 
 import "../css/tree.css";
 
 export default class TreeDirective {
 	constructor($compile) {
 		this.restrict = "E";
+		this.template = template;
 
 		this.scope = {
-			treeData: "="
+			treeData: "=",
+			nodeTpl: "=",
+			nodeType: "="
 		};
 
 		this.$compile = $compile;
+		
+		this.nodeTpls = {
+			default: defaultNodeTpl,
+			checkbox: checkboxNodeTpl
+		};
 	}
 
 	link(scope, element, attrs) {
 		scope.treeId = attrs["treeId"];
-
-		element.html(template);
+		
+		let nodeTpl;
+		
+		if (scope.nodeType) {
+			nodeTpl = this.nodeTpls[scope.nodeType];
+		}
+		else {
+			nodeTpl = defaultNodeTpl;
+		}
+		
+		element.find("ul").html(nodeTpl);
 
 		this.$compile(element.contents())(scope);
 	}
@@ -29,13 +48,14 @@ export default class TreeDirective {
 		}
 
 		$scope.getRoot = () => {
-			let pointer = this;
+			let pointer = $scope;
 			let parent = pointer.$parent;
-			while (parent.$isTreeNode) {
-				pointer = parent;
-				parent = parent.$parent;
+			if (parent) {
+				while (parent.$isTreeNode) {
+					pointer = parent;
+					parent = parent.$parent;
+				}
 			}
-
 			return pointer;
 		};
 
@@ -70,7 +90,7 @@ export default class TreeDirective {
 		};
 
 		$scope.itemClick = node => {
-			this.select(node);
+			$scope.select(node);
 
 			node.$checked = !node.$checked;
 			checkChildren(node);

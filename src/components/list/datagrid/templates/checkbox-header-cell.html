@@ -1,0 +1,4 @@
+<th ng-repeat-start="col in cols" ng-if="$first">
+	<input type="checkbox" ng-model="$parent.$parent.$allChecked" ng-change="checkAll()"/>
+</th>
+<th ng-repeat-end ng-if="!$first">{{col.label}}</th>

@@ -1,0 +1,7 @@
+<li ng-repeat="node in treeData">
+	<i class="glyphicon" ng-click="iconClick(node)" ng-class="arrowClass(node)"></i>
+	<span ng-click="itemClick(node)" ng-class="{true:'selected', false:''}[node.$selected]">
+		{{ node.name }}
+	</span>
+	<sn-tree tree-data="node.children" ng-show="node.$expanded"></sn-tree>
+</li>

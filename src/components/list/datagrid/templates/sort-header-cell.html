@@ -1,0 +1,6 @@
+<th ng-repeat="col in cols">
+	{{col.label}}
+	<button class="btn btn-xs glyphicon"
+	 ng-click="$parent.$parent.headerSort(col.key)"
+	 ng-class="{'glyphicon-triangle-bottom':!$parent.$parent.desc, 'glyphicon-triangle-top':$parent.$parent.desc}"></button>
+</th>

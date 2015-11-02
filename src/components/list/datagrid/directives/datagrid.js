@@ -19,24 +19,16 @@ export default class DataGridDirective {
 		this.$compile = $compile;
 	}
 
-	compile(element, attributes) {
-
-		return {
-			pre: (scope, element, attributes, controller, transcludeFn) => {
-				scope.headerCellTpl = scope.headerCellTpl || defaultHeaderCellTpl;
-				scope.cellTpl = scope.cellTpl || defaultCellTpl;
-
-				angular.element(element.find("tr")[0]).append(angular.element(scope.headerCellTpl));
-				angular.element(element.find("tbody")[0]).append(angular.element('<tr ng-repeat="item in data"></tr>"'));
-				angular.element(element.find("tr")[1]).append(angular.element(scope.cellTpl));
-
-				this.$compile(angular.element(element.find("thead")[0]))(scope);
-				this.$compile(angular.element(element.find("tbody")[0]))(scope);
-			}
-		};
-	}
-
 	link(scope, element, attrs) {
+		scope.headerCellTpl = scope.headerCellTpl || defaultHeaderCellTpl;
+		scope.cellTpl = scope.cellTpl || defaultCellTpl;
+
+		angular.element(element.find("tr")[0]).append(angular.element(scope.headerCellTpl));
+		angular.element(element.find("tbody")[0]).append(angular.element('<tr ng-repeat="item in data"></tr>"'));
+		angular.element(element.find("tr")[1]).append(angular.element(scope.cellTpl));
+
+		this.$compile(angular.element(element.find("thead")[0]))(scope);
+		this.$compile(angular.element(element.find("tbody")[0]))(scope);
 	}
 
 	controller($scope) {
