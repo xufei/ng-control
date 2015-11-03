@@ -17,7 +17,7 @@ export default class TreeDirective {
 
 		this.$compile = $compile;
 		
-		this.nodeTpls = {
+		this.tpls = {
 			default: defaultNodeTpl,
 			checkbox: checkboxNodeTpl
 		};
@@ -29,7 +29,7 @@ export default class TreeDirective {
 		let nodeTpl;
 		
 		if (scope.nodeType) {
-			nodeTpl = this.nodeTpls[scope.nodeType];
+			nodeTpl = this.tpls[scope.nodeType];
 		}
 		else {
 			nodeTpl = defaultNodeTpl;
