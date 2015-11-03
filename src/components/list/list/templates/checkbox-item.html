@@ -3,6 +3,8 @@
 		<li class="list-group-item"
 			ng-repeat="item in visibleProvider"
 			ng-click="itemClicked(item)"
-			ng-class="{'active':item==selectedItem}">{{item.label}}</li>
+			ng-class="{'active':item==selectedItem}">
+			<input type="checkbox" ng-model="item.$checked" ng-click="$event.stopPropagation()"/>
+			{{item.label}}</li>
 	</ul>
 </div>

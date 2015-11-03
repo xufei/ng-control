@@ -1,6 +1,7 @@
 import template from "../templates/list.html";
 
 import defaultTpl from "../templates/default-item.html";
+import checkboxTpl from "../templates/checkbox-item.html";
 
 import "../css/list.css";
 
@@ -10,14 +11,25 @@ export default class ListDirective {
 		this.template = template;
 
 		this.scope = {
+			type: "=",
 			listData: "=",
 			selectedItem: "=ngModel"
 		};
 
 		this.$compile = $compile;
+		
+		this.tpls = {
+			default: defaultTpl,
+			checkbox: checkboxTpl
+		};
 	}
 
 	link(scope, element, attrs) {
+		let type = scope.type || "default";
+		let tpl = this.tpls[type];
+		element.html(tpl);
+		this.$compile(element.contents())(scope);
+		
         scope.visibleProvider = [];
         scope.canvasHeight = {};
 		scope.style = {};

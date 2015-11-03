@@ -333,7 +333,10 @@
 
 			<div class="row">
 				<div class="col-xs-4">
-					<sn-list ui-data-provider="listCtrl.dataProvider" ui-on-select="listCtrl.onSelect(option)" ng-model="listCtrl.selectedItem"></sn-list>
+					<sn-list list-data="listCtrl.listData" ng-model="listCtrl.selectedItem"></sn-list>
+				</div>
+				<div class="col-xs-4">
+					<sn-list type="'checkbox'" list-data="listCtrl.listData" ng-model="listCtrl.selectedItem"></sn-list>
 				</div>
 			</div>
 		</section>
