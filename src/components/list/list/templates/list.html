@@ -1,6 +1,9 @@
 <div class="canvas" ng-style="canvasHeight">
 	<ul class="list-group" ng-style="style">
-		<li class="list-group-item" ng-repeat="item in visibleProvider" ng-click="onClickOption(item)">{{item.label}}</li>
+		<li class="list-group-item"
+			ng-repeat="item in visibleProvider"
+			ng-click="itemClicked(item)"
+			ng-class="{'active':item==selectedItem}">{{item.label}}</li>
 	</ul>
 </div>
 

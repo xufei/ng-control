@@ -10,14 +10,14 @@ export default class ListDirective {
 		this.template = template;
 
 		this.scope = {
-			uiDataProvider: '=',
-			uiOnSelect: '&'
+			listData: "=",
+			selectedItem: "=ngModel"
 		};
 
 		this.$compile = $compile;
 	}
 
-	link(scope, element, attrs, ngModelCtrl) {
+	link(scope, element, attrs) {
 		var rowHeight = 42;
 
         scope.height = 200;
@@ -29,11 +29,11 @@ export default class ListDirective {
 		scope.style = {};
 
         scope.init = () => {
-			element[0].addEventListener('scroll', scope.onScroll);
+			element[0].addEventListener("scroll", scope.onScroll);
 			scope.cellsPerPage = Math.round(scope.height / rowHeight);
 			scope.numberOfCells = 3 * scope.cellsPerPage;
 			scope.canvasHeight = {
-				height: scope.uiDataProvider.length * rowHeight + 'px'
+				height: scope.listData.length * rowHeight + "px"
 			};
 
 			scope.updateDisplayList();
@@ -42,30 +42,22 @@ export default class ListDirective {
         scope.updateDisplayList = () => {
 			var firstCell = Math.max(Math.floor(scope.scrollTop / rowHeight) - scope.cellsPerPage, 0);
 			var cellsToCreate = Math.min(firstCell + scope.numberOfCells, scope.numberOfCells);
-			scope.visibleProvider = scope.uiDataProvider.slice(firstCell, firstCell + cellsToCreate);
-
-			for (var i = 0; i < scope.visibleProvider.length; i++) {
-				scope.visibleProvider[i].styles = {
-					'top': ((firstCell + i) * rowHeight) + "px"
-				}
-			}
+			scope.visibleProvider = scope.listData.slice(firstCell, firstCell + cellsToCreate);
 
 			scope.style = {
-				'top': (firstCell * rowHeight) + "px"
+				"top": (firstCell * rowHeight) + "px"
 			};
         };
 
         scope.onScroll = (evt) => {
-			scope.scrollTop = element.prop('scrollTop');
+			scope.scrollTop = element.prop("scrollTop");
 			scope.updateDisplayList();
 
 			scope.$apply();
         };
 
-        scope.onClickOption = (option) => {
-			ngModelCtrl.$setViewValue(option);
-			scope.currentOption = option;
-			scope.uiOnSelect({ "option": option });
+        scope.itemClicked = (item) => {
+			scope.selectedItem = item;
         };
 
         scope.init();
