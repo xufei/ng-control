@@ -10,6 +10,7 @@ import NumberController from "./controllers/number";
 import DateController from "./controllers/date";
 import SelectController from "./controllers/select";
 
+import ListController from "./controllers/list";
 import TreeController from "./controllers/tree";
 import DataGridController from "./controllers/datagrid";
 
@@ -28,6 +29,7 @@ export default angular.module("modules.demo", [])
 	.controller("SelectController", SelectController)
 	.controller("TreeSelectController", TreeSelectController)
 	
+	.controller("ListController", ListController)
 	.controller("TreeController", TreeController)
 	.controller("DataGridController", DataGridController)
 	.name;

@@ -1,0 +1,19 @@
+sn-list {
+    max-height: 200px;
+	overflow-y: auto;
+	display: block;
+}
+
+sn-list .canvas {
+	background-color: #eee;
+	position: relative;
+}
+
+sn-list div.renderer {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+	position: absolute;
+	height: 30px;
+	line-height: 30px;
+}
