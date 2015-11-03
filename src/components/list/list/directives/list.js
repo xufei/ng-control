@@ -18,7 +18,7 @@ export default class ListDirective {
 	}
 
 	link(scope, element, attrs, ngModelCtrl) {
-		var rowHeight = 30;
+		var rowHeight = 42;
 
         scope.height = 200;
         scope.scrollTop = 0;
@@ -26,6 +26,7 @@ export default class ListDirective {
         scope.cellsPerPage = 0;
         scope.numberOfCells = 0;
         scope.canvasHeight = {};
+		scope.style = {};
 
         scope.init = () => {
 			element[0].addEventListener('scroll', scope.onScroll);
@@ -48,6 +49,10 @@ export default class ListDirective {
 					'top': ((firstCell + i) * rowHeight) + "px"
 				}
 			}
+
+			scope.style = {
+				'top': (firstCell * rowHeight) + "px"
+			};
         };
 
         scope.onScroll = (evt) => {

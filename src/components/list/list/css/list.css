@@ -2,18 +2,21 @@ sn-list {
     max-height: 200px;
 	overflow-y: auto;
 	display: block;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 sn-list .canvas {
-	background-color: #eee;
 	position: relative;
 }
 
-sn-list div.renderer {
+sn-list ul {
+	position: absolute;
 	display: block;
 	width: 100%;
-	cursor: pointer;
-	position: absolute;
-	height: 30px;
-	line-height: 30px;
+}
+
+sn-list ul .list-group-item:first-child,
+sn-list ul .list-group-item:last-child {
+    border-radius: 0px;
 }
