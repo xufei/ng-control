@@ -18,20 +18,26 @@ export default class ListDirective {
 	}
 
 	link(scope, element, attrs) {
-		var rowHeight = 42;
-
-        scope.height = 200;
-        scope.scrollTop = 0;
         scope.visibleProvider = [];
-        scope.cellsPerPage = 0;
-        scope.numberOfCells = 0;
         scope.canvasHeight = {};
 		scope.style = {};
+		
+		var rowHeight = 42;
+        var height = 200;
+        var scrollTop = 0;
+        var cellsPerPage = 0;
+        var numberOfCells = 0;
 
         scope.init = () => {
-			element[0].addEventListener("scroll", scope.onScroll);
-			scope.cellsPerPage = Math.round(scope.height / rowHeight);
-			scope.numberOfCells = 3 * scope.cellsPerPage;
+			element[0].addEventListener("scroll", (evt) => {
+				scrollTop = element.prop("scrollTop");
+				scope.updateDisplayList();
+	
+				scope.$apply();
+			});
+			
+			cellsPerPage = Math.round(height / rowHeight);
+			numberOfCells = 3 * cellsPerPage;
 			scope.canvasHeight = {
 				height: scope.listData.length * rowHeight + "px"
 			};
@@ -40,20 +46,13 @@ export default class ListDirective {
         };
 
         scope.updateDisplayList = () => {
-			var firstCell = Math.max(Math.floor(scope.scrollTop / rowHeight) - scope.cellsPerPage, 0);
-			var cellsToCreate = Math.min(firstCell + scope.numberOfCells, scope.numberOfCells);
+			let firstCell = Math.max(Math.floor(scrollTop / rowHeight) - cellsPerPage, 0);
+			let cellsToCreate = Math.min(firstCell + numberOfCells, numberOfCells);
 			scope.visibleProvider = scope.listData.slice(firstCell, firstCell + cellsToCreate);
 
 			scope.style = {
 				"top": (firstCell * rowHeight) + "px"
 			};
-        };
-
-        scope.onScroll = (evt) => {
-			scope.scrollTop = element.prop("scrollTop");
-			scope.updateDisplayList();
-
-			scope.$apply();
         };
 
         scope.itemClicked = (item) => {
