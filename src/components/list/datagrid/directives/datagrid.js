@@ -37,7 +37,7 @@ export default class DataGridDirective {
 		let cellTpl = scope.cellTpl || this.tpls[type][1];
 
 		angular.element(element.find("tr")[0]).html(headerCellTpl);
-		angular.element(element.find("tbody")[0]).html('<tr ng-repeat="item in data">' + cellTpl + '</tr>');
+		angular.element(element.find("tbody")[0]).html(`<tr ng-repeat="item in data">${cellTpl}</tr>`);
 
 		this.$compile(angular.element(element.find("thead")[0]))(scope);
 		this.$compile(angular.element(element.find("tbody")[0]))(scope);
