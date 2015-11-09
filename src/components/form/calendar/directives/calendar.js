@@ -1,5 +1,5 @@
 import template from "../templates/calendar.html";
-import Calendar from "../../../models/calendar/calendar";
+import {Calendar} from "../../../models/calendar/calendar";
 
 import "../css/calendar.css";
 
