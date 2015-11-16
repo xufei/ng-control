@@ -3,33 +3,32 @@ import template from "../templates/clock.html";
 import "../css/clock.css";
 
 export default class ClockDirective {
-	constructor($timeout, $document) {
+	constructor() {
 		this.template = template;
 		this.restrict = "E";
+		
+		this.controller = ClockController;
+		this.controllerAs = "clockCtrl";
 
 		this.scope = {
 			time: "="
 		};
-
-		this.$timeout = $timeout;
 	}
+}
 
-	link(scope) {
-		this.$scope = scope;
-	}
-
-	controller($scope) {
+class ClockController {
+	constructor($timeout) {
 		let tick = () => {
 			let date = new Date();
-			$scope.seconds = date.getSeconds();
-			$scope.minutes = (date.getMinutes() * 60) + $scope.seconds;
-			$scope.hours = (date.getHours() * 3600) + $scope.minutes;
+			this.seconds = date.getSeconds();
+			this.minutes = (date.getMinutes() * 60) + this.seconds;
+			this.hours = (date.getHours() * 3600) + this.minutes;
 			
-			this.$timeout(tick, 1000);
+			$timeout(tick, 1000);
 		};
 		
 		tick();
 	}
 }
 
-ClockDirective.$inject = ["$timeout", "$document"];
+ClockController.$inject = ["$timeout"];

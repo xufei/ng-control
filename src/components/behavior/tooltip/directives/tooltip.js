@@ -1,13 +1,14 @@
 import template from "../templates/tooltip.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 export default class ToolTipDirective {
-    constructor($document, $compile, $rootScope, UIHelper) {
+    constructor($document, $compile, $rootScope) {
         this.restrict = "A";
 
         this.$document = $document;
         this.$compile = $compile;
         this.$rootScope = $rootScope;
-        this.UIHelper = UIHelper;
         
         this.scope = {
 			content: "=snTooltip",
@@ -24,7 +25,7 @@ export default class ToolTipDirective {
 	
 		element.on("mouseenter", evt => {
 			let target = evt.target;
-			let offset = this.UIHelper.getOffset(target);
+			let offset = UIHelper.getOffset(target);
 	
 			this.$document.find("body").append(tooltip);
 			tooltip.addClass("in");
@@ -66,4 +67,4 @@ export default class ToolTipDirective {
     }
 }
 
-ToolTipDirective.$inject = ["$document", "$compile", "$rootScope", "UIHelper"];
+ToolTipDirective.$inject = ["$document", "$compile", "$rootScope"];

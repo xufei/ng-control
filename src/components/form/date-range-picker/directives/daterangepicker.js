@@ -1,11 +1,16 @@
 import template from "../templates/daterangepicker.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 import "../css/daterangepicker.css";
 
 export default class DateRangePickerDirective {
-	constructor($filter, $timeout, UIHelper) {
+	constructor() {
 		this.template = template;
 		this.restrict = "E";
+		
+		this.controller = DateRangePickerController;
+		this.controllerAs = "pickerCtrl";
 
 		this.scope = {
 			minDate: "=",
@@ -15,19 +20,15 @@ export default class DateRangePickerDirective {
 			toDate: "=",
 			disabled: "="
 		};
-
-		this.$filter = $filter;
-		this.$timeout = $timeout;
-		this.UIHelper = UIHelper;
 	}
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择日期";
 		
-        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+        let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
-                scope.pop = false;
+                scope.pickerCtrl.pop = false;
 				scope.$digest();
             }
         });
@@ -36,56 +37,70 @@ export default class DateRangePickerDirective {
             closeEvent.remove();
         });
 	}
+}
 
-	controller($scope) {
-		$scope.$watchGroup(["fromDate", "toDate"], (newValues, oldValues) => {
-			$scope.currentDateStr = this.$filter('date')(newValues[0] || "未选择开始日期", "yyyy-MM-dd")
-			+ " 至 " + this.$filter('date')(newValues[1] || "未选择结束日期", "yyyy-MM-dd");
-		});
+class DateRangePickerController {
+	constructor($filter) {
+		this.$filter = $filter;
+	}
+	
+	set fromDate(fromDate) {
+		this._fromDate = fromDate;
+		this.changeDates(fromDate, this._toDate);
+	}
+	
+	set toDate(toDate) {
+		this._toDate = toDate;
+		this.changeDates(this._fromDate, toDate);
+	}
+	
+	changeDates (fromDate, toDate) {
+		this.currentDateStr = this.$filter('date')(fromDate || "未选择开始日期", "yyyy-MM-dd")
+			+ " 至 " + this.$filter('date')(toDate || "未选择结束日期", "yyyy-MM-dd");
+	}
 
-		$scope.showPop = function () {
-			if (!$scope.disabled) {
-				$scope.pop = true;
-			}
-		};
+	showPop() {
+		if (!this.disabled) {
+			this.pop = true;
+		}
+	}
 
-		$scope.fromDateClick = () => {
-			
-		};
+	fromDateClick() {
 		
-		$scope.toDateClick = () => {
-			
-		};
+	}
+	
+	toDateClick ()  {
 		
-		$scope.severalMonthBefore = x => {
-			let now = new Date();
-			
-			let year = now.getFullYear();
-			let month = now.getMonth();
-			let day = now.getDate();
-			
-			let fromDate = new Date(year, month-x, day);
-			if (fromDate.getDate() != day) {
-				fromDate = new Date(year, month-x+1, 0);
-			}
-			
-			$scope.toDate = now;
-			$scope.fromDate = fromDate;
-			$scope.pop = false;
+	}
+	
+	severalMonthBefore(x) {
+		let now = new Date();
+		
+		let year = now.getFullYear();
+		let month = now.getMonth();
+		let day = now.getDate();
+		
+		let fromDate = new Date(year, month-x, day);
+		if (fromDate.getDate() != day) {
+			fromDate = new Date(year, month-x+1, 0);
 		}
 		
-		$scope.lastMonth = () => {
-			$scope.severalMonthBefore(1);
-		};
-		
-		$scope.lastQuarter = () => {
-			$scope.severalMonthBefore(3);
-		};
-		
-		$scope.lastHalfYear = () => {
-			$scope.severalMonthBefore(6);
-		};
+		this.toDate = now;
+		this.fromDate = fromDate;
+		this.pop = false;
+	}
+	
+	lastMonth () {
+		this.severalMonthBefore(1);
+	}
+	
+	lastQuarter() {
+		this.severalMonthBefore(3);
+	}
+	
+	lastHalfYear () {
+		this.severalMonthBefore(6);
 	}
 }
 
-DateRangePickerDirective.$inject = ["$filter", "$timeout", "UIHelper"];
+DateRangePickerController.$inject = ["$filter"];

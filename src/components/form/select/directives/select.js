@@ -1,9 +1,9 @@
 import template from "../templates/select.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 export default class SelectDirective {
-	constructor(UIHelper) {
-		this.UIHelper = UIHelper;
-		
+	constructor() {
 		this.template = template;
 		this.restrict = "E";
 
@@ -20,7 +20,7 @@ export default class SelectDirective {
 		
 		scope.placeholder = scope.placeholder || "请选择";
 		
-        let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+        let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
                 scope.pop = false;
 				scope.$digest();
@@ -47,4 +47,4 @@ export default class SelectDirective {
 	}
 }
 
-SelectDirective.$inject = ["UIHelper"];
+SelectDirective.$inject = [];

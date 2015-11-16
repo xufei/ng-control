@@ -1,13 +1,14 @@
 import template from "../templates/contextmenu.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 export default class ContextMenuDirective {
-    constructor($document, $compile, $rootScope, UIHelper) {
+    constructor($document, $compile, $rootScope) {
         this.restrict = "A";
 
         this.$document = $document;
         this.$compile = $compile;
         this.$rootScope = $rootScope;
-        this.UIHelper = UIHelper;
         
         ContextMenuDirective.currentMenu = null;
     }
@@ -21,7 +22,7 @@ export default class ContextMenuDirective {
 
         element.on("contextmenu", evt => {
             let target = evt.target;
-            let offset = this.UIHelper.getOffset(target);
+            let offset = UIHelper.getOffset(target);
 
             let mouseX = (evt.offsetX || evt.layerX) + offset.x;
             let mouseY = (evt.offsetY || evt.layerY) + offset.y;
@@ -46,10 +47,10 @@ export default class ContextMenuDirective {
             ContextMenuDirective.currentMenu = menu;
         });
 
-        let closeEvent = this.UIHelper.listen(window, 'click', (e) => menu.css("display", "none"));
+        let closeEvent = UIHelper.listen(window, 'click', (e) => menu.css("display", "none"));
 		
 		scope.$on('$destroy', () => closeEvent.remove());
     }
 }
 
-ContextMenuDirective.$inject = ["$document", "$compile", "$rootScope", "UIHelper"];
+ContextMenuDirective.$inject = ["$document", "$compile", "$rootScope"];

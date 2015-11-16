@@ -1,13 +1,13 @@
 <svg class="icon is-x5 is-delay-10s" viewBox="0 0 32 32">
     <g>
         <!--ICON SHAPE-->
-        <rect id="hour-hand" ng-attr-transform="{{'rotate('+360*(hours/(12*3600))+',16,17)'}}" x="15.386" y="10.291" width="1.227"
+        <rect id="hour-hand" ng-attr-transform="{{'rotate('+360*(clockCtrl.hours/(12*3600))+',16,17)'}}" x="15.386" y="10.291" width="1.227"
         height="7.626" />
 
-        <rect id="minute-hand" ng-attr-transform="{{'rotate('+360*(minutes/3600)+',16,17)'}}" x="15.386" y="6.464" width="1.227"
+        <rect id="minute-hand" ng-attr-transform="{{'rotate('+360*(clockCtrl.minutes/3600)+',16,17)'}}" x="15.386" y="6.464" width="1.227"
         height="11.439" />
 
-        <rect id="second-hand" ng-attr-transform="{{'rotate('+360*(seconds/60)+',16,17)'}}" x="15.88" y="7.46" width="0.24" height="9.83"
+        <rect id="second-hand" ng-attr-transform="{{'rotate('+360*(clockCtrl.seconds/60)+',16,17)'}}" x="15.88" y="7.46" width="0.24" height="9.83"
         />
 
         <path d="M15.879,2.531c-8.14,0-14.739,6.599-14.739,14.739c0,8.14,6.599,14.739,14.739,14.739s14.739-6.6,14.739-14.739

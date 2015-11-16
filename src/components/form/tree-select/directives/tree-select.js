@@ -1,10 +1,11 @@
 import template from "../templates/tree-select.html";
+
+import { UIHelper } from "../../../utils/ui-helper";
+
 import "../css/tree-select.css";
 
 export default class TreeSelectDirective {
-	constructor(UIHelper) {
-		this.UIHelper = UIHelper;
-		
+	constructor() {
 		this.template = template;
 		this.restrict = "E";
 
@@ -21,7 +22,7 @@ export default class TreeSelectDirective {
 		
 		scope.placeholder = scope.placeholder || "请选择";
 		
-        let closeEvent = this.UIHelper.listen(window, "click", (e) => {
+        let closeEvent = UIHelper.listen(window, "click", (e) => {
             if (!element[0].contains(e.target)) {
                 scope.pop = false;
 				scope.$digest();
@@ -56,4 +57,4 @@ export default class TreeSelectDirective {
 	}
 }
 
-TreeSelectDirective.$inject = ["UIHelper"];
+TreeSelectDirective.$inject = [];

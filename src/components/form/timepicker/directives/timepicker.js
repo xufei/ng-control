@@ -1,9 +1,11 @@
 import template from "../templates/timepicker.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 import "../css/timepicker.css";
 
 export default class TimePickerDirective {
-	constructor($filter, $timeout, UIHelper) {
+	constructor($filter, $timeout) {
 		this.template = template;
 		this.restrict = "E";
 
@@ -17,14 +19,13 @@ export default class TimePickerDirective {
 
 		this.$filter = $filter;
 		this.$timeout = $timeout;
-		this.UIHelper = UIHelper;
 	}
 
 	link(scope, element, attrs) {
 		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择时间";
 
-		let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
                 scope.pop = false;
 				scope.currentDate = scope.selectedDate;
@@ -56,4 +57,4 @@ export default class TimePickerDirective {
 	}
 }
 
-TimePickerDirective.$inject = ["$filter", "$timeout", "UIHelper"];
+TimePickerDirective.$inject = ["$filter", "$timeout"];

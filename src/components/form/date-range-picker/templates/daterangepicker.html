@@ -1,24 +1,24 @@
-<div class="date-range-picker" ng-class="{'open': pop}">
+<div class="date-range-picker" ng-class="{'open': pickerCtrl.pop}">
 	<div class="input-group">
-		<input type="text" class="form-control" placeholder="{{placeholder}}" ng-value="currentDateStr" readonly/>
-		<span class="input-group-addon" ng-click="showPop()">
+		<input type="text" class="form-control" placeholder="{{pickerCtrl.placeholder}}" ng-value="pickerCtrl.currentDateStr" readonly/>
+		<span class="input-group-addon" ng-click="pickerCtrl.showPop()">
 	        <span class="glyphicon glyphicon-calendar"></span>
 		</span>
 	</div>
 	<div class="dropdown-menu">
 		<div>
-			<button ng-click="lastMonth()" class="btn btn-default">最近一个月</button>
-			<button ng-click="lastQuarter()" class="btn btn-default">最近三个月</button>
-			<button ng-click="lastHalfYear()" class="btn btn-default">最近半年</button>
-			<button ng-click="customize=true" class="btn btn-default">自定义</button>
+			<button ng-click="pickerCtrl.lastMonth()" class="btn btn-default">最近一个月</button>
+			<button ng-click="pickerCtrl.lastQuarter()" class="btn btn-default">最近三个月</button>
+			<button ng-click="pickerCtrl.lastHalfYear()" class="btn btn-default">最近半年</button>
+			<button ng-click="pickerCtrl.customize=true" class="btn btn-default">自定义</button>
 		</div>
 		
-		<div class="calendar-container" ng-show="customize">
+		<div class="calendar-container" ng-show="pickerCtrl.customize">
 			<div class="col-xs-6">
-				<sn-calendar min-date="minDate" max-date="maxDate" selected-date="fromDate" date-click="fromDateClick()"></sn-calendar>
+				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" selected-date="pickerCtrl.fromDate" date-click="pickerCtrl.fromDateClick()"></sn-calendar>
 			</div>
 			<div class="col-xs-6">
-				<sn-calendar min-date="minDate" max-date="maxDate" selected-date="toDate" date-click="toDateClick()"></sn-calendar>
+				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" selected-date="pickerCtrl.toDate" date-click="pickerCtrl.toDateClick()"></sn-calendar>
 			</div>
 		</div>
 		<!--sn-timepicker init-hour="initHour" init-minute="initMinute" init-second="initSecond"></sn-timepicker-->

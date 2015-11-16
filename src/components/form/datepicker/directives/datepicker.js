@@ -1,9 +1,11 @@
 import template from "../templates/datepicker.html";
 
+import { UIHelper } from "../../../utils/ui-helper";
+
 import "../css/datepicker.css";
 
 export default class DatePickerDirective {
-	constructor($filter, $timeout, UIHelper) {
+	constructor() {
 		this.template = template;
 		this.restrict = "E";
 
@@ -14,46 +16,49 @@ export default class DatePickerDirective {
 			currentDate: "=ngModel",
 			disabled: "="
 		};
-
-		this.$filter = $filter;
-		this.$timeout = $timeout;
-		this.UIHelper = UIHelper;
+		
+		this.controller = DatePickerController;
+		this.controllerAs = "datepickerCtrl";
 	}
 
 	link(scope, element, attrs) {
-		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择日期";
 
-		let closeEvent = this.UIHelper.listen(window, 'click', (e) => {
+		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
-                scope.pop = false;
-				scope.currentDate = scope.selectedDate;
+                scope.datepickerCtrl.pop = false;
+				scope.currentDate = scope.datepickerCtrl.selectedDate;
 				scope.$digest();
             }
         });
 		
 		scope.$on('$destroy', () => closeEvent.remove());
 	}
-
-	controller($scope) {
-		$scope.$watch("currentDate", newDate => {
-			if (newDate) {
-				$scope.selectedDate = newDate;
-				$scope.currentDateStr = this.$filter('date')(newDate, "yyyy-MM-dd");
-			}
-		});
-
-		$scope.showPop = function() {
-			if (!$scope.disabled) {
-				$scope.pop = true;
-			}
-		};
-
-		$scope.dateClick = () => {
-			this.$timeout(() => $scope.currentDate = $scope.selectedDate, 0);
-			$scope.pop = false;
-		};
-	}
 }
 
-DatePickerDirective.$inject = ["$filter", "$timeout", "UIHelper"];
+class DatePickerController{
+	constructor($filter, $timeout) {
+		this.$filter = $filter;
+		this.$timeout = $timeout;
+	}
+	
+	set currentDate(newDate) {
+		if (newDate) {
+			this.selectedDate = newDate;
+			this.currentDateStr = this.$filter('date')(newDate, "yyyy-MM-dd");
+		}
+	}
+
+	showPop() {
+		if (!this.disabled) {
+			this.pop = true;
+		}
+	}
+
+	dateClick() {
+		this.$timeout(() => this.currentDate = this.selectedDate, 0);
+		this.pop = false;
+	};
+}
+
+DatePickerController.$inject = ["$filter", "$timeout"];

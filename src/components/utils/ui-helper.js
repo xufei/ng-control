@@ -1,5 +1,4 @@
-
-export default class UIHelper {
+export const UIHelper = {
 	getOffset (element) {
 		let x = 0;
 		let y = 0;
@@ -15,7 +14,7 @@ export default class UIHelper {
 			x: x,
 			y: y
 		};
-	}
+	},
 
 	listen (target, eventType, callback) {
 		if (target.addEventListener) {
@@ -35,5 +34,4 @@ export default class UIHelper {
 			}
 		}
 	}
-
 }
