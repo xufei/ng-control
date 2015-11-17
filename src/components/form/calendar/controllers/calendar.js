@@ -17,14 +17,6 @@ export default class CalendarCtrl {
 		this.viewMode = this.ViewStates.DATE;
 	}
 
-	set selectedDate(newDate) {
-		if (newDate) {
-			this.calendar.year = newDate.getFullYear();
-			this.calendar.month = newDate.getMonth();
-			this.calendar.date = newDate.getDate();
-		}
-	}
-
 	dateInRange(day) {
 		if (!day) {
 			return true;
