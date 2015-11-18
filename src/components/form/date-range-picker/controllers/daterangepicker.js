@@ -3,16 +3,6 @@ export default class DateRangePickerController {
 		this.$filter = $filter;
 	}
 	
-	set fromDate(fromDate) {
-		this._fromDate = fromDate;
-		this.changeDates(fromDate, this._toDate);
-	}
-	
-	set toDate(toDate) {
-		this._toDate = toDate;
-		this.changeDates(this._fromDate, toDate);
-	}
-	
 	changeDates (fromDate, toDate) {
 		this.currentDateStr = this.$filter('date')(fromDate || "未选择开始日期", "yyyy-MM-dd")
 			+ " 至 " + this.$filter('date')(toDate || "未选择结束日期", "yyyy-MM-dd");

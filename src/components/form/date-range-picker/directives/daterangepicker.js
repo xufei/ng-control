@@ -13,6 +13,7 @@ export default class DateRangePickerDirective {
 		
 		this.controller = DateRangePickerController;
 		this.controllerAs = "pickerCtrl";
+		this.bindToController = true;
 
 		this.scope = {
 			minDate: "=",
@@ -25,7 +26,6 @@ export default class DateRangePickerDirective {
 	}
 
 	link(scope, element, attrs) {
-		this.$scope = scope;
 		scope.placeholder = scope.placeholder || "请选择日期";
 		
         let closeEvent = UIHelper.listen(window, 'click', (e) => {
@@ -38,5 +38,13 @@ export default class DateRangePickerDirective {
 		scope.$on('$destroy', function() {
             closeEvent.remove();
         });
+		
+		scope.$watch("pickerCtrl.fromDate", fromDate => {
+			scope.pickerCtrl.changeDates(fromDate, scope.pickerCtrl.toDate);
+		});
+		
+		scope.$watch("pickerCtrl.toDate", toDate => {
+			scope.pickerCtrl.changeDates(scope.pickerCtrl.fromDate, toDate);
+		});
 	}
 }

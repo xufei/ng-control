@@ -4,11 +4,15 @@ export default class DatePickerController{
 		this.$timeout = $timeout;
 	}
 	
-	set currentDate(newDate) {
+	set selectedDate(newDate) {
 		if (newDate) {
-			this.selectedDate = newDate;
+			this._selectedDate = newDate;
 			this.currentDateStr = this.$filter('date')(newDate, "yyyy-MM-dd");
 		}
+	}
+	
+	get selectedDate() {
+		return this._selectedDate;
 	}
 
 	showPop() {
@@ -18,8 +22,10 @@ export default class DatePickerController{
 	}
 
 	dateClick() {
-		this.$timeout(() => this.currentDate = this.selectedDate, 0);
-		this.pop = false;
+		this.$timeout(() => {
+			this.currentDate = this.selectedDate;
+			this.pop = false;
+		}, 0);
 	};
 }
 

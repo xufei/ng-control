@@ -11,6 +11,10 @@ export default class DatePickerDirective {
 		this.template = template;
 		this.restrict = "E";
 
+		this.controller = DatePickerController;
+		this.controllerAs = "datepickerCtrl";
+		this.bindToController = true;
+
 		this.scope = {
 			minDate: "=",
 			maxDate: "=",
@@ -18,9 +22,6 @@ export default class DatePickerDirective {
 			currentDate: "=ngModel",
 			disabled: "="
 		};
-		
-		this.controller = DatePickerController;
-		this.controllerAs = "datepickerCtrl";
 	}
 
 	link(scope, element, attrs) {
@@ -33,7 +34,11 @@ export default class DatePickerDirective {
 				scope.$digest();
             }
         });
-		
+
 		scope.$on('$destroy', () => closeEvent.remove());
+		
+		scope.$watch("datepickerCtrl.currentDate", newDate => {
+			scope.datepickerCtrl.selectedDate = newDate;
+		});
 	}
 }
