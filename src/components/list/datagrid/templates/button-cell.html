@@ -1,8 +1,0 @@
-<td ng-repeat-start="col in cols" ng-if="$first">
-	<input type="checkbox" ng-model="item.$checked" ng-change="checkItem(item)"/>
-</td>
-<td ng-repeat-end ng-if="!$first">
-	<span ng-if="(!$last) || (!item.$checked)">{{item[col.key]}}</span>
-	
-	<button ng-if="$last && item.$checked" class="btn btn-default" ng-click="item.gender=1-item.gender">选中的时候可点，变性</button>
-</td>
