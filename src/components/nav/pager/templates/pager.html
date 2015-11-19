@@ -1,20 +1,20 @@
 <ul class="pagination">
-	<li ng-class="{disabled: isFirst()}">
-		<a href="javascript:void(0)" ng-click="first()">{{getText('first')}}</a>
+	<li ng-class="{disabled: pagerCtrl.isFirst()}">
+		<a href="javascript:void(0)" ng-click="pagerCtrl.first()">{{pagerCtrl.getText('first')}}</a>
 	</li>
-	<li ng-class="{disabled: isFirst()}">
-		<a href="javascript:void(0)" ng-click="previous()">{{getText('previous')}}</a>
+	<li ng-class="{disabled: pagerCtrl.isFirst()}">
+		<a href="javascript:void(0)" ng-click="pagerCtrl.previous()">{{pagerCtrl.getText('previous')}}</a>
 	</li>
-	<li ng-repeat="page in pager.pages" ng-class="{'active':page.active}">
-		<a href="javascript:void(0)" ng-click="goto(page)">{{page.index}}</a>
+	<li ng-repeat="page in pagerCtrl.pages" ng-class="{'active':page.active}">
+		<a href="javascript:void(0)" ng-click="pagerCtrl.goto(page.index)">{{page.index}}</a>
 	</li>
-	<li ng-class="{disabled: isLast()}">
-		<a href="javascript:void(0)" ng-click="next()">{{getText('next')}}</a>
+	<li ng-class="{disabled: pagerCtrl.isLast()}">
+		<a href="javascript:void(0)" ng-click="pagerCtrl.next()">{{pagerCtrl.getText('next')}}</a>
 	</li>
-	<li ng-class="{disabled: isLast()}">
-		<a href="javascript:void(0)" ng-click="last()">{{getText('last')}}</a>
+	<li ng-class="{disabled: pagerCtrl.isLast()}">
+		<a href="javascript:void(0)" ng-click="pagerCtrl.last()">{{pagerCtrl.getText('last')}}</a>
 	</li>
 	<li class="disabled">
-		<a href="javascript:void(0)">共{{totalItems}}条/{{totalPages}}页</a>
+		<a href="javascript:void(0)">共{{pagerCtrl.count}}条/{{pagerCtrl.totalPages}}页</a>
 	</li>
 </ul>
