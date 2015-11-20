@@ -21,8 +21,6 @@ export default class MultiSelectDirective {
 	}
 
 	link(scope, element, attrs) {
-		this.$scope = scope;
-		
 		scope.selectedItems = scope.selectedItems || [];
 		
         let closeEvent = UIHelper.listen(window, 'click', (e) => {

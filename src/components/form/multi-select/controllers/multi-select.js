@@ -1,4 +1,8 @@
 export default class MultiSelectController {
+	constructor() {
+		this.selectedItems = [];
+	}
+	
 	showPop() {
 		if (this.disabled) {
 			return;

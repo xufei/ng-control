@@ -1,24 +1,24 @@
-<div class="dropdown" ng-class="{'open':pop}">
-	<button class="btn btn-default" href="javascript:void(0)" ng-click="showPop()" ng-disabled="disabled">
-		<span>{{selectedItem.name || placeholder}}</span>
+<div class="dropdown" ng-class="{'open':treeselectCtrl.pop}">
+	<button class="btn btn-default" href="javascript:void(0)" ng-click="treeselectCtrl.showPop()" ng-disabled="treeselectCtrl.disabled">
+		<span>{{treeselectCtrl.selectedItem.name || treeselectCtrl.placeholder}}</span>
 		<span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 		<!--先写死四级算了，正常人不可能有超过四级菜单的，没必要递归-->
-		<li ng-repeat-start="lv1 in treeData" ng-if="lv1!='seperator'" ng-class="{'active':selected(lv1), 'dropdown-submenu':lv1.children}">
-			<a tabindex="-1" href="javascript:void(0)" ng-click="select(lv1)">{{lv1.name}}</a>
+		<li ng-repeat-start="lv1 in treeselectCtrl.treeData" ng-if="lv1!='seperator'" ng-class="{'active':treeselectCtrl.selected(lv1), 'dropdown-submenu':lv1.children}">
+			<a tabindex="-1" href="javascript:void(0)" ng-click="treeselectCtrl.select(lv1)">{{lv1.name}}</a>
 			
 			<ul class="dropdown-menu" ng-if="lv1.children">
-				<li ng-repeat-start="lv2 in lv1.children" ng-if="lv2!='seperator'" ng-class="{'active':selected(lv2), 'dropdown-submenu':lv2.children}">
-					<a tabindex="-1" href="javascript:void(0)" ng-click="select(lv2, lv1)">{{lv2.name}}</a>
+				<li ng-repeat-start="lv2 in lv1.children" ng-if="lv2!='seperator'" ng-class="{'active':treeselectCtrl.selected(lv2), 'dropdown-submenu':lv2.children}">
+					<a tabindex="-1" href="javascript:void(0)" ng-click="treeselectCtrl.select(lv2, lv1)">{{lv2.name}}</a>
 
 					<ul class="dropdown-menu" ng-if="lv2.children">
-						<li ng-repeat-start="lv3 in lv2.children" ng-if="lv3!='seperator'" ng-class="{'active':selected(lv3), 'dropdown-submenu':lv3.children}">
-							<a tabindex="-1" href="javascript:void(0)" ng-click="select(lv3, lv2, lv1)">{{lv3.name}}</a>
+						<li ng-repeat-start="lv3 in lv2.children" ng-if="lv3!='seperator'" ng-class="{'active':treeselectCtrl.selected(lv3), 'dropdown-submenu':lv3.children}">
+							<a tabindex="-1" href="javascript:void(0)" ng-click="treeselectCtrl.select(lv3, lv2, lv1)">{{lv3.name}}</a>
 
 							<ul class="dropdown-menu" ng-if="lv3.children">
-								<li ng-repeat-start="lv4 in lv3.children" ng-if="lv4!='seperator'" ng-class="{'active':selected(lv4), 'dropdown-submenu':lv4.children}">
-									<a tabindex="-1" href="javascript:void(0)" ng-click="select(lv4, lv3, lv2, lv1)">{{lv4.name}}</a>
+								<li ng-repeat-start="lv4 in lv3.children" ng-if="lv4!='seperator'" ng-class="{'active':treeselectCtrl.selected(lv4), 'dropdown-submenu':lv4.children}">
+									<a tabindex="-1" href="javascript:void(0)" ng-click="treeselectCtrl.select(lv4, lv3, lv2, lv1)">{{lv4.name}}</a>
 								</li>
 								<li ng-repeat-end class="divider" ng-if="lv4=='seperator'"></li>
 							</ul>

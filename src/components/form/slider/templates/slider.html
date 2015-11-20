@@ -1,8 +1,8 @@
-<div class="ant-slider" ng-class="{'ant-slider-disabled':disabled}"
-     ng-click="trackClick($event)">
-	<div class="ant-slider-track" ng-style="{width:(value * 100 / max) + '%'}"></div>
+<div class="ant-slider" ng-class="{'ant-slider-disabled':sliderCtrl.disabled}"
+     ng-click="sliderCtrl.trackClick($event)">
+	<div class="ant-slider-track" ng-style="{width:(sliderCtrl.value * 100 / sliderCtrl.max) + '%'}"></div>
 	<span class="ant-slider-tooltip-wrap ant-slider-tooltip-wrap-open">
-		<div class="ant-slider-handle" ng-style="{left:(value * 100 / max) + '%'}"
-			ng-mousedown="mousedown()"></div>
+		<div class="ant-slider-handle" ng-style="{left:(sliderCtrl.value * 100 / sliderCtrl.max) + '%'}"
+			ng-mousedown="sliderCtrl.mousedown()"></div>
 	</span>
 </div>
