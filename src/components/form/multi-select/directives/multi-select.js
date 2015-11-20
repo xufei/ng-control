@@ -21,11 +21,9 @@ export default class MultiSelectDirective {
 	}
 
 	link(scope, element, attrs) {
-		scope.selectedItems = scope.selectedItems || [];
-		
         let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
-                scope.pop = false;
+                scope.multiSelectCtrl.pop = false;
 				scope.$digest();
             }
         });
