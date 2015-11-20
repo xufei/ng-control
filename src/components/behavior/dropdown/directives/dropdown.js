@@ -1,10 +1,8 @@
 import { UIHelper } from "../../../utils/ui-helper";
 
 export default class DropdownDirective {
-    constructor($document) {
+    constructor() {
         this.restrict = "A";
-
-        this.$document = $document;
     }
 
     link(scope, element) {
@@ -24,5 +22,3 @@ export default class DropdownDirective {
 		scope.$on('$destroy', () => closeEvent.remove());
     }
 }
-
-DropdownDirective.$inject = ["$document"];

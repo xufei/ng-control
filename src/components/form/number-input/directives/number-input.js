@@ -1,9 +1,17 @@
 import template from "../templates/number-input.html";
 
+import NumberInputController from "../controllers/number-input";
+
+import "../css/number-input.css";
+
 export default class NumberInputDirective {
 	constructor() {
 		this.template = template;
 		this.restrict = "E";
+		
+		this.controller = NumberInputController;
+		this.controllerAs = "numberInputCtrl";
+		this.bindToController = true;
 
 		this.scope = {
 			minValue: "=",
@@ -14,38 +22,8 @@ export default class NumberInputDirective {
 	}
 
 	link(scope, element, attrs) {
-		this.$scope = scope;
-
-		if (!scope.value) {
-			scope.value = 0;
+		if (!scope.numberInputCtrl.value) {
+			scope.numberInputCtrl.value = 0;
 		}
-	}
-
-	controller($scope) {
-		$scope.decrease = () => {
-			if ($scope.disabled) {
-				return;
-			}
-
-			if ($scope.minValue) {
-				if ($scope.value <= $scope.minValue) {
-					return;
-				}
-			}
-			$scope.value--;
-		};
-
-		$scope.increase = () => {
-			if ($scope.disabled) {
-				return;
-			}
-
-			if ($scope.maxValue) {
-				if ($scope.value >= $scope.maxValue) {
-					return;
-				}
-			}
-			$scope.value++;
-		};
 	}
 }
