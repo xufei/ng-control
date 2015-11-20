@@ -9,7 +9,8 @@ export default class CheckboxDirective {
 
 		this.scope = {
 			checked: "=ngModel",
-			disabled: "="
+			disabled: "=",
+			indeterminate: "="
 		};
 	}
 
