@@ -17,6 +17,6 @@ export default class CheckboxDirective {
 	link(scope, element, attrs) {
 	}
 
-	controller($scope) {
+	controller() {
 	}
 }
