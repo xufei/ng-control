@@ -1,10 +1,11 @@
-<div class="dropdown" ng-class="{'open':pop}">
-	<button class="btn btn-default dropdown-toggle" type="button" ng-click="showPop()">
-		{{selectedItemsStr()}}
+<div class="dropdown" ng-class="{'open':multiSelectCtrl.pop}">
+	<button class="btn btn-default dropdown-toggle" type="button" ng-click="multiSelectCtrl.showPop()">
+		{{multiSelectCtrl.selectedItemsStr()}}
 		<span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu">
-		<li ng-repeat-start="option in options" ng-if="option!='seperator'" ng-class="{'active':option==selectedItem}" ng-click="select(option)">
+		<li ng-repeat-start="option in multiSelectCtrl.options" ng-if="option!='seperator'" ng-class="{'active':option==multiSelectCtrl.selectedItem}"
+		ng-click="multiSelectCtrl.select(option)">
 			<a tabindex="-1" href="javascript:void(0)">
 				{{option.name}}
 				<span class="glyphicon glyphicon-ok pull-right" ng-if="option.$checked"></span>

@@ -2,10 +2,16 @@ import template from "../templates/multi-select.html";
 
 import { UIHelper } from "../../../utils/ui-helper";
 
+import MultiSelectController from "../controllers/multi-select";
+
 export default class MultiSelectDirective {
 	constructor() {
 		this.template = template;
 		this.restrict = "E";
+		
+		this.controller = MultiSelectController;
+		this.controllerAs = "multiSelectCtrl";
+		this.bindToController = true;
 
 		this.scope = {
 			selectedItems: "=",
@@ -28,25 +34,4 @@ export default class MultiSelectDirective {
 		
 		scope.$on('$destroy', () => closeEvent.remove());
 	}
-
-	controller($scope) {
-		$scope.showPop = () => {
-			if ($scope.disabled) {
-				return;
-			}
-			$scope.pop = true;
-		};
-
-		$scope.select = item => {
-			item.$checked = !item.$checked;
-			
-			$scope.selectedItems = $scope.options.filter(v => v.$checked);
-		};
-		
-		$scope.selectedItemsStr = () => {
-			return $scope.selectedItems.reduce((last, current) => last + current.name + ";", "");
-		};
-	}
 }
-
-MultiSelectDirective.$inject = [];

@@ -39,7 +39,6 @@ export default class PagerController {
 	}
 
 	isLast() {
-		console.log(this.currentPage.index);
 		return this.currentPage && this.currentPage.index == this.totalPages - 1;
 	}
 
