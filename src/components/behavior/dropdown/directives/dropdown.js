@@ -1,10 +1,10 @@
 import { UIHelper } from "../../../utils/ui-helper";
 
+const dropdowns = new Set();
+
 export default class DropdownDirective {
     constructor() {
         this.restrict = "A";
-        
-        this.dropdowns = new Map();
     }
 
     link(scope, element) {
@@ -14,9 +14,9 @@ export default class DropdownDirective {
             evt.preventDefault();
             evt.stopPropagation();
             
-            this.dropdowns.delete(this);
-            this.dropdowns.forEach(it => it.removeClass("open"));
-            this.dropdowns.set(this, element);
+            dropdowns.delete(element);
+            dropdowns.forEach(it => it.removeClass("open"));
+            dropdowns.add(element);
         });
 
         let closeEvent = UIHelper.listen(window, 'click', (e) => {
@@ -28,7 +28,7 @@ export default class DropdownDirective {
 		scope.$on('$destroy', () => {
             closeEvent.remove();
             
-            this.dropdowns.delete(this);
+            dropdowns.delete(element);
         });
     }
 }
