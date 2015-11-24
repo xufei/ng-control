@@ -6,7 +6,7 @@ export default class DropdownDirective {
     }
 
     link(scope, element) {
-        angular.element(element.children[0]).on("click", evt => {
+        angular.element(element.children()[0]).on("click", evt => {
             element.toggleClass("open");
 
             evt.preventDefault();
