@@ -13,7 +13,8 @@ export default class PagerDirective {
 		this.scope = {
 			disabled: "=",
 			count: "=",
-			pageSize: "="
+			pageSize: "=",
+			currentPage: "="
 		};
 	}
 

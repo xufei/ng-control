@@ -11,7 +11,6 @@ export default class PagerController {
 		this.pageSize = 10;
 		this.listSize = 5;
 		this.offset = 0;
-		this.currentPage = 0;
 	}
 
 	first() {

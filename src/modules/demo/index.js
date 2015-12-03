@@ -16,6 +16,8 @@ import DataGridController from "./controllers/datagrid";
 
 import TreeSelectController from "./controllers/treeselect";
 
+import PagerController from "./controllers/pager";
+
 export default angular.module("modules.demo", [])
 	.controller("AlertController", AlertController)
 	.controller("HintController", HintController)
@@ -28,6 +30,8 @@ export default angular.module("modules.demo", [])
 	.controller("DateController", DateController)
 	.controller("SelectController", SelectController)
 	.controller("TreeSelectController", TreeSelectController)
+	
+	.controller("PagerController", PagerController)
 	
 	.controller("ListController", ListController)
 	.controller("TreeController", TreeController)

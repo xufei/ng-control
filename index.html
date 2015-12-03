@@ -322,12 +322,12 @@
 
 		<hr>
 
-		<section>
+		<section ng-controller="PagerController as pageCtrl">
 			<h3>分页</h3>
 
 			<div class="row">
 				<div class="col-xs-12">
-					<sn-pager count="1377"></sn-pager>
+					<sn-pager count="pageCtrl.count" current-page="pageCtrl.currentPage"></sn-pager>
 				</div>
 			</div>
 		</section>
