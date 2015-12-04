@@ -1,8 +1,8 @@
-<div class="modal fade in" ng-controller="TestDialogController">
+<div class="modal fade in" ng-controller="TestDialogController as dialogCtrl" ng-init="dialogCtrl.dialog=dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" ng-click="close()"><span
+				<button type="button" class="close" data-dismiss="modal" ng-click="dialog.onClose()"><span
 						aria-hidden="true">&times;</span><span
 						class="sr-only">Close</span></button>
 				<h4 class="modal-title">我是一个对话框</h4>
@@ -13,14 +13,14 @@
 						<label class="col-sm-2 control-label">Name</label>
 
 						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="Name" ng-model="name"/>
+							<input type="text" class="form-control" placeholder="Name" ng-model="dialog.data.name"/>
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" ng-click="ok()">OK</button>
-				<button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+				<button type="button" class="btn btn-primary" ng-click="dialogCtrl.ok()">OK</button>
+				<button type="button" class="btn btn-primary" ng-click="dialog.onCancel()">Cancel</button>
 			</div>
 		</div>
 	</div>

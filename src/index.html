@@ -1,11 +1,10 @@
 <!doctype html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 	<title>ng1 controls</title>
 	<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.bootcss.com/angular.js/1.4.5/angular.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.4.7/angular.min.js"></script>
 </head>
 
 <body ng-app="snail">
@@ -36,13 +35,13 @@
 
 		<hr/>
 
-		<section ng-controller="DialogController">
+		<section ng-controller="DialogController as dialogCtrl">
 			<h3>Dialog</h3>
 
 			<div class="row">
 				<div class="col-xs-6">
-					<input type="text" class="form-control" ng-model="result" />
-					<button class="btn btn-default" ng-click="myDialog()">Dialog</button>
+					<input type="text" class="form-control" ng-model="dialogCtrl.name" />
+					<button class="btn btn-default" ng-click="dialogCtrl.myDialog()">Dialog</button>
 				</div>
 			</div>
 		</section>

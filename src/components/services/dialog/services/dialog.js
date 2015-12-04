@@ -1,78 +1,81 @@
-
 export default class DialogService {
-    constructor($document, $http, $rootScope, $compile) {
+    constructor($document, $rootScope, $compile) {
         this.$document = $document;
-        this.$http = $http;
         this.$rootScope = $rootScope;
         this.$compile = $compile;
 
         this.dialogCounter = 0;
         this.zIndex = 1200;
 
-        this.dialogMap = new Map();
+        this.dialogSet = new Set();
     }
 
-    modal(param, data) {
-        if (param.url) {
-            this.$http.get(param.url).then(result => this.show(param, result.data, data));
-        }
-        else if (param.template) {
-            this.show(param, param.template, data);
-        }
-    }
-    
-    show(param, template, data) {
+    modal(template, data, callback) {
         this.dialogCounter += 2;
 
         let mask = angular.element('<div class="modal-backdrop fade in"></div>');
         this.$document.find("body").append(mask);
         mask.css("z-index", this.zIndex + this.dialogCounter);
 
-        let element = this.$compile(angular.element(template))(Object.assign(this.$rootScope.$new(), data));
+        let newScope = this.$rootScope.$new();
+        let element = angular.element(template);
 
         this.$document.find("body").append(element);
         element.css("display", "block");
         element.css("z-index", this.zIndex + this.dialogCounter + 1);
 
-        this.dialogMap.set(param.key, Object.assign(param, {
-            dialog: element,
-            mask: mask
-        }));
+        let dialog = new Dialog(data, callback);
+        dialog.element = element;
+        dialog.mask = mask;
+        dialog.collection = this.dialogSet;
+        
+        this.dialogSet.add(dialog);
+        newScope.dialog = dialog;
+        
+        this.$compile(element)(newScope);
     }
 
-    accept(key, result) {
-        this.dismiss(key);
+    closeAll() {
+        this.dialogMap.forEach((it, key) => it.close());
+    }
+}
 
-        if (this.dialogMap.get(key).accept) {
-            this.dialogMap.get(key).accept(result);
+DialogService.$inject = ["$document", "$rootScope", "$compile"];
+
+
+class Dialog {
+    constructor(data, callback) {
+        this.data = data;
+        this.callback = callback;
+    }
+
+    onOk(result) {
+        this.onClose();
+
+        if (this.callback) {
+            this.callback(result);
         }
     }
 
-    refuse(key, reason) {
-        this.dismiss(key);
-
-        if (this.dialogMap.get(key).refuse) {
-            this.dialogMap.get(key).refuse(reason);
-        }
-    }
-
-    dismiss(key) {
-        let dialog = this.dialogMap.get(key);
-        dialog.mask.remove();
-        dialog.dialog.remove();
+    onClose() {
+        this.element.remove();
+        this.mask.remove();
+        
+        this.collection.delete(this);
     }
     
-    dismissAll() {
-        this.dialogMap.forEach((it, key) => this.dismiss(key));
+    onCancel() {
+        this.element.remove();
+        this.mask.remove();
+        
+        this.collection.delete(this);
     }
 
-    postMessage(key, type, message) {
-        if (this.dialogMap.get(key).messageHandler) {
-            if (this.dialogMap.get(key).messageHandler[type]) {
-                this.dialogMap.get(key).messageHandler[type](message);
+    postMessage(type, message) {
+        if (this.messageHandler) {
+            if (this.messageHandler[type]) {
+                this.messageHandler[type](message);
             }
         }
     }
 }
-
-DialogService.$inject = ["$document", "$http", "$rootScope", "$compile"];
