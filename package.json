@@ -23,7 +23,7 @@
     "babel-core": "^6.3.15",
     "babel-loader": "^6.2.0",
     "babel-runtime": "^6.3.13",
-    "css-loader": "^0.14.5",
+    "css-loader": "^0.23.0",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^1.7.0",
