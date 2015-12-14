@@ -2,7 +2,7 @@
 
 // Modules
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer-core');
+var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -29,12 +29,12 @@ module.exports = function makeWebpackConfig (options) {
    * Karma will set this when it's a test build
    */
   if (TEST) {
-    config.entry = {}
+    config.entry = {};
   } else {
     config.entry = {
       "app": './src/app.js',
       "sn-control": './src/components/index.js'
-    }
+  };
   }
 
   /**
@@ -44,7 +44,7 @@ module.exports = function makeWebpackConfig (options) {
    * Karma will handle setting it up for you when it's a test build
    */
   if (TEST) {
-    config.output = {}
+    config.output = {};
   } else {
     config.output = {
       // Absolute output directory
@@ -64,7 +64,7 @@ module.exports = function makeWebpackConfig (options) {
       // Only adds hash in build mode
       chunkFilename: BUILD ? '[name].js' : '[name].bundle.js'
       //chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
-    }
+  };
   }
 
   /**
@@ -95,9 +95,9 @@ module.exports = function makeWebpackConfig (options) {
       // Reference: https://github.com/babel/babel-loader
       // Transpile .js files using babel-loader
       // Compiles ES6 and ES7 into ES5 code
-      test: /\.js$/,
-      loader: 'babel?optional[]=runtime',
-      exclude: /node_modules/
+      test: /\.jsx?$/,
+      loader: 'babel?presets[]=es2015',
+      exclude: /(node_modules|bower_components)/
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
@@ -128,7 +128,7 @@ module.exports = function makeWebpackConfig (options) {
         /\.test\.js$/
       ],
       loader: 'isparta-instrumenter'
-    })
+  });
   }
 
   // CSS LOADER
@@ -151,7 +151,7 @@ module.exports = function makeWebpackConfig (options) {
   if (TEST) {
     // Reference: https://github.com/webpack/null-loader
     // Return an empty module
-    cssLoader.loader = 'null'
+    cssLoader.loader = 'null';
   }
 
   // Add cssLoader to the loader list
@@ -180,7 +180,7 @@ module.exports = function makeWebpackConfig (options) {
     new ExtractTextPlugin('[name].css', {
       disable: !BUILD || TEST
     })
-    
+
     /*
     new ExtractTextPlugin('[name].[hash].css', {
       disable: !BUILD || TEST
@@ -196,9 +196,9 @@ module.exports = function makeWebpackConfig (options) {
       new HtmlWebpackPlugin({
         template: './src/index.html',
         inject: 'body',
-        minify: BUILD
+        minify: false
       })
-    )
+  );
   }
 
   // Add build specific plugins
@@ -215,7 +215,7 @@ module.exports = function makeWebpackConfig (options) {
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
       new webpack.optimize.UglifyJsPlugin()
-    )
+  );
   }
 
   /**
