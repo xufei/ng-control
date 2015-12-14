@@ -95,12 +95,9 @@ module.exports = function makeWebpackConfig (options) {
       // Reference: https://github.com/babel/babel-loader
       // Transpile .js files using babel-loader
       // Compiles ES6 and ES7 into ES5 code
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: {
-          presets: ['react', 'es2015', 'stage-2']
-      }
+      test: /\.jsx?$/,
+      loader: 'babel?presets[]=es2015',
+      exclude: /(node_modules|bower_components)/
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader

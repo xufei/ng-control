@@ -14,7 +14,7 @@ export default class HintService {
     }
 
     hint(param) {
-        let hint = angular.element(template);
+        var hint = angular.element(template);
 
         hint.css("display", "block");
 
