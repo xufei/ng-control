@@ -1,1 +1,412 @@
-TypeError: Cannot assign to read only property 'canCollapseWhitespace' of true
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ng1 controls</title>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/angular.js/1.4.7/angular.min.js"></script>
+<link href="sn-control.css" rel="stylesheet"></head>
+
+<body ng-app="snail">
+	<main class="container">
+		<section ng-controller="AlertController">
+			<h3>Alert</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<button class="btn btn-default" ng-click="myAlert()">Alert</button>
+					<button class="btn btn-default" ng-click="myConfirm()">Confirm</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="HintController">
+			<h3>Hint</h3>
+
+			<div class="row">
+				<div class="col-xs-6">
+					<input type="text" class="form-control" ng-model="hintContent" />
+					<button class="btn btn-default" ng-click="myHint()">Hint</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="DialogController as dialogCtrl">
+			<h3>Dialog</h3>
+
+			<div class="row">
+				<div class="col-xs-6">
+					<input type="text" class="form-control" ng-model="dialogCtrl.name" />
+					<button class="btn btn-default" ng-click="dialogCtrl.myDialog()">Dialog</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="ToolTipController">
+			<h3>ToolTip</h3>
+
+			<div class="row">
+				<div class="col-xs-3">
+					<button class="btn btn-default" sn-tooltip="'adsfdsfdsfsdfdsfsd'">ToolTip</button>
+				</div>
+				<div class="col-xs-3">
+					<button class="btn btn-default" sn-tooltip="'aaaaa'" direction="'top'">ToolTip</button>
+				</div>
+				<div class="col-xs-3">
+					<button class="btn btn-default" sn-tooltip="'测试测试'" direction="'bottom'">ToolTip</button>
+				</div>
+				<div class="col-xs-3">
+					<button class="btn btn-default" sn-tooltip="'你好'" direction="'left'">ToolTip</button>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="ContextMenuController">
+			<h3>ContextMenu</h3>
+
+			<div class="row">
+				<div class="col-xs-6">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Age</th>
+								<th>Gender</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in students" sn-contextmenu="itemMenu(student)">
+								<td>{{student.name}}</td>
+								<td>{{student.age}}</td>
+								<td>{{student.gender}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="CheckboxController">
+			<h3>Checkbox</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<label>
+						<sn-checkbox></sn-checkbox>
+						测试测试
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-checkbox ng-model="checkValue"></sn-checkbox>
+						绑定到controller中的变量 checkValue: {{checkValue}}
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-checkbox indeterminate="true"></sn-checkbox>
+						半选
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-checkbox disabled="true"></sn-checkbox>
+						不可用状态
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-checkbox disabled="checkValue"></sn-checkbox>
+						不可用状态绑定到另外一个变量
+					</label>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="DateController">
+			<h3>日历</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					one day in Teletubbies land: {{oneDay.toLocaleString()}}
+					<sn-calendar selected-date="oneDay" date-click="click()"></sn-calendar>
+				</div>
+				<div class="col-xs-4">
+					日历限定选择范围
+					<sn-calendar min-date="min" max-date="max"></sn-calendar>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="DateController">
+			<h3>日期选择</h3>
+			
+			<div class="row">
+				<div class="col-xs-4">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label>日期选择与模型绑定</label>
+							<sn-datepicker ng-model="oneDay"></sn-datepicker>
+						</div>
+						<div class="form-group">
+							<label>不可用的日期选择</label>
+							<sn-datepicker disabled="true"></sn-datepicker>
+						</div>
+						<div class="form-group">
+							<label>日期限定选择范围</label>
+							<sn-datepicker min-date="min" max-date="max"></sn-datepicker>
+						</div>
+					</form>
+				</div>
+				<div class="col-xs-4">
+					<div>
+						from : {{fromDate}} to : {{toDate}}
+					</div>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label>日期选择与模型绑定</label>
+							<sn-date-range-picker from-date="fromDate" to-date="toDate"></sn-date-range-picker>
+						</div>
+						<div class="form-group">
+							<label>不可用的日期选择</label>
+							<sn-date-range-picker disabled="true"></sn-date-range-picker>
+						</div>
+						<div class="form-group">
+							<label>日期限定选择范围</label>
+							<sn-date-range-picker min-date="min" max-date="max"></sn-date-range-picker>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+		
+		<section>
+			<h3>时钟</h3>
+			
+			<div class="row">
+				<div class="col-xs-4">
+					<sn-clock></sn-clock>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="NumberController">
+			<h3>数字输入</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<label>
+						<sn-number-input></sn-number-input>
+						测试测试
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-number-input ng-model="value"></sn-number-input>
+						绑定到controller中的变量 value: {{value}}
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-number-input disabled="true"></sn-number-input>
+						不可用状态
+					</label>
+				</div>
+				<div class="col-xs-4">
+					<label>
+						<sn-number-input ng-model="value" min-value="3" max-value="maxValue"></sn-number-input>
+						限定最大最小值
+					</label>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="NumberController">
+			<h3>滑动选择器</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					一个简单的滑动选择器
+					<sn-slider></sn-slider>
+				</div>
+				<div class="col-xs-4">
+					绑定一个值value:{{value}}
+					<sn-slider ng-model="value"></sn-slider>
+				</div>
+				<div class="col-xs-4">
+					限定最大最小值
+					<sn-slider min="2" max="maxValue"></sn-slider>
+				</div>
+				<div class="col-xs-4">
+					禁用
+					<sn-slider disabled="true"></sn-slider>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="SelectController">
+			<h3>下拉选择</h3>
+
+			<p>
+				这里面可以有两种用法，一种是使用sn-dropdown，这是一个自定义属性，结构是固定的，然后，dropdown-menu这里面的部分可以更自由地定制，比如想要做成一个自定义的下拉菜单，每个点击有不同的操作，可以用这种。另外一种就是用于取代默认的select，这个可以使用sn-select来做。
+			</p>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<div class="dropdown" sn-dropdown>
+						<button class="btn btn-default dropdown-toggle" type="button">
+							More Operations
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li ng-repeat-start="option in options" ng-if="option!='seperator'" ng-class="{'active':option==selectedItem}">
+								<a tabindex="-1" href="javascript:void(0)">{{option.name}}</a>
+							</li>
+							<li ng-repeat-end class="divider" ng-if="option=='seperator'"></li>
+							<li class="divider"></li>
+							<li class="disabled">
+								<a tabindex="-1" href="javascript:void(0)">disabled</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<sn-select options="options"></sn-select>
+				</div>
+				<div class="col-xs-4">
+					<sn-multi-select options="options"></sn-multi-select>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="TreeSelectController">
+			<h3>树形下拉选择</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<sn-tree-select tree-data="areaData" ng-model="item0" menu-id="aaa"></sn-tree-select>
+				</div>
+				<div class="col-xs-4">
+					<sn-tree-select tree-data="areaData" ng-model="item1" menu-id="bbb"></sn-tree-select>
+				</div>
+				<div class="col-xs-4">
+					<sn-tree-select tree-data="areaData" disabled="true" menu-id="ccc"></sn-tree-select>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="PagerController as pageCtrl">
+			<h3>分页</h3>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<sn-pager count="pageCtrl.count" current-page="pageCtrl.currentPage"></sn-pager>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="ListController as listCtrl">
+			<h3>列表</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<sn-list list-data="listCtrl.listData"
+						ng-model="listCtrl.selectedItem"></sn-list>
+				</div>
+				<div class="col-xs-4">
+					<sn-list type="'checkbox'" list-data="listCtrl.listData"
+						ng-model="listCtrl.selectedItem"></sn-list>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="TreeController">
+			<h3>树</h3>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<button ng-click="expandAll()">全部展开</button>
+					<button ng-click="collapseAll()">全部折叠</button>
+					<button ng-click="getCheckedItems()">获取选中项</button>
+					<sn-tree tree-data="areaData" tree-id="aaa"></sn-tree>
+				</div>
+				<div class="col-xs-4">
+					<button ng-click="expandAll()">全部展开</button>
+					<button ng-click="collapseAll()">全部折叠</button>
+					<button ng-click="getCheckedItems()">获取选中项</button>
+					<sn-tree tree-data="areaData" node-type="'checkbox'" tree-id="aaa"></sn-tree>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+
+		<section ng-controller="DataGridController">
+			<h3>数据表格</h3>
+
+			<div class="row">
+				<div class="col-xs-6">
+					<h4>最简单的数据表格</h4>
+					<sn-datagrid grid-cols="cols" grid-data="students"></sn-datagrid>
+				</div>
+				
+				<div class="col-xs-6">
+					<h4>单元格有多种条件，并且操作数据的数据表格</h4>
+					<sn-datagrid grid-cols="buttonCols" grid-data="students" cell-tpl="buttonCellTpl" header-cell-tpl="checkboxHeaderTpl"></sn-datagrid>
+				</div>
+				
+				<div class="col-xs-6">
+					<h4>可排序数据表格</h4>
+					<sn-datagrid grid-cols="cols" grid-data="students" header-cell-tpl="sortHeaderTpl"></sn-datagrid>
+				</div>
+				
+				<div class="col-xs-6">
+					<h4>可排序数据表格简化写法</h4>
+					<sn-datagrid grid-cols="cols" grid-data="students" type="'sortable'"></sn-datagrid>
+				</div>
+				
+				<div class="col-xs-6">
+					<h4>关联复选的数据表格</h4>
+					<sn-datagrid grid-cols="checkboxCols" grid-data="students" cell-tpl="checkboxTpl" header-cell-tpl="checkboxHeaderTpl"></sn-datagrid>
+				</div>
+				
+				<div class="col-xs-6">
+					<h4>关联复选的数据表格</h4>
+					<sn-datagrid grid-cols="checkboxCols" grid-data="students" type="'checkable'"></sn-datagrid>
+				</div>
+			</div>
+		</section>
+	</main>
+<script src="app.js"></script><script src="sn-control.js"></script></body>
+
+</html>
