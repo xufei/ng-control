@@ -36,7 +36,7 @@ export default class DialogService {
     }
 
     closeAll() {
-        this.dialogMap.forEach((it, key) => it.close());
+        this.dialogSet.forEach((it, key) => it.close());
     }
 }
 
