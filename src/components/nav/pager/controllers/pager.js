@@ -42,7 +42,12 @@ export default class PagerController {
 	}
 
 	rangeOffset(index) {
-		this.offset = Math.min(index, this.totalPages - this.listSize);
+		if (this.totalPages >= this.listSize) {
+			this.offset = Math.min(index, this.totalPages - this.listSize);
+		}
+		else {
+			this.offset = index;
+		}
 		let last = Math.min(this.offset + this.listSize, this.totalPages);
 
 		this.pages = Array.from(Array(last - this.offset), (v, i) => {
