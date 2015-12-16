@@ -10,7 +10,7 @@ export default class TreeSelectDirective {
 	constructor() {
 		this.template = template;
 		this.restrict = "E";
-		
+
 		this.controller = TreeSelectController;
 		this.controllerAs = "treeselectCtrl";
 		this.bindToController = true;
@@ -32,7 +32,7 @@ export default class TreeSelectDirective {
 				scope.$digest();
             }
         });
-		
+
 		scope.$on("$destroy", () => closeEvent.remove());
 	}
 }

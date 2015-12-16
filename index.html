@@ -154,7 +154,7 @@
 
 		<section ng-controller="DateController">
 			<h3>日期选择</h3>
-
+			
 			<div class="row">
 				<div class="col-xs-4">
 					<form class="form-horizontal">
@@ -195,10 +195,10 @@
 		</section>
 
 		<hr/>
-
+		
 		<section>
 			<h3>时钟</h3>
-
+			
 			<div class="row">
 				<div class="col-xs-4">
 					<sn-clock></sn-clock>
@@ -379,27 +379,27 @@
 					<h4>最简单的数据表格</h4>
 					<sn-datagrid grid-cols="cols" grid-data="students"></sn-datagrid>
 				</div>
-
+				
 				<div class="col-xs-6">
 					<h4>单元格有多种条件，并且操作数据的数据表格</h4>
 					<sn-datagrid grid-cols="buttonCols" grid-data="students" cell-tpl="buttonCellTpl" header-cell-tpl="checkboxHeaderTpl"></sn-datagrid>
 				</div>
-
+				
 				<div class="col-xs-6">
 					<h4>可排序数据表格</h4>
 					<sn-datagrid grid-cols="cols" grid-data="students" header-cell-tpl="sortHeaderTpl"></sn-datagrid>
 				</div>
-
+				
 				<div class="col-xs-6">
 					<h4>可排序数据表格简化写法</h4>
 					<sn-datagrid grid-cols="cols" grid-data="students" type="'sortable'"></sn-datagrid>
 				</div>
-
+				
 				<div class="col-xs-6">
 					<h4>关联复选的数据表格</h4>
 					<sn-datagrid grid-cols="checkboxCols" grid-data="students" cell-tpl="checkboxTpl" header-cell-tpl="checkboxHeaderTpl"></sn-datagrid>
 				</div>
-
+				
 				<div class="col-xs-6">
 					<h4>关联复选的数据表格</h4>
 					<sn-datagrid grid-cols="checkboxCols" grid-data="students" type="'checkable'"></sn-datagrid>
