@@ -73,6 +73,7 @@ export default class PagerController {
 		
 		this.currentPage = this.pages[index - this.offset];
 		this.currentPage.active = true;
+		this.currentIndex = index;
 	}
 
 	getText(key) {
@@ -91,5 +92,8 @@ export default class PagerController {
 		}
 
 		this.rangeOffset(0);
+		
+		// 默认跳转第一页
+		this.goto(0);
 	}
 }

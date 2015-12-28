@@ -14,7 +14,7 @@ export default class PagerDirective {
 			disabled: "=",
 			count: "=",
 			pageSize: "=",
-			currentPage: "="
+			currentIndex: "="
 		};
 	}
 
@@ -30,6 +30,12 @@ export default class PagerDirective {
 			if (typeof count == "number") {
 				scope.pagerCtrl.count = count;
 				scope.pagerCtrl.resetPageList();
+			}
+		});
+		
+		scope.$watch("pageCtrl.currentIndex", index => {
+			if (typeof index == "number") {
+				scope.pageCtrl.goto(index);
 			}
 		});
 	}
