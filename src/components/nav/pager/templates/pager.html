@@ -6,7 +6,7 @@
 		<a href="javascript:void(0)" ng-click="pagerCtrl.previous()">{{pagerCtrl.getText('previous')}}</a>
 	</li>
 	<li ng-repeat="page in pagerCtrl.pages" ng-class="{'active':page.active}">
-		<a href="javascript:void(0)" ng-click="pagerCtrl.goto(page.index)">{{page.index}}</a>
+		<a href="javascript:void(0)" ng-click="pagerCtrl.goto(page.index)">{{page.index+1}}</a>
 	</li>
 	<li ng-class="{disabled: pagerCtrl.isLast()}">
 		<a href="javascript:void(0)" ng-click="pagerCtrl.next()">{{pagerCtrl.getText('next')}}</a>
