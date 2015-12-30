@@ -1,5 +1,7 @@
 import template from "../templates/alert.html";
 
+import ComponentZIndex from "../../../zindex";
+
 export default class AlertService {
     constructor($document, $q, $rootScope, $compile) {
         this.$document = $document;
@@ -10,7 +12,7 @@ export default class AlertService {
         this.dialogArr = [];
 
         this.dialogCounter = 0;
-        this.zIndex = 1200;
+        this.zIndex = ComponentZIndex.Alert;
 
         this.mask = angular.element('<div class="modal-backdrop fade in"></div>');
         this.mask.css("z-index", this.zIndex);

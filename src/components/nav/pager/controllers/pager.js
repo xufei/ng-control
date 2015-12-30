@@ -12,6 +12,13 @@ export default class PagerController {
 		this.listSize = 5;
 		this.offset = 0;
 	}
+	
+	setCount(count) {
+		if (typeof count == "number") {
+			this.count = count;
+			this.resetPageList();
+		}
+	}
 
 	first() {
 		this.goto(0);

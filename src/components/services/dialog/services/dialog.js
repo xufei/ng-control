@@ -1,3 +1,5 @@
+import ComponentZIndex from "../../../zindex";
+
 export default class DialogService {
     constructor($document, $rootScope, $compile) {
         this.$document = $document;
@@ -5,7 +7,7 @@ export default class DialogService {
         this.$compile = $compile;
 
         this.dialogCounter = 0;
-        this.zIndex = 1200;
+        this.zIndex = ComponentZIndex.Dialog;
 
         this.dialogSet = new Set();
     }

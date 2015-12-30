@@ -27,10 +27,7 @@ export default class PagerDirective {
 		});
 
 		scope.$watch("pagerCtrl.count", count => {
-			if (typeof count == "number") {
-				scope.pagerCtrl.count = count;
-				scope.pagerCtrl.resetPageList();
-			}
+			scope.pagerCtrl.setCount(count);
 		});
 		
 		scope.$watch("pageCtrl.currentIndex", index => {

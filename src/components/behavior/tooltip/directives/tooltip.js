@@ -2,6 +2,8 @@ import template from "../templates/tooltip.html";
 
 import { UIHelper } from "../../../utils/ui-helper";
 
+import ComponentZIndex from "../../../zindex";
+
 export default class ToolTipDirective {
     constructor($document, $compile, $rootScope) {
         this.restrict = "A";
@@ -55,7 +57,7 @@ export default class ToolTipDirective {
 				}
 			}
 	
-			tooltip.css("z-index", "1500");
+			tooltip.css("z-index", ComponentZIndex.Tooltip);
 			tooltip.css("display", "block");
 			tooltip.css("left", x + "px");
 			tooltip.css("top", y + "px");
