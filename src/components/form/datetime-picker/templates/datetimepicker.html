@@ -1,0 +1,18 @@
+<div class="datetime-picker" ng-class="{'open': datepickerCtrl.pop}">
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="{{datepickerCtrl.placeholder}}" ng-value="datepickerCtrl.currentDateStr" readonly/>
+	    <span class="input-group-addon" ng-click="datepickerCtrl.showPop()">
+	        <span class="glyphicon glyphicon-calendar"></span>
+	    </span>
+	</div>
+	<div class="dropdown-menu">
+		<div class="calendar-container">
+			<sn-calendar min-date="datepickerCtrl.minDate" max-date="datepickerCtrl.maxDate"
+				 year="datepickerCtrl.year" month="datepickerCtrl.month" day="datepickerCtrl.day"
+			     ng-show="datepickerCtrl.pop" date-click="datepickerCtrl.dateClick()"></sn-calendar>
+		</div>
+		<div class="calendar-container" ng-show="datepickerCtrl.showTime">
+			<sn-timepicker hour="datepickerCtrl.hour" minute="datepickerCtrl.minute" second="datepickerCtrl.second"></sn-timepicker>
+		</div>
+	</div>
+</div>

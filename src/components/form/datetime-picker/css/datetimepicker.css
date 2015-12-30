@@ -1,9 +1,9 @@
-.date-picker {
+.datetime-picker {
     position: relative;
     display: table;
 }
 
-.date-picker .calendar-container {
+.datetime-picker .calendar-container {
     width: 250px;
     padding: 0 4px;
     margin-top: 0px;

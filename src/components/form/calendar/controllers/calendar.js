@@ -37,7 +37,7 @@ export default class CalendarCtrl {
 
 	selectDate(day) {
 		if (this.dateInRange(day)) {
-			this.calendar.date = day.date.getDate();
+			this.day = this.calendar.date = day.date.getDate();
 
 			this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
 
@@ -48,14 +48,14 @@ export default class CalendarCtrl {
 	}
 
 	selectMonth(month) {
-		this.calendar.month = month;
+		this.month = this.calendar.month = month;
 		this.viewMode = this.ViewStates.DATE;
 
 		this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
 	}
 
 	selectYear(year) {
-		this.calendar.year = year;
+		this.year = this.calendar.year = year;
 		this.viewMode = this.ViewStates.DATE;
 
 		this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);

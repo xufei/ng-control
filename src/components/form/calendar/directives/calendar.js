@@ -15,19 +15,19 @@ export default class CalendarDirective {
 		this.scope = {
 			minDate: "=",
 			maxDate: "=",
-			selectedDate: "=",
+			year: "=",
+			month: "=",
+			day: "=",
 			dateClick: "&"
 		};
 	}
 	
 	link (scope) {
 		// 这段代码太别扭了，但问题是如果搬到controller里面去写成setter，会在constructor之前执行，真头疼，先这样吧
-		scope.$watch("calendarCtrl.selectedDate", newDate => {
-			if (newDate) {
-				scope.calendarCtrl.calendar.year = newDate.getFullYear();
-				scope.calendarCtrl.calendar.month = newDate.getMonth();
-				scope.calendarCtrl.calendar.date = newDate.getDate();
-			}
+		scope.$watchGroup(["calendarCtrl.year", "calendarCtrl.month", "calendarCtrl.day"], ([year, month, day]) => {
+			scope.calendarCtrl.calendar.year = year;
+			scope.calendarCtrl.calendar.month = month;
+			scope.calendarCtrl.calendar.date = day;
 		});
 	}
 }
