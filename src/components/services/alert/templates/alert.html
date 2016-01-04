@@ -2,10 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" ng-click="cancel ? cancel() : ok()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">{{title}}</h4>
             </div>
             <div class="modal-body">
+                <div class="well" ng-if="hint">
+                    <ul>
+                        <li ng-repeat="item in hint">{{item}}</li>
+                    </ul>
+                </div>
                 {{content}}
             </div>
             <div class="modal-footer">

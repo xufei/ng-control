@@ -29,15 +29,12 @@ export default class AlertService {
         }
 
         let data = Object.assign(this.$rootScope.$new(), param);
+        
+        console.log(data);
 
         data.ok = () => {
             this.dismiss(dialog);
             defer.resolve("ok");
-        };
-
-        data.cancel = () => {
-            this.dismiss(dialog);
-            defer.reject("cancel");
         };
 
         dialog = this.$compile(angular.element(template))(data);

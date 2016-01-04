@@ -3,6 +3,7 @@ export default class AlertController {
 		this.AlertService = AlertService;
 		
 		$scope.myAlert = this.myAlert.bind(this);
+		$scope.myAlertWithHint = this.myAlertWithHint.bind(this);
 		$scope.myConfirm = this.myConfirm.bind(this);
 	}
 
@@ -11,6 +12,18 @@ export default class AlertController {
 			.alert({
 				title: "测试",
 				content: "你好，我是警告"
+			})
+			.then(function () {
+				alert("你刚才点了确定");
+			});
+	}
+	
+	myAlertWithHint() {
+		this.AlertService
+			.alert({
+				title: "测试",
+				content: "你好，我是警告",
+				hint: ["操作提示1", "如果想要在操作的时候给点提示，那就写在这里"]
 			})
 			.then(function () {
 				alert("你刚才点了确定");
