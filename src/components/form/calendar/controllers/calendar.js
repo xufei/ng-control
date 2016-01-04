@@ -21,23 +21,29 @@ export default class CalendarCtrl {
 		if (!day) {
 			return true;
 		}
-
+        
+        var date = new Date(this.calendar.year, this.calendar.month, day);
+        
 		if (this.minDate) {
-			if (day.date - this.minDate < 0) {
+			if (date.valueOf() - this.minDate.valueOf() < 0) {
 				return false;
 			}
 		}
 		if (this.maxDate) {
-			if (day.date - this.maxDate > 0) {
+			if (date.valueOf() - this.maxDate.valueOf() > 0) {
 				return false;
 			}
 		}
 		return true;
 	}
+    
+    dateIsSelected(day) {
+        return new Date(this.calendar.year, this.calendar.month, day).valueOf() == this.calendar.currentDate.valueOf();
+    }
 
 	selectDate(day) {
 		if (this.dateInRange(day)) {
-			this.day = this.calendar.date = day.date.getDate();
+			this.day = this.calendar.date = day;
 
 			this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
 

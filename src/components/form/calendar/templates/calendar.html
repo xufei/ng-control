@@ -29,9 +29,9 @@
 
 		<div class="calendar-row" ng-repeat="row in calendarCtrl.calendar.days">
 			<div class="date" ng-repeat="day in row track by $index"
-			     ng-class="{'disabled':!calendarCtrl.dateInRange(day),'active':!(day-calendarCtrl.calendar.selectedDate)}"
+			     ng-class="{'disabled':!calendarCtrl.dateInRange(day),'active':calendarCtrl.dateIsSelected(day)}"
 			     ng-click="calendarCtrl.selectDate(day)">
-				<a href="javascript:void(0)" ng-if="day">{{day.date.getDate()}}</a>
+				<a href="javascript:void(0)" ng-if="day">{{day}}</a>
 				<span ng-if="!day"></span>
 			</div>
 		</div>
