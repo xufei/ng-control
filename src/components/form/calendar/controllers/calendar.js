@@ -18,10 +18,6 @@ export default class CalendarCtrl {
 	}
 
 	dateInRange(day) {
-		if (!day) {
-			return true;
-		}
-        
         var date = new Date(this.calendar.year, this.calendar.month, day);
         
 		if (this.minDate) {
@@ -29,6 +25,7 @@ export default class CalendarCtrl {
 				return false;
 			}
 		}
+		
 		if (this.maxDate) {
 			if (date.valueOf() - this.maxDate.valueOf() > 0) {
 				return false;
