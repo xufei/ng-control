@@ -11,7 +11,8 @@
                         <li ng-repeat="item in hint">{{item}}</li>
                     </ul>
                 </div>
-                {{content}}
+                <p ng-if="content">{{content}}</p>
+                <p ng-if="contents" ng-repeat="content in contents">{{content}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" ng-show="ok" ng-click="ok()">确定</button>
