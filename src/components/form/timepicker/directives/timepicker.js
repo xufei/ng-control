@@ -12,8 +12,8 @@ export default class TimePickerDirective {
 		this.restrict = "E";
 
 		this.scope = {
-			minDate: "=",
-			maxDate: "=",
+			minTime: "=",
+			maxTime: "=",
 			placeholder: "=",
 			hour: "=",
 			minute: "=",

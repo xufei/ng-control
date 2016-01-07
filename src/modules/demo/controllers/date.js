@@ -1,17 +1,19 @@
 export default class DateController {
-	constructor($scope) {
-		$scope.oneDay = new Date(2012, 3, 9);
+	constructor() {
+		this.oneDay = new Date(2012, 3, 9);
 		
-		$scope.year = $scope.oneDay.getFullYear();
-		$scope.month = $scope.oneDay.getMonth();
-		$scope.day = $scope.oneDay.getDate();
+		this.year = this.oneDay.getFullYear();
+		this.month = this.oneDay.getMonth();
+		this.date = this.oneDay.getDate();
 
-		$scope.min = new Date(2015, 8, 3);
-		$scope.max = new Date(2016, 2, 1);
+		this.min = new Date(2015, 8, 3);
+		this.max = new Date(2016, 2, 1);
 		
-		$scope.fromDate = new Date(1995, 1, 3);
-		$scope.toDate = new Date(2016, 7, 6);
+		this.fromDate = new Date(1995, 1, 3);
+		this.toDate = new Date(2016, 7, 6);
+	}
+	
+	click() {
+		alert(1111);
 	}
 }
-
-DateController.$inject = ["$scope"];

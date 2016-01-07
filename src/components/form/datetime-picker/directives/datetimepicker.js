@@ -19,7 +19,7 @@ export default class DateTimePickerDirective {
 			minDate: "=",
 			maxDate: "=",
 			placeholder: "=",
-			currentDate: "=ngModel",
+			selectedDate: "=ngModel",
 			disabled: "=",
 			showTime: "="
 		};
@@ -31,41 +31,11 @@ export default class DateTimePickerDirective {
 		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
                 scope.datepickerCtrl.pop = false;
-				scope.datepickerCtrl.getDate();
+				//scope.datepickerCtrl.getDate();
 				scope.$digest();
             }
         });
 
 		scope.$on('$destroy', () => closeEvent.remove());
-		
-		scope.$watch("datepickerCtrl.currentDate", newDate => {
-			scope.datepickerCtrl.setDate(newDate);
-		});
-		
-		scope.$watchGroup(["datepickerCtrl.year", "datepickerCtrl.month", "datepickerCtrl.day"], ([year, month, day]) => {
-			let date = scope.datepickerCtrl.selectedDate;
-			
-			if (date) {
-				date.setYear(year);
-				date.setMonth(month);
-				date.setDay(day);
-				
-				scope.datepickerCtrl.updateStr(date);
-			}
-		});
-		
-		scope.$watchGroup(["datepickerCtrl.hour", "datepickerCtrl.minute", "datepickerCtrl.second"], ([hour, minute, second]) => {
-			let date = scope.datepickerCtrl.selectedDate;
-			
-			console.log(hour);
-			
-			if (date) {
-				date.setHours(hour);
-				date.setMinutes(minute);
-				date.setSeconds(second);
-				
-				scope.datepickerCtrl.updateStr(date);
-			}
-		});
 	}
 }

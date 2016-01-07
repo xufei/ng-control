@@ -1,8 +1,8 @@
 import { Calendar } from "../../../models/calendar/calendar";
 
-export default class CalendarCtrl {
+export default class CalendarCtrl extends Calendar {
 	constructor() {
-		this.calendar = new Calendar();
+		super();
 
 		this.monthArr = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 		this.weekdayArr = ["日", "一", "二", "三", "四", "五", "六"];
@@ -15,10 +15,17 @@ export default class CalendarCtrl {
 		});
 
 		this.viewMode = this.ViewStates.DATE;
+		
+		if ((this.currentDate == null) || isNaN(this.currentDate.getTime())) {
+			this.currentDate = new Date();
+		}
+		else {
+			this.currentDate = this.currentDate;
+		}
 	}
 
 	dateInRange(day) {
-        var date = new Date(this.calendar.year, this.calendar.month, day);
+        var date = new Date(this.year, this.month, day);
         
 		if (this.minDate) {
 			if (date.valueOf() - this.minDate.valueOf() < 0) {
@@ -35,36 +42,30 @@ export default class CalendarCtrl {
 	}
     
     dateIsSelected(day) {
-        return new Date(this.calendar.year, this.calendar.month, day).valueOf() == this.calendar.currentDate.valueOf();
+        return new Date(this.year, this.month, day).valueOf() == this.currentDate.valueOf();
     }
 
 	selectDate(day) {
 		if (this.dateInRange(day)) {
-			this.day = this.calendar.date = day;
-
-			this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
+			this.date = day;
 
 			if (this.dateClick) {
-				this.dateClick(this.calendar.selectedDate);
+				this.dateClick(this.currentDate);
 			}
 		}
 	}
 
 	selectMonth(month) {
-		this.month = this.calendar.month = month;
+		this.month = month;
 		this.viewMode = this.ViewStates.DATE;
-
-		this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
 	}
 
 	selectYear(year) {
-		this.year = this.calendar.year = year;
+		this.year = year;
 		this.viewMode = this.ViewStates.DATE;
-
-		this.selectedDate = new Date(this.calendar.year, this.calendar.month, this.calendar.date);
 	}
 
 	selectNow() {
-		this.calendar.currentDate = new Date();
+		this.currentDate = new Date();
 	}
 }

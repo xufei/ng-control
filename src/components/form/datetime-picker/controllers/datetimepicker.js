@@ -1,43 +1,27 @@
-export default class DateTimePickerController{
+import { Calendar } from "../../../models/calendar/calendar";
+
+export default class DateTimePickerController extends Calendar {
 	constructor($filter, $timeout) {
+		super();
+		
 		this.$filter = $filter;
 		this.$timeout = $timeout;
-	}
-	
-	setDate(newDate) {
-		if (newDate) {
-			this.year = newDate.getFullYear();
-			this.month = newDate.getMonth();
-			this.day = newDate.getDay();
-			
-			if (this.showTime) {
-				this.hour = newDate.getHours();
-				this.minute = newDate.getMinutes();
-				this.second = newDate.getSeconds();
-			}
-			
-			this.updateStr(newDate);
-		}
-	}
-	
-	getDate() {
-		let newDate = new Date(this.year, this.month, this.day);
-		newDate.setHours(this.hour || 0);
-		newDate.setMinutes(this.minute || 0);
-		newDate.setSeconds(this.second || 0);
 		
-		this.currentDate = newDate;
-		this.updateStr(newDate);
-		
-		return newDate;
-	}
-	
-	updateStr(date) {
-		if (this.showTime) {
-			this.currentDateStr = this.$filter('date')(date, "yyyy-MM-dd hh:mm:ss");
+		if ((this.selectedDate == null) || isNaN(this.selectedDate.getTime())) {
+			this.currentDate = new Date();
 		}
 		else {
-			this.currentDateStr = this.$filter('date')(date, "yyyy-MM-dd");
+			this.currentDate = this.selectedDate;
+		}
+		this.updateStr();
+	}
+	
+	updateStr() {
+		if (this.showTime) {
+			this.currentDateStr = this.$filter('date')(this.currentDate, "yyyy-MM-dd hh:mm:ss");
+		}
+		else {
+			this.currentDateStr = this.$filter('date')(this.currentDate, "yyyy-MM-dd");
 		}
 	}
 
@@ -49,7 +33,8 @@ export default class DateTimePickerController{
 
 	dateClick() {
 		this.$timeout(() => {
-			this.getDate();
+			this.updateStr();
+			this.selectedDate = this.currentDate;
 			this.pop = false;
 		}, 0);
 	};
