@@ -7,11 +7,12 @@ export default class TimePickerController{
 		this.minutes = Array.from(Array(60), (v, i) => i);
 		this.seconds = Array.from(Array(60), (v, i) => i);
 		
+		
 		let date = new Date();
 		
-		this.hour = date.getHours();
-		this.minute = date.getMinutes();
-		this.second = date.getSeconds();
+		this.hour = this.hour || date.getHours();
+		this.minute = this.minute || date.getMinutes();
+		this.second = this.second || date.getSeconds();
 	}
 	
 	set selectedDate(newDate) {

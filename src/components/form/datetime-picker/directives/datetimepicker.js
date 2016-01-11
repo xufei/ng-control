@@ -30,9 +30,7 @@ export default class DateTimePickerDirective {
 
 		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
-                scope.datepickerCtrl.pop = false;
-				//scope.datepickerCtrl.getDate();
-				scope.$digest();
+                scope.datepickerCtrl.dateClick();
             }
         });
 

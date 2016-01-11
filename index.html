@@ -160,12 +160,16 @@
 				<div class="col-xs-4">
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label>时间选择与模型绑定</label>
-							<sn-timepicker ng-model="ctrl.oneDay"></sn-timepicker>
+							<label>无默认值的时间选择</label>
+							<sn-timepicker></sn-timepicker>
 						</div>
 						<div class="form-group">
 							<label>不可用的时间选择</label>
 							<sn-timepicker disabled="true"></sn-timepicker>
+						</div>
+						<div class="form-group">
+							<label>时间选择与模型绑定</label>
+							<sn-timepicker hour="ctrl.hour" minute="ctrl.minute" second="ctrl.second"></sn-timepicker>
 						</div>
 					</form>
 				</div>
@@ -189,6 +193,7 @@
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label>日期时间选择与模型绑定</label>
+                            {{ctrl.oneDay}}
 							<sn-datetimepicker show-time="true" ng-model="ctrl.oneDay"></sn-datetimepicker>
 						</div>
 						<div class="form-group">
@@ -197,7 +202,7 @@
 						</div>
 						<div class="form-group">
 							<label>日期时间限定选择范围</label>
-							<sn-datetimepicker show-time="true" min-date="ctrl.min" max-date="ctrl.max"></sn-datetimepicker>
+							<sn-datetimepicker show-time="false" min-date="ctrl.min" max-date="ctrl.max"></sn-datetimepicker>
 						</div>
 					</form>
 				</div>

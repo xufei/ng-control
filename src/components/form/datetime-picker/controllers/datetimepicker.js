@@ -13,15 +13,38 @@ export default class DateTimePickerController extends Calendar {
 		else {
 			this.currentDate = this.selectedDate;
 		}
-		this.updateStr();
 	}
+    
+    get currentDate() {
+        if (this.showTime) {
+            return new Date(this.year, this.month, this.date, this.hour, this.minute, this.second);
+        }
+        else {
+            return new Date(this.year, this.month, this.date);
+        }
+    }
+    
+    set currentDate(val) {
+		if (val) {
+			this.year = val.getFullYear();
+			this.month = val.getMonth();
+			this.date = val.getDate();
+            
+            if (this.showTime) {
+                this.hour = val.getHours();
+                this.minute = val.getMinutes();
+                this.second = val.getSeconds();
+            }
+		}
+		this.updateStr();
+    }
 	
 	updateStr() {
 		if (this.showTime) {
-			this.currentDateStr = this.$filter('date')(this.currentDate, "yyyy-MM-dd hh:mm:ss");
+			this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd hh:mm:ss");
 		}
 		else {
-			this.currentDateStr = this.$filter('date')(this.currentDate, "yyyy-MM-dd");
+			this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd");
 		}
 	}
 
@@ -33,8 +56,8 @@ export default class DateTimePickerController extends Calendar {
 
 	dateClick() {
 		this.$timeout(() => {
-			this.updateStr();
 			this.selectedDate = this.currentDate;
+			this.updateStr();
 			this.pop = false;
 		}, 0);
 	};

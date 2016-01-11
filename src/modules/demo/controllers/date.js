@@ -11,6 +11,10 @@ export default class DateController {
 		
 		this.fromDate = new Date(1995, 1, 3);
 		this.toDate = new Date(2016, 7, 6);
+		
+		this.hour = 3;
+		this.minute = 4;
+		this.second = 5;
 	}
 	
 	click() {
