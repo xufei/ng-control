@@ -1,3 +1,8 @@
+sn-datetimepicker {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .datetime-picker {
     position: relative;
     display: table;
