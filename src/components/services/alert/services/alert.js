@@ -29,8 +29,6 @@ export default class AlertService {
         }
 
         let data = Object.assign(this.$rootScope.$new(), param);
-        
-        console.log(data);
 
         data.ok = () => {
             this.dismiss(dialog);
