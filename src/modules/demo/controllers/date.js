@@ -1,6 +1,7 @@
 export default class DateController {
 	constructor() {
 		this.oneDay = new Date(2012, 3, 9);
+		this.anotherDay = new Date(2012, 11, 2, 3, 4, 5);
 		
 		this.year = this.oneDay.getFullYear();
 		this.month = this.oneDay.getMonth();
