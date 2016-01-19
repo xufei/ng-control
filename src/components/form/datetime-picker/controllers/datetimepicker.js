@@ -55,11 +55,13 @@ export default class DateTimePickerController extends Calendar {
     }
 
     dateClick() {
-        this.$timeout(() => {
-            this.selectedDate = this.currentDate;
-            this.updateStr();
-            this.pop = false;
-        }, 0);
+        if (this.pop) {
+            this.$timeout(() => {
+                this.selectedDate = this.currentDate;
+                this.updateStr();
+                this.pop = false;
+            }, 0);
+        }
     };
 }
 
