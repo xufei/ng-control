@@ -10,9 +10,9 @@ export default class TimePickerController{
 		
 		let date = new Date();
 		
-		this.hour = this.hour || date.getHours();
-		this.minute = this.minute || date.getMinutes();
-		this.second = this.second || date.getSeconds();
+		this.hour = this.initHour || date.getHours();
+		this.minute = this.initMinute || date.getMinutes();
+		this.second = this.initSecond || date.getSeconds();
 	}
 	
 	set selectedDate(newDate) {

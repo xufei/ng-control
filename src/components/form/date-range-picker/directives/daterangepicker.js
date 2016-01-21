@@ -21,6 +21,8 @@ export default class DateRangePickerDirective {
 			placeholder: "=",
 			fromDate: "=",
 			toDate: "=",
+            initFromDate: "=",
+            initToDate: "=",
 			disabled: "="
 		};
 	}
@@ -40,11 +42,11 @@ export default class DateRangePickerDirective {
         });
 		
 		scope.$watch("pickerCtrl.fromDate", fromDate => {
-			scope.pickerCtrl.changeDates(fromDate, scope.pickerCtrl.toDate);
+			scope.pickerCtrl.updateStr(fromDate, scope.pickerCtrl.toDate);
 		});
 		
 		scope.$watch("pickerCtrl.toDate", toDate => {
-			scope.pickerCtrl.changeDates(scope.pickerCtrl.fromDate, toDate);
+			scope.pickerCtrl.updateStr(scope.pickerCtrl.fromDate, toDate);
 		});
 	}
 }

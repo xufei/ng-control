@@ -19,6 +19,6 @@ export default class DateController {
 	}
 	
 	click() {
-		alert(1111);
+		alert(111);
 	}
 }

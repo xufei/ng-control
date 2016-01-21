@@ -7,16 +7,17 @@ export default class DateTimePickerController extends Calendar {
         this.$filter = $filter;
         this.$timeout = $timeout;
 
-        if ((this.selectedDate == null) || isNaN(this.selectedDate.getTime())) {
+        if ((this.initDate == null) || isNaN(this.initDate.getTime())) {
             this.currentDate = new Date();
         }
         else {
-            this.currentDate = this.selectedDate;
+            this.currentDate = this.initDate;
             this.updateStr();
         }
     }
 
     get currentDate() {
+        console.log(111);
         if (this.showTime) {
             return new Date(this.year, this.month, this.date, this.hour, this.minute, this.second);
         }
@@ -26,6 +27,7 @@ export default class DateTimePickerController extends Calendar {
     }
 
     set currentDate(val) {
+        console.log(val);
         if (val) {
             this.year = val.getFullYear();
             this.month = val.getMonth();
@@ -41,7 +43,7 @@ export default class DateTimePickerController extends Calendar {
 
     updateStr() {
         if (this.showTime) {
-            this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd hh:mm:ss");
+            this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd HH:mm:ss");
         }
         else {
             this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd");

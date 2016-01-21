@@ -15,10 +15,10 @@
 		
 		<div class="calendar-container" ng-show="pickerCtrl.customize">
 			<div class="col-xs-6">
-				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" selected-date="pickerCtrl.fromDate" date-click="pickerCtrl.fromDateClick()"></sn-calendar>
+				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" year="pickerCtrl.fromYear" month="pickerCtrl.fromMonth" date="pickerCtrl.fromDay" date-click="pickerCtrl.fromDateClick()"></sn-calendar>
 			</div>
 			<div class="col-xs-6">
-				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" selected-date="pickerCtrl.toDate" date-click="pickerCtrl.toDateClick()"></sn-calendar>
+				<sn-calendar min-date="pickerCtrl.minDate" max-date="pickerCtrl.maxDate" year="pickerCtrl.toYear" month="pickerCtrl.toMonth" date="pickerCtrl.toDay" date-click="pickerCtrl.toDateClick()"></sn-calendar>
 			</div>
 		</div>
 		<!--sn-timepicker init-hour="initHour" init-minute="initMinute" init-second="initSecond"></sn-timepicker-->

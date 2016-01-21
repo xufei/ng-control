@@ -19,6 +19,7 @@ export default class DateTimePickerDirective {
 			minDate: "=",
 			maxDate: "=",
 			placeholder: "=",
+            initDate: "=",
 			selectedDate: "=ngModel",
 			disabled: "=",
 			showTime: "="
