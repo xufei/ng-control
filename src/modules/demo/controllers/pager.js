@@ -6,6 +6,10 @@ export default class PagerController {
 			console.log(page);
 		});
 	}
+    
+    changeIndex() {
+        this.currentPage = 1;
+    }
 }
 
 PagerController.$inject = ["$scope"];

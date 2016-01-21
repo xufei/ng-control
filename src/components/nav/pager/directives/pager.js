@@ -30,9 +30,9 @@ export default class PagerDirective {
 			scope.pagerCtrl.setCount(count);
 		});
 		
-		scope.$watch("pageCtrl.currentIndex", index => {
+		scope.$watch("pagerCtrl.currentIndex", index => {
 			if (typeof index == "number") {
-				scope.pageCtrl.goto(index);
+				scope.pagerCtrl.goto(index);
 			}
 		});
 	}
