@@ -15,6 +15,7 @@ export default class CalendarDirective {
 		this.scope = {
 			minDate: "=",
 			maxDate: "=",
+            initDate: "=",
 			year: "=",
 			month: "=",
 			date: "=",

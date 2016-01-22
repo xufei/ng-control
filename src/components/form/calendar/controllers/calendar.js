@@ -16,7 +16,7 @@ export default class CalendarCtrl extends Calendar {
 
 		this.viewMode = this.ViewStates.DATE;
 		
-		if ((this.currentDate == null) || isNaN(this.currentDate.getTime())) {
+		if ((this.initDate == null) || isNaN(this.initDate.getTime())) {
 			this.currentDate = new Date();
 		}
 		else {

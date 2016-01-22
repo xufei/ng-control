@@ -17,7 +17,6 @@ export default class DateTimePickerController extends Calendar {
     }
 
     get currentDate() {
-        console.log(111);
         if (this.showTime) {
             return new Date(this.year, this.month, this.date, this.hour, this.minute, this.second);
         }
@@ -27,7 +26,6 @@ export default class DateTimePickerController extends Calendar {
     }
 
     set currentDate(val) {
-        console.log(val);
         if (val) {
             this.year = val.getFullYear();
             this.month = val.getMonth();
