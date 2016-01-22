@@ -14,4 +14,15 @@ sn-datetimepicker {
     margin-top: 0px;
     z-index: 99999 !important;
     border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.datetime-picker .calendar-container:before,
+.datetime-picker .calendar-container:after {
+    display: table;
+    content: " ";
+}
+
+.datetime-picker .calendar-container:after {
+    clear: both;
 }

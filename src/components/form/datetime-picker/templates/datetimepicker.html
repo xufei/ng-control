@@ -1,18 +1,26 @@
 <div class="datetime-picker" ng-class="{'open': datepickerCtrl.pop}">
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="{{datepickerCtrl.placeholder}}" ng-value="datepickerCtrl.currentDateStr" readonly/>
-	    <span class="input-group-addon" ng-click="datepickerCtrl.showPop()">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="{{datepickerCtrl.placeholder}}" ng-value="datepickerCtrl.currentDateStr"
+        readonly/>
+        <span class="input-group-addon" ng-click="datepickerCtrl.showPop()">
 	        <span class="glyphicon glyphicon-calendar"></span>
-	    </span>
-	</div>
-	<div class="dropdown-menu">
-		<div class="calendar-container">
-			<sn-calendar min-date="datepickerCtrl.minDate" max-date="datepickerCtrl.maxDate"
-				 year="datepickerCtrl.year" month="datepickerCtrl.month" date="datepickerCtrl.date"
-			     ng-show="datepickerCtrl.pop" date-click="datepickerCtrl.dateClick()"></sn-calendar>
-		</div>
-		<div class="calendar-container" ng-show="datepickerCtrl.showTime">
-			<sn-timepicker hour="datepickerCtrl.hour" minute="datepickerCtrl.minute" second="datepickerCtrl.second"></sn-timepicker>
-		</div>
-	</div>
+        </span>
+    </div>
+    <div class="dropdown-menu">
+        <div class="calendar-container">
+            <sn-calendar min-date="datepickerCtrl.minDate" max-date="datepickerCtrl.maxDate" year="datepickerCtrl.year" month="datepickerCtrl.month"
+            date="datepickerCtrl.date" ng-show="datepickerCtrl.pop"></sn-calendar>
+        </div>
+        <div class="calendar-container" ng-show="datepickerCtrl.showTime">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row">
+                    <sn-timepicker hour="datepickerCtrl.hour" minute="datepickerCtrl.minute" second="datepickerCtrl.second"></sn-timepicker>
+                </div>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <button class="col-sm-4 col-sm-offset-1 btn btn-default btn-sm" ng-click="datepickerCtrl.ok()">确定</button>
+            <button class="col-sm-4 col-sm-offset-2 btn btn-default btn-sm" ng-click="datepickerCtrl.cancel()">清除</button>
+        </div>
+    </div>
 </div>

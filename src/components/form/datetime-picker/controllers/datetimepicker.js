@@ -11,7 +11,7 @@ export default class DateTimePickerController extends Calendar {
             this.currentDate = new Date();
         }
         else {
-            this.currentDate = this.initDate;
+            this.selectedDate = this.currentDate = this.initDate;
             this.updateStr();
         }
     }
@@ -43,10 +43,10 @@ export default class DateTimePickerController extends Calendar {
 
     updateStr() {
         if (this.showTime) {
-            this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd HH:mm:ss");
+            this.currentDateStr = this.$filter("date")(this.selectedDate, "yyyy-MM-dd HH:mm:ss");
         }
         else {
-            this.currentDateStr = this.$filter("date")(this.currentDate, "yyyy-MM-dd");
+            this.currentDateStr = this.$filter("date")(this.selectedDate, "yyyy-MM-dd");
         }
     }
 
@@ -56,15 +56,21 @@ export default class DateTimePickerController extends Calendar {
         }
     }
 
-    dateClick() {
-        if (this.pop) {
-            this.$timeout(() => {
-                this.selectedDate = this.currentDate;
-                this.updateStr();
-                this.pop = false;
-            }, 0);
-        }
-    };
+    ok() {
+        this.$timeout(() => {
+            this.selectedDate = this.currentDate;
+            this.updateStr();
+            this.pop = false;
+        }, 0);
+    }
+    
+    cancel() {
+        this.$timeout(() => {
+            this.selectedDate = null;;
+            this.updateStr();
+            this.pop = false;
+        }, 0);
+    }
 }
 
 DateTimePickerController.$inject = ["$filter", "$timeout"];

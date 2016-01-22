@@ -29,6 +29,7 @@ export default class DateTimePickerDirective {
 	link(scope, element, attrs) {
 		scope.placeholder = scope.placeholder || "请选择日期";
 
+        /*
 		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
                 scope.datepickerCtrl.dateClick();
@@ -36,5 +37,6 @@ export default class DateTimePickerDirective {
         });
 
 		scope.$on('$destroy', () => closeEvent.remove());
+        */
 	}
 }
