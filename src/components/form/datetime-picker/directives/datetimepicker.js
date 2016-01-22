@@ -29,14 +29,12 @@ export default class DateTimePickerDirective {
 	link(scope, element, attrs) {
 		scope.placeholder = scope.placeholder || "请选择日期";
 
-        /*
 		let closeEvent = UIHelper.listen(window, 'click', (e) => {
             if (!element[0].contains(e.target)) {
-                scope.datepickerCtrl.dateClick();
+                scope.datepickerCtrl.pop = false;;
             }
         });
 
 		scope.$on('$destroy', () => closeEvent.remove());
-        */
 	}
 }
